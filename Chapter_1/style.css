@@ -38,7 +38,8 @@
 .classical-model-row,
 .real-life-row,
 .experiment-row,
-.conclusion-row {
+.conclusion-row,
+.graph-row {
   margin-top: 200px;
   opacity: 0;
   transform: translateY(50px);
@@ -53,7 +54,8 @@
 .classical-model-row h1,
 .real-life-row h1,
 .experiment-row h1,
-.conclusion-row h1 {
+.conclusion-row h1,
+.graph-row h1 {
 
   font-family: Bai Jamjuree;
   font-style: normal;
@@ -68,7 +70,8 @@
 .classical-model-row p,
 .real-life-row p,
 .experiment-row p,
-.conclusion-row p {
+.conclusion-row p,
+.graph-row p {
   margin-top: 30px;
   font-family: Bai Jamjuree;
   font-style: normal;

@@ -13,11 +13,13 @@
   <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.1/d3.min.js"></script>
 
   <script src="./scroll.js"></script>
   <script src="./sketch.js"></script>
   <script src="./hydrogen.js"></script>
   <script src="./prob.js"></script>
+  <script src="./graph.js"></script>
 </head>
 
 <body id="body_parent" onload="StartScroll()">
@@ -80,6 +82,19 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum modi tempora quae quia dolore adipisci
           illum, perferendis delectus aliquam sunt. Soluta perferendis assumenda porro expedita molestiae sit deserunt
           beatae molestias.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptates id aliquid perspiciatis iusto
+          sit odit molestiae autem, esse cum tempore repudiandae, velit sequi ex optio quo dolor non? Deleniti!</p>
+      </div>
+    </div>
+    <div class="row graph-row" id="scene_5">
+      <div class="col-lg-6">
+        <h1>Radius vs. Frequency</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum modi tempora quae quia dolore adipisci
+          illum, perferendis delectus aliquam sunt. Soluta perferendis assumenda porro expedita molestiae sit deserunt
+          beatae molestias.</p>
+        <svg id="d3-viz">
+
+        </svg>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptates id aliquid perspiciatis iusto
           sit odit molestiae autem, esse cum tempore repudiandae, velit sequi ex optio quo dolor non? Deleniti!</p>
       </div>

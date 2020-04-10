@@ -87,6 +87,27 @@ let StartScroll = () => {
     })
     .addTo(controller);
 
+  let scene_5 = new ScrollMagic.Scene({
+      triggerElement: '#scene_5'
+    })
+    .setClassToggle('#scene_5', 'fade-in')
+    // .addIndicators({
+    //   name: 'fade scene',
+    //   colorTrigger: 'white',
+    //   colorStart: '#FFF7AE'
+    // })
+    .on('start', () => {
+      if (sceneCount == 4) {
+        showBohrRadius();
+        d3load();
+        sceneCount = 5;
+      } else {
+        dontShowBohrRadius();
+        sceneCount = 4;
+      }
+    })
+    .addTo(controller);
+
   let scene_6 = new ScrollMagic.Scene({
       triggerElement: '#scene_6'
     })
@@ -97,11 +118,12 @@ let StartScroll = () => {
     //   colorStart: '#FFF7AE'
     // })
     .on('start', () => {
-      if (sceneCount == 4) {
+      if (sceneCount == 5) {
         makeRings();
         sceneCount = 6;
       } else {
         ringMaker = false;
+        sceneCount = 5;
       }
     })
     .addTo(controller);

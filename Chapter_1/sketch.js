@@ -5,6 +5,7 @@ sceneCount = 0;
 ringMaker = false;
 rings = [];
 let bohrRadius;
+bohrRadiusCon = false;
 
 setup = () => {
   let canvas = createCanvas(windowWidth / 2, windowHeight);
@@ -52,6 +53,8 @@ draw = () => {
     for (let ring of rings) {
       ring.show();
     }
+  }
+  if (bohrRadiusCon == true) {
     bohrRadius.show();
   }
 }
@@ -109,6 +112,17 @@ experimentScience = () => {
   experiment = true;
   allowElectrons = false;
   particles_to_show[particles_to_show.length - 1].dimColor();
+  ringMaker = false;
+  bohrRadiusCon = false;
+}
+
+showBohrRadius = () => {
+  // ringMaker = true;
+  bohrRadiusCon = true;
+}
+
+dontShowBohrRadius = () => {
+  bohrRadiusCon = false;
 }
 
 makeRings = () => {
@@ -123,4 +137,5 @@ makeRings = () => {
   allowElectrons = false;
   experiment = false;
   ringMaker = true;
+  bohrRadiusCon = true;
 }
