@@ -8,16 +8,16 @@ class Particle {
 
     if (this.type == 'electron') {
       this.radius = 10;
-      this.color = color(214, 5, 5);
+      this.color = color(255, 247, 174);
     } else if (this.type == 'proton') {
       this.radius = 30;
-      this.color = color(126, 140, 224);
+      this.color = color(110, 207, 127);
     } else if (this.type == 'neutron') {
       this.radius = 30;
-      this.color = color(245, 278, 109);
+      this.color = color(234, 159, 162);
     } else if (this.type == 'nucleus') {
-      this.radius = 100;
-      this.color = color(255, 255, 255);
+      this.radius = 80;
+      this.color = color(255, 255, 255, 0);
     }
   }
 
@@ -25,6 +25,23 @@ class Particle {
     fill(this.color);
     noStroke();
     ellipse(this.position.x, this.position.y, this.radius, this.radius);
+    let d = int(dist(mouseX, mouseY, this.position.x, this.position.y));
+    if (this.type == 'nucleus') {
+      if (d < this.radius) {
+        textSize(20);
+        textAlign(CENTER, CENTER);
+        textFont('Bai Jamjuree');
+        noStroke();
+        fill(148, 163, 243);
+        text(this.type, this.position.x, this.position.y + 75);
+        noFill();
+        stroke(148, 163, 243, 255);
+      } else {
+        stroke(148, 163, 243, 100);
+      }
+      strokeWeight(3);
+      ellipse(this.position.x, this.position.y, this.radius, this.radius);
+    }
 
     if (this.selected == true) {
       textSize(20);
@@ -79,7 +96,7 @@ class Particle {
 
   dimColor() {
     if (this.type == 'electron') {
-      this.color = color(80, 3, 3);
+      this.color = color(255, 255, 255, 50);
     }
   }
 }
@@ -93,7 +110,7 @@ class Ring {
   show() {
     if (this.type == 'red') {
       noFill();
-      stroke(color(214, 5, 5, scaleOpacity(probDistOpacity[this.radius])));
+      stroke(color(255, 247, 174, scaleOpacity(probDistOpacity[this.radius])));
       ellipse(width / 2, height / 2, this.radius * 2, this.radius * 2);
     } else if (this.type == 'bohr') {
       noFill();

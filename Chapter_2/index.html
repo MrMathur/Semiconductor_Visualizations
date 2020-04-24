@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 2: Bonding of Silicon Atoms</title>
+
+  <link href="./style.css" rel="stylesheet" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.1/d3.min.js"></script>
+
+  <script src="./scroll.js"></script>
+  <script src="./sketch.js"></script>
+</head>
+
+<body id="body_parent" onload="StartScroll()">
+  <div class="container">
+    <div class="row title-row">
+      <h1 class="col-lg-12">BONDING OF SILICON ATOMS</h1>
+      <div class="col-lg-1"></div>
+      <p class="col-lg-10">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero aliquam soluta ipsam nam dolor,
+        cumque ullam
+        placeat asperiores eum fugit error optio quasi libero illo nostrum incidunt voluptas, dolorem ad!</p>
+      <div class="col-lg-1"></div>
+    </div>
+    <div class="row sub-atomic-particle-row" id="scene_1">
+      <div class="col-lg-4">
+        <h1>Silicon's Atomic Structure</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum modi tempora quae quia dolore adipisci
+          illum, perferendis delectus aliquam sunt. Soluta perferendis assumenda porro expedita molestiae sit deserunt
+          beatae molestias.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptates id aliquid perspiciatis iusto
+          sit odit molestiae autem, esse cum tempore repudiandae, velit sequi ex optio quo dolor non? Deleniti!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum modi tempora quae quia dolore adipisci
+          illum, perferendis delectus aliquam sunt. Soluta perferendis assumenda porro expedita molestiae sit deserunt
+          beatae molestias.</p>
+      </div>
+    </div>
+    <div class="row classical-model-row" id="scene_2">
+      <div class="col-lg-4">
+        <h1>Bonding</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum modi tempora quae quia dolore adipisci
+          illum, perferendis delectus aliquam sunt. Soluta perferendis assumenda porro expedita molestiae sit deserunt
+          beatae molestias.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptates id aliquid perspiciatis iusto
+          sit odit molestiae autem, esse cum tempore repudiandae, velit sequi ex optio quo dolor non? Deleniti!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum modi tempora quae quia dolore adipisci
+          illum, perferendis delectus aliquam sunt. Soluta perferendis assumenda porro expedita molestiae sit deserunt
+          beatae molestias.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptates id aliquid perspiciatis iusto
+          sit odit molestiae autem, esse cum tempore repudiandae, velit sequi ex optio quo dolor non? Deleniti!</p>
+      </div>
+    </div>
+    <!-- <div class="row real-life-row" id="scene_3">
+      <div class="col-lg-6">
+        <h1>What can we observe?</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum modi tempora quae quia dolore adipisci
+          illum, perferendis delectus aliquam sunt. Soluta perferendis assumenda porro expedita molestiae sit deserunt
+          beatae molestias.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptates id aliquid perspiciatis iusto
+          sit odit molestiae autem, esse cum tempore repudiandae, velit sequi ex optio quo dolor non? Deleniti!</p>
+        <p>Press 'ENTER' to measure the location of an electron!</p>
+      </div>
+    </div>
+    <div class="row experiment-row" id="scene_4">
+      <div class="col-lg-6">
+        <h1>What scientists found?</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum modi tempora quae quia dolore adipisci
+          illum, perferendis delectus aliquam sunt. Soluta perferendis assumenda porro expedita molestiae sit deserunt
+          beatae molestias.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptates id aliquid perspiciatis iusto
+          sit odit molestiae autem, esse cum tempore repudiandae, velit sequi ex optio quo dolor non? Deleniti!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum modi tempora quae quia dolore adipisci
+          illum, perferendis delectus aliquam sunt. Soluta perferendis assumenda porro expedita molestiae sit deserunt
+          beatae molestias.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptates id aliquid perspiciatis iusto
+          sit odit molestiae autem, esse cum tempore repudiandae, velit sequi ex optio quo dolor non? Deleniti!</p>
+      </div>
+    </div>
+    <div class="row graph-row" id="scene_5">
+      <div class="col-lg-6">
+        <h1>Radius vs. Frequency</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum modi tempora quae quia dolore adipisci
+          illum, perferendis delectus aliquam sunt. Soluta perferendis assumenda porro expedita molestiae sit deserunt
+          beatae molestias.</p>
+        <svg id="d3-viz">
+
+        </svg>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptates id aliquid perspiciatis iusto
+          sit odit molestiae autem, esse cum tempore repudiandae, velit sequi ex optio quo dolor non? Deleniti!</p>
+      </div>
+    </div>
+    <div class="row conclusion-row" id="scene_6">
+      <div class="col-lg-6">
+        <h1>The electron can be ANYWHERE!</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum modi tempora quae quia dolore adipisci
+          illum, perferendis delectus aliquam sunt. Soluta perferendis assumenda porro expedita molestiae sit deserunt
+          beatae molestias.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptates id aliquid perspiciatis iusto
+          sit odit molestiae autem, esse cum tempore repudiandae, velit sequi ex optio quo dolor non? Deleniti!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum modi tempora quae quia dolore adipisci
+          illum, perferendis delectus aliquam sunt. Soluta perferendis assumenda porro expedita molestiae sit deserunt
+          beatae molestias.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptates id aliquid perspiciatis iusto
+          sit odit molestiae autem, esse cum tempore repudiandae, velit sequi ex optio quo dolor non? Deleniti!</p>
+      </div>
+    </div> -->
+    <div id="visualization">
+
+    </div>
+  </div>
+</body>
+
+</html>
