@@ -3,7 +3,9 @@ let sceneCount;
 
 let atom, atom1, atom2;
 
-let selection;
+let selection, selection2, selection3, selection4, selection5 = [],
+  selection6 = [];
+let atoms = [];
 
 function mouseClicked() {
   if (sceneCount == 1) {
@@ -65,9 +67,131 @@ function setup() {
     }
   ];
 
+  selection2 = [{
+      type: '1s',
+      condition: 0,
+      count: 1,
+      y: height / 2 + 150
+    },
+    {
+      type: '2s',
+      condition: 0,
+      count: 1,
+      y: height / 2 + 80
+    },
+    {
+      type: '2p',
+      condition: 0,
+      count: 3,
+      y: height / 2 + 40
+    },
+    {
+      type: 'sp3',
+      condition: 0,
+      count: 4,
+      y: height / 2 - 40
+    },
+    {
+      type: '4s',
+      condition: 0,
+      count: 1,
+      y: height / 2 - 90
+    }
+  ];
+
+  selection3 = [{
+      type: '1s',
+      condition: 0,
+      count: 0,
+      y: height / 2 + 150
+    }, {
+      type: '',
+      condition: 0,
+      count: 0,
+      y: height / 2 + 140
+    }, {
+      type: '',
+      condition: 0,
+      count: 0,
+      y: height / 2 + 70
+    },
+    {
+      type: '2s',
+      condition: 0,
+      count: 0,
+      y: height / 2 + 80
+    }, {
+      type: '',
+      condition: 0,
+      count: 0,
+      y: height / 2 + 30
+    },
+    {
+      type: '2p',
+      condition: 0,
+      count: 0,
+      y: height / 2 + 40
+    },
+    {
+      type: 'sp3 σ',
+      condition: 0,
+      count: 2,
+      y: height / 2 - 40
+    },
+    {
+      type: 'sp3 σ*',
+      condition: 0,
+      count: 2,
+      y: height / 2 - 90
+    }
+  ];
+
+  selection4 = [{
+      type: 'sp3 σ',
+      condition: 0,
+      count: 2,
+      y: height / 2 + 50
+    },
+    {
+      type: 'sp3 σ*',
+      condition: 0,
+      count: 2,
+      y: height / 2 - 50
+    }
+  ];
+
+  selection5[0] = {
+    type: 'sp3 σ',
+    condition: 0,
+    count: 0,
+    y: height / 2 + 80
+  }
+  for (let i = 1; i < 9; i++) {
+    selection5[i] = {
+      type: '',
+      condition: 0,
+      count: 0,
+      y: selection5[0].y + (5 - i) * 10
+    }
+  }
+  selection5[9] = {
+    type: 'sp3 σ*',
+    condition: 0,
+    count: 0,
+    y: height / 2 - 80
+  }
+  for (let i = 1; i < 9; i++) {
+    selection5[9 + i] = {
+      type: '',
+      condition: 0,
+      count: 0,
+      y: selection5[9].y + (5 - i) * 10
+    }
+  }
+
 }
 
-function showBars() {
+function showBars(selection) {
   textFont('Bai Jamjuree');
   textSize(12);
   textAlign(RIGHT);
@@ -118,14 +242,206 @@ function draw() {
   if (sceneCount == 1) {
     atom.show();
     atom.check();
-    showBars();
+    showBars(selection);
 
+  } else if (sceneCount == 2) {
+    showBars(selection2);
+
+    fill(255, 247, 174, 100);
+    noStroke();
+    translate(width / 4, height / 2);
+    rotate(PI / 2);
+    ellipse(0, -50, 30, 100);
+    // translate(-width / 4, -height / 2);
+    rotate(2 * PI / 3);
+    // translate(width / 4, height / 2);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    ellipse(0, 25, 30, 50);
+    rotate(-PI / 2);
+    translate(-width / 4, -height / 2);
+
+    fill(255, 247, 174, 100);
+    noStroke();
+    translate(width / 2, height / 2);
+    rotate(-PI / 2);
+    ellipse(0, -50, 30, 100);
+    // translate(-width / 4, -height / 2);
+    rotate(2 * PI / 3);
+    // translate(width / 4, height / 2);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    ellipse(0, 25, 30, 50);
+
+    rotate(PI / 2);
+    translate(-width / 2, -height / 2);
+
+    fill(148, 163, 243);
+    ellipse(width / 2, height / 2, 30, 30);
+    ellipse(width / 4, height / 2, 30, 30);
+  } else if (sceneCount == 3) {
+
+    showBars(selection3);
+
+    noStroke();
+    translate(width / 4, height / 2);
+    rotate(PI / 2);
+    fill(255, 247, 174, 150);
+    ellipse(0, -65, 50, 130);
+    // translate(-width / 4, -height / 2);
+    rotate(2 * PI / 3);
+    // translate(width / 4, height / 2);
+    fill(255, 247, 174, 30);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    fill(255, 247, 174, 30);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    fill(255, 247, 174, 150);
+    ellipse(0, 20, 25, 40);
+    rotate(-PI / 2);
+    translate(-width / 4, -height / 2);
+
+    fill(255, 247, 174, 100);
+    noStroke();
+    translate(width / 2, height / 2);
+    rotate(-PI / 2);
+    fill(255, 247, 174, 150);
+    ellipse(0, -65, 50, 130);
+    // translate(-width / 4, -height / 2);
+    rotate(2 * PI / 3);
+    // translate(width / 4, height / 2);
+    fill(255, 247, 174, 30);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    fill(255, 247, 174, 30);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    fill(255, 247, 174, 150);
+    ellipse(0, 20, 25, 40);
+    rotate(PI / 2);
+    translate(-width / 2, -height / 2);
+
+    fill(148, 163, 243);
+    ellipse(width / 2, height / 2, 30, 30);
+    ellipse(width / 4, height / 2, 30, 30);
+  } else if (sceneCount == 4) {
+    showBars(selection4);
+
+    noStroke();
+    translate(width / 4, height / 2);
+    rotate(PI / 2);
+    // fill(255, 247, 174, 150);
+    // ellipse(0, -65, 50, 130);
+    // translate(-width / 4, -height / 2);
+    rotate(2 * PI / 3);
+    // translate(width / 4, height / 2);
+    fill(255, 247, 174, 30);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    fill(255, 247, 174, 30);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    fill(255, 247, 174, 150);
+    ellipse(0, 15, 20, 30);
+    rotate(-PI / 2);
+    translate(-width / 4, -height / 2);
+
+    fill(255, 247, 174, 100);
+    noStroke();
+    translate(width / 2, height / 2);
+    rotate(-PI / 2);
+    // fill(255, 247, 174, 150);
+    // ellipse(0, -65, 50, 130);
+    // translate(-width / 4, -height / 2);
+    rotate(2 * PI / 3);
+    // translate(width / 4, height / 2);
+    fill(255, 247, 174, 30);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    fill(255, 247, 174, 30);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    fill(255, 247, 174, 150);
+    ellipse(0, 15, 20, 30);
+    rotate(PI / 2);
+    translate(-width / 2, -height / 2);
+
+
+    fill(255, 247, 174, 150);
+    ellipse(3 * width / 8, height / 2, width / 4, 100);
+
+    fill(148, 163, 243);
+    ellipse(width / 2, height / 2, 30, 30);
+    ellipse(width / 4, height / 2, 30, 30);
+  } else if (sceneCount == 5) {
+    showBars(selection5);
+
+    noStroke();
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        let x = 250 + i * 120;
+        let y = 300 + j * 120;
+
+        for (let k = 0; k < 4; k++) {
+          fill(255);
+          ellipse(x + 50 * cos(k * PI / 2), y + 50 * sin(k * PI / 2), 10, 10);
+          stroke(120, 120, 120);
+          drawingContext.setLineDash([5, 15]);
+          line(x, y, x + 50 * cos(k * PI / 2), y + 50 * sin(k * PI / 2), 10, 10);
+          drawingContext.setLineDash([]);
+          noStroke();
+        }
+
+        fill(148, 163, 243);
+        ellipse(x, y, 30, 30);
+      }
+    }
+  } else if (sceneCount == 6) {
+    // showBars(selection5);
+    stroke(196, 196, 196);
+    strokeWeight(10);
+    drawingContext.setLineDash([]);
+    line(2 * width / 3 + 50, height / 2 - 150, 2 * width / 3 + 50, height / 2 + 150);
+    strokeWeight(1);
+    noStroke();
+    fill(255, 40);
+    rect(2 * width / 3 + 50, height / 2 + 50, 200, 60);
+    rect(2 * width / 3 + 50, height / 2 - 110, 200, 60);
+
+
+    noStroke();
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        let x = 250 + i * 120;
+        let y = 300 + j * 120;
+
+        for (let k = 0; k < 4; k++) {
+          fill(255);
+          ellipse(x + 50 * cos(k * PI / 2), y + 50 * sin(k * PI / 2), 10, 10);
+          stroke(120, 120, 120);
+          drawingContext.setLineDash([5, 15]);
+          line(x, y, x + 50 * cos(k * PI / 2), y + 50 * sin(k * PI / 2), 10, 10);
+          drawingContext.setLineDash([]);
+          noStroke();
+        }
+
+        fill(255, 247, 174, 30);
+        if (i != 2)
+          ellipse(x + 60, y, 60, 30);
+        if (j != 2)
+          ellipse(x, y + 60, 30, 60);
+
+        fill(148, 163, 243);
+        ellipse(x, y, 30, 30);
+      }
+    }
   }
-  if (sceneCount == 2) {
-    atom1.show(TWO_PI / 3);
-    atom2.show(TWO_PI / 3);
-    showBars();
-  }
+
 }
 
 class Electron {
