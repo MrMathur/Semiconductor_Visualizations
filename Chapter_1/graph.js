@@ -1,7 +1,7 @@
 d3load = () => {
   let dataset = [];
   let maxIndex = 0;
-  for (let i = 0; i < 400; i++) {
+  for (let i = 0; i < 1000; i++) {
     dataset[i] = {
       x: i,
       y: i / 100 * Math.exp(-i / 100)
@@ -11,8 +11,6 @@ d3load = () => {
       maxIndex = i;
     }
   }
-
-  console.table(dataset);
 
   const heightD3 = 400,
     widthD3 = 500;
@@ -82,8 +80,8 @@ d3load = () => {
 
   svg.selectAll('.dot')
     .transition()
-    .delay((d, i) => 5 * i)
-    .duration(5)
+    .delay((d, i) => 2.5 * i)
+    .duration(2.5)
     .attr('fill', '#FFF7AE');
 
   let points = [

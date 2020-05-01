@@ -1,10 +1,16 @@
 class Particle {
-  constructor(type, x, y) {
+  constructor(type, x, y, r, t) {
     this.type = type;
     this.position = createVector(x, y);
     this.updateToHydrogen = false;
     this.revolveElectron = false;
     this.selected == false;
+    if (r) {
+      this.r = r;
+    }
+    if (t) {
+      this.theta = t;
+    }
 
     if (this.type == 'electron') {
       this.radius = 10;
@@ -24,7 +30,11 @@ class Particle {
   show() {
     fill(this.color);
     noStroke();
-    ellipse(this.position.x, this.position.y, this.radius, this.radius);
+    if (this.r) {
+      ellipse(width / 2 + this.r * cos(this.theta), height / 2 + this.r * sin(this.theta), this.radius, this.radius);
+    } else {
+      ellipse(this.position.x, this.position.y, this.radius, this.radius);
+    }
     let d = int(dist(mouseX, mouseY, this.position.x, this.position.y));
     if (this.type == 'nucleus') {
       if (d < this.radius) {
@@ -97,6 +107,12 @@ class Particle {
   dimColor() {
     if (this.type == 'electron') {
       this.color = color(255, 255, 255, 50);
+    }
+  }
+
+  checkSweep(angle) {
+    if (angle > this.theta) {
+      this.theta = angle;
     }
   }
 }

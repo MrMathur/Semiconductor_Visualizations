@@ -1,8 +1,3 @@
-@font-face {
-  font-family: 'Agency FB';
-  src: url('../Agency_FB.ttf');
-}
-
 #body_parent {
   background-color: #121212;
 }
@@ -44,15 +39,14 @@
 .real-life-row,
 .experiment-row,
 .conclusion-row,
-.graph-row,
-.next-row {
+.graph-row {
   margin-top: 200px;
   opacity: 0;
   transform: translateY(50px);
   transition: all 0.3s ease-out;
 }
 
-.next-row {
+.conclusion-row {
   margin-bottom: 300px;
 }
 
@@ -61,8 +55,7 @@
 .real-life-row h1,
 .experiment-row h1,
 .conclusion-row h1,
-.graph-row h1,
-.next-row h1 {
+.graph-row h1 {
 
   font-family: Agency FB;
   font-style: normal;
@@ -78,8 +71,7 @@
 .real-life-row p,
 .experiment-row p,
 .conclusion-row p,
-.graph-row p,
-.next-row p {
+.graph-row p {
   margin-top: 30px;
   font-family: Bai Jamjuree;
   font-style: normal;
@@ -100,23 +92,4 @@
   top: 0px;
   right: 0px;
   z-index: -100;
-}
-
-
-.axis line {
-  stroke: #fff;
-}
-
-.axis path {
-  fill: none;
-  stroke: #fff;
-}
-
-.label {
-  fill: #fff;
-}
-
-#d3-viz {
-  /* background-color: white; */
-  min-height: 400px;
 }

@@ -24,9 +24,9 @@ function setup() {
   nucleusY = height / 2;
   nucleusR = 30;
 
-  atom = new Atom(nucleusX, nucleusY, nucleusR, 1, 0, 0, 0, 0, 0, 0);
-  atom1 = new Atom(nucleusX + 100, nucleusY * 2, nucleusR, 1, 0, 0, 0, 0, 0, 0);
-  atom2 = new Atom(nucleusX * 2.1 + 100, nucleusY * 2, nucleusR, 1, 0, 0, 0, 0, 0, 0);
+  atom = new Atom(nucleusX, nucleusY, nucleusR, 2, 2, 2, 2, 2, 2, 2);
+  atom1 = new Atom(nucleusX, nucleusY * 2, nucleusR, 2, 2, 2, 2, 2, 2, 2);
+  atom2 = new Atom(nucleusX * 2.1, nucleusY * 2, nucleusR, 2, 2, 2, 2, 2, 2, 2);
   sceneCount = 0;
 
   selection = [{
@@ -214,9 +214,6 @@ function showBars(selection) {
         strokeWeight(2);
         rect(2 * width / 3 + 60 + 30 * j, selection[i].y - 30, 30, 30);
       }
-      stroke(18);
-      strokeWeight(2);
-      line(2 * width / 3 + 60 + 10, selection[0].y - 25, 2 * width / 3 + 60 + 10, selection[0].y - 5);
     } else {
       noStroke();
       fill(255);
@@ -229,11 +226,6 @@ function showBars(selection) {
         stroke(196, 196, 196);
         strokeWeight(1);
         rect(2 * width / 3 + 60 + 30 * j, selection[i].y - 30, 30, 30);
-      }
-      if (selection[0].condition == 0) {
-        stroke(255);
-        strokeWeight(2);
-        line(2 * width / 3 + 60 + 10, selection[0].y - 25, 2 * width / 3 + 60 + 10, selection[0].y - 5);
       }
     }
   }
@@ -253,207 +245,202 @@ function draw() {
     showBars(selection);
 
   } else if (sceneCount == 2) {
-    atom1.show(0.5);
-    atom2.show(0.5);
-    showBars(selection);
+    showBars(selection2);
+
+    fill(255, 247, 174, 100);
+    noStroke();
+    translate(width / 4, height / 2);
+    rotate(PI / 2);
+    ellipse(0, -50, 30, 100);
+    // translate(-width / 4, -height / 2);
+    rotate(2 * PI / 3);
+    // translate(width / 4, height / 2);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    ellipse(0, 25, 30, 50);
+    rotate(-PI / 2);
+    translate(-width / 4, -height / 2);
+
+    fill(255, 247, 174, 100);
+    noStroke();
+    translate(width / 2, height / 2);
+    rotate(-PI / 2);
+    ellipse(0, -50, 30, 100);
+    // translate(-width / 4, -height / 2);
+    rotate(2 * PI / 3);
+    // translate(width / 4, height / 2);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    ellipse(0, 25, 30, 50);
+
+    rotate(PI / 2);
+    translate(-width / 2, -height / 2);
+
+    fill(148, 163, 243);
+    ellipse(width / 2, height / 2, 30, 30);
+    ellipse(width / 4, height / 2, 30, 30);
+  } else if (sceneCount == 3) {
+
+    showBars(selection3);
+
+    noStroke();
+    translate(width / 4, height / 2);
+    rotate(PI / 2);
+    fill(255, 247, 174, 150);
+    ellipse(0, -65, 50, 130);
+    // translate(-width / 4, -height / 2);
+    rotate(2 * PI / 3);
+    // translate(width / 4, height / 2);
+    fill(255, 247, 174, 30);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    fill(255, 247, 174, 30);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    fill(255, 247, 174, 150);
+    ellipse(0, 20, 25, 40);
+    rotate(-PI / 2);
+    translate(-width / 4, -height / 2);
+
+    fill(255, 247, 174, 100);
+    noStroke();
+    translate(width / 2, height / 2);
+    rotate(-PI / 2);
+    fill(255, 247, 174, 150);
+    ellipse(0, -65, 50, 130);
+    // translate(-width / 4, -height / 2);
+    rotate(2 * PI / 3);
+    // translate(width / 4, height / 2);
+    fill(255, 247, 174, 30);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    fill(255, 247, 174, 30);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    fill(255, 247, 174, 150);
+    ellipse(0, 20, 25, 40);
+    rotate(PI / 2);
+    translate(-width / 2, -height / 2);
+
+    fill(148, 163, 243);
+    ellipse(width / 2, height / 2, 30, 30);
+    ellipse(width / 4, height / 2, 30, 30);
+  } else if (sceneCount == 4) {
+    showBars(selection4);
+
+    noStroke();
+    translate(width / 4, height / 2);
+    rotate(PI / 2);
+    // fill(255, 247, 174, 150);
+    // ellipse(0, -65, 50, 130);
+    // translate(-width / 4, -height / 2);
+    rotate(2 * PI / 3);
+    // translate(width / 4, height / 2);
+    fill(255, 247, 174, 30);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    fill(255, 247, 174, 30);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    fill(255, 247, 174, 150);
+    ellipse(0, 15, 20, 30);
+    rotate(-PI / 2);
+    translate(-width / 4, -height / 2);
+
+    fill(255, 247, 174, 100);
+    noStroke();
+    translate(width / 2, height / 2);
+    rotate(-PI / 2);
+    // fill(255, 247, 174, 150);
+    // ellipse(0, -65, 50, 130);
+    // translate(-width / 4, -height / 2);
+    rotate(2 * PI / 3);
+    // translate(width / 4, height / 2);
+    fill(255, 247, 174, 30);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    fill(255, 247, 174, 30);
+    ellipse(0, -50, 30, 100);
+    rotate(2 * PI / 3);
+    fill(255, 247, 174, 150);
+    ellipse(0, 15, 20, 30);
+    rotate(PI / 2);
+    translate(-width / 2, -height / 2);
+
+
+    fill(255, 247, 174, 150);
+    ellipse(3 * width / 8, height / 2, width / 4, 100);
+
+    fill(148, 163, 243);
+    ellipse(width / 2, height / 2, 30, 30);
+    ellipse(width / 4, height / 2, 30, 30);
+  } else if (sceneCount == 5) {
+    showBars(selection5);
+
+    noStroke();
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        let x = 250 + i * 120;
+        let y = 300 + j * 120;
+
+        for (let k = 0; k < 4; k++) {
+          fill(255);
+          ellipse(x + 50 * cos(k * PI / 2), y + 50 * sin(k * PI / 2), 10, 10);
+          stroke(120, 120, 120);
+          drawingContext.setLineDash([5, 15]);
+          line(x, y, x + 50 * cos(k * PI / 2), y + 50 * sin(k * PI / 2), 10, 10);
+          drawingContext.setLineDash([]);
+          noStroke();
+        }
+
+        fill(148, 163, 243);
+        ellipse(x, y, 30, 30);
+      }
+    }
+  } else if (sceneCount == 6) {
+    // showBars(selection5);
+    stroke(196, 196, 196);
+    strokeWeight(10);
+    drawingContext.setLineDash([]);
+    line(2 * width / 3 + 50, height / 2 - 150, 2 * width / 3 + 50, height / 2 + 150);
+    strokeWeight(1);
+    noStroke();
+    fill(255, 40);
+    rect(2 * width / 3 + 50, height / 2 + 50, 200, 60);
+    rect(2 * width / 3 + 50, height / 2 - 110, 200, 60);
+
+
+    noStroke();
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        let x = 250 + i * 120;
+        let y = 300 + j * 120;
+
+        for (let k = 0; k < 4; k++) {
+          fill(255);
+          ellipse(x + 50 * cos(k * PI / 2), y + 50 * sin(k * PI / 2), 10, 10);
+          stroke(120, 120, 120);
+          drawingContext.setLineDash([5, 15]);
+          line(x, y, x + 50 * cos(k * PI / 2), y + 50 * sin(k * PI / 2), 10, 10);
+          drawingContext.setLineDash([]);
+          noStroke();
+        }
+
+        fill(255, 247, 174, 30);
+        if (i != 2)
+          ellipse(x + 60, y, 60, 30);
+        if (j != 2)
+          ellipse(x, y + 60, 30, 60);
+
+        fill(148, 163, 243);
+        ellipse(x, y, 30, 30);
+      }
+    }
   }
-  //else if (sceneCount == 2) {
-  //   showBars(selection2);
-
-  //   fill(255, 247, 174, 100);
-  //   noStroke();
-  //   translate(width / 4, height / 2);
-  //   rotate(PI / 2);
-  //   ellipse(0, -50, 30, 100);
-  //   // translate(-width / 4, -height / 2);
-  //   rotate(2 * PI / 3);
-  //   // translate(width / 4, height / 2);
-  //   ellipse(0, -50, 30, 100);
-  //   rotate(2 * PI / 3);
-  //   ellipse(0, -50, 30, 100);
-  //   rotate(2 * PI / 3);
-  //   ellipse(0, 25, 30, 50);
-  //   rotate(-PI / 2);
-  //   translate(-width / 4, -height / 2);
-
-  //   fill(255, 247, 174, 100);
-  //   noStroke();
-  //   translate(width / 2, height / 2);
-  //   rotate(-PI / 2);
-  //   ellipse(0, -50, 30, 100);
-  //   // translate(-width / 4, -height / 2);
-  //   rotate(2 * PI / 3);
-  //   // translate(width / 4, height / 2);
-  //   ellipse(0, -50, 30, 100);
-  //   rotate(2 * PI / 3);
-  //   ellipse(0, -50, 30, 100);
-  //   rotate(2 * PI / 3);
-  //   ellipse(0, 25, 30, 50);
-
-  //   rotate(PI / 2);
-  //   translate(-width / 2, -height / 2);
-
-  //   fill(148, 163, 243);
-  //   ellipse(width / 2, height / 2, 30, 30);
-  //   ellipse(width / 4, height / 2, 30, 30);
-  // } else if (sceneCount == 3) {
-
-  //   showBars(selection3);
-
-  //   noStroke();
-  //   translate(width / 4, height / 2);
-  //   rotate(PI / 2);
-  //   fill(255, 247, 174, 150);
-  //   ellipse(0, -65, 50, 130);
-  //   // translate(-width / 4, -height / 2);
-  //   rotate(2 * PI / 3);
-  //   // translate(width / 4, height / 2);
-  //   fill(255, 247, 174, 30);
-  //   ellipse(0, -50, 30, 100);
-  //   rotate(2 * PI / 3);
-  //   fill(255, 247, 174, 30);
-  //   ellipse(0, -50, 30, 100);
-  //   rotate(2 * PI / 3);
-  //   fill(255, 247, 174, 150);
-  //   ellipse(0, 20, 25, 40);
-  //   rotate(-PI / 2);
-  //   translate(-width / 4, -height / 2);
-
-  //   fill(255, 247, 174, 100);
-  //   noStroke();
-  //   translate(width / 2, height / 2);
-  //   rotate(-PI / 2);
-  //   fill(255, 247, 174, 150);
-  //   ellipse(0, -65, 50, 130);
-  //   // translate(-width / 4, -height / 2);
-  //   rotate(2 * PI / 3);
-  //   // translate(width / 4, height / 2);
-  //   fill(255, 247, 174, 30);
-  //   ellipse(0, -50, 30, 100);
-  //   rotate(2 * PI / 3);
-  //   fill(255, 247, 174, 30);
-  //   ellipse(0, -50, 30, 100);
-  //   rotate(2 * PI / 3);
-  //   fill(255, 247, 174, 150);
-  //   ellipse(0, 20, 25, 40);
-  //   rotate(PI / 2);
-  //   translate(-width / 2, -height / 2);
-
-  //   fill(148, 163, 243);
-  //   ellipse(width / 2, height / 2, 30, 30);
-  //   ellipse(width / 4, height / 2, 30, 30);
-  // } else if (sceneCount == 4) {
-  //   showBars(selection4);
-
-  //   noStroke();
-  //   translate(width / 4, height / 2);
-  //   rotate(PI / 2);
-  //   // fill(255, 247, 174, 150);
-  //   // ellipse(0, -65, 50, 130);
-  //   // translate(-width / 4, -height / 2);
-  //   rotate(2 * PI / 3);
-  //   // translate(width / 4, height / 2);
-  //   fill(255, 247, 174, 30);
-  //   ellipse(0, -50, 30, 100);
-  //   rotate(2 * PI / 3);
-  //   fill(255, 247, 174, 30);
-  //   ellipse(0, -50, 30, 100);
-  //   rotate(2 * PI / 3);
-  //   fill(255, 247, 174, 150);
-  //   ellipse(0, 15, 20, 30);
-  //   rotate(-PI / 2);
-  //   translate(-width / 4, -height / 2);
-
-  //   fill(255, 247, 174, 100);
-  //   noStroke();
-  //   translate(width / 2, height / 2);
-  //   rotate(-PI / 2);
-  //   // fill(255, 247, 174, 150);
-  //   // ellipse(0, -65, 50, 130);
-  //   // translate(-width / 4, -height / 2);
-  //   rotate(2 * PI / 3);
-  //   // translate(width / 4, height / 2);
-  //   fill(255, 247, 174, 30);
-  //   ellipse(0, -50, 30, 100);
-  //   rotate(2 * PI / 3);
-  //   fill(255, 247, 174, 30);
-  //   ellipse(0, -50, 30, 100);
-  //   rotate(2 * PI / 3);
-  //   fill(255, 247, 174, 150);
-  //   ellipse(0, 15, 20, 30);
-  //   rotate(PI / 2);
-  //   translate(-width / 2, -height / 2);
-
-
-  //   fill(255, 247, 174, 150);
-  //   ellipse(3 * width / 8, height / 2, width / 4, 100);
-
-  //   fill(148, 163, 243);
-  //   ellipse(width / 2, height / 2, 30, 30);
-  //   ellipse(width / 4, height / 2, 30, 30);
-  // } else if (sceneCount == 5) {
-  //   showBars(selection5);
-
-  //   noStroke();
-  //   for (let i = 0; i < 3; i++) {
-  //     for (let j = 0; j < 3; j++) {
-  //       let x = 250 + i * 120;
-  //       let y = 300 + j * 120;
-
-  //       for (let k = 0; k < 4; k++) {
-  //         fill(255);
-  //         ellipse(x + 50 * cos(k * PI / 2), y + 50 * sin(k * PI / 2), 10, 10);
-  //         stroke(120, 120, 120);
-  //         drawingContext.setLineDash([5, 15]);
-  //         line(x, y, x + 50 * cos(k * PI / 2), y + 50 * sin(k * PI / 2), 10, 10);
-  //         drawingContext.setLineDash([]);
-  //         noStroke();
-  //       }
-
-  //       fill(148, 163, 243);
-  //       ellipse(x, y, 30, 30);
-  //     }
-  //   }
-  // } else if (sceneCount == 6) {
-  //   // showBars(selection5);
-  //   stroke(196, 196, 196);
-  //   strokeWeight(10);
-  //   drawingContext.setLineDash([]);
-  //   line(2 * width / 3 + 50, height / 2 - 150, 2 * width / 3 + 50, height / 2 + 150);
-  //   strokeWeight(1);
-  //   noStroke();
-  //   fill(255, 40);
-  //   rect(2 * width / 3 + 50, height / 2 + 50, 200, 60);
-  //   rect(2 * width / 3 + 50, height / 2 - 110, 200, 60);
-
-
-  //   noStroke();
-  //   for (let i = 0; i < 3; i++) {
-  //     for (let j = 0; j < 3; j++) {
-  //       let x = 250 + i * 120;
-  //       let y = 300 + j * 120;
-
-  //       for (let k = 0; k < 4; k++) {
-  //         fill(255);
-  //         ellipse(x + 50 * cos(k * PI / 2), y + 50 * sin(k * PI / 2), 10, 10);
-  //         stroke(120, 120, 120);
-  //         drawingContext.setLineDash([5, 15]);
-  //         line(x, y, x + 50 * cos(k * PI / 2), y + 50 * sin(k * PI / 2), 10, 10);
-  //         drawingContext.setLineDash([]);
-  //         noStroke();
-  //       }
-
-  //       fill(255, 247, 174, 30);
-  //       if (i != 2)
-  //         ellipse(x + 60, y, 60, 30);
-  //       if (j != 2)
-  //         ellipse(x, y + 60, 30, 60);
-
-  //       fill(148, 163, 243);
-  //       ellipse(x, y, 30, 30);
-  //     }
-  //   }
-  // }
 
 }
 
@@ -584,12 +571,12 @@ class Nucleus {
 
     this.protons = []
     this.neutrons = []
-    for (let i = 0; i < 1; i++) {
-      let xp = this.nucleusX - 20;
-      let yp = this.nucleusY;
-      let xn = this.nucleusX + 20;
-      let yn = this.nucleusY;
-      let r = 30;
+    for (let i = 0; i < 14; i++) {
+      let xp = random(this.nucleusX - this.nucleusR / 2, this.nucleusX + this.nucleusR / 2);
+      let yp = random(this.nucleusY - this.nucleusR / 2, this.nucleusY + this.nucleusR / 2);
+      let xn = random(this.nucleusX - this.nucleusR / 2, this.nucleusX + this.nucleusR / 2);
+      let yn = random(this.nucleusY - this.nucleusR / 2, this.nucleusY + this.nucleusR / 2);
+      let r = 7;
       this.protons.push({
         x: xp,
         y: yp,
@@ -662,7 +649,7 @@ class Atom {
     this.electrons = [];
 
     for (let i = 0; i < this.elec_1s; i++) {
-      this.electrons.push(new Electron(80, 0, '1s', nucleusX, nucleusY));
+      this.electrons.push(new Electron(40, i * PI + PI / 4, '1s', nucleusX, nucleusY));
     }
 
     for (let i = 0; i < this.elec_2s; i++) {
