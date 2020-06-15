@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 1: Understanding the Hydrogen Atom</title>
+
+  <link href="./style.css" rel="stylesheet" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.1/d3.min.js"></script>
+
+  <script src="./scroll.js"></script>
+  <script src="./sketch.js"></script>
+  <script src="./hydrogen.js"></script>
+  <script src="./prob.js"></script>
+  <script src="./graph.js"></script>
+</head>
+
+<body id="body_parent" onload="StartScroll()">
+  <div class="container">
+    <div class="row title-row">
+      <h1 class="col-lg-12">UNDERSTANDING A HYDROGEN ATOM</h1>
+      <div class="col-lg-1"></div>
+      <p class="col-lg-10">
+        Before we begin our journey looking at how semiconductor devices work, we need to understand the inner workings
+        of atoms. The Hydrogen Atom, due to its simple structure, has been extensively studied, and
+        provides a good starting point to understand the fundamentals, before we move onto semiconductors such as
+        Silicon.
+      </p>
+      <div class="col-lg-1"></div>
+    </div>
+    <div class="row sub-atomic-particle-row" id="scene_1">
+      <div class="col-lg-4">
+        <h1>The Subatomic Particles</h1>
+        <p>Each atom of any element is composed of certain subatomic particles. These subatomic particles are the
+          electron, the proton and the neutron.</p>
+        <p>An electron is a negative charge carrier, with negligible mass. Each element has as many electrons as its
+          atomic number. A proton is a positive charge carrier, and contributes to the mass of the atom. Together, these
+          two subatomic particles ensure that the atom is neutral, or has a net charge of 0.</p>
+        <p>A hydrogen atom has 1 proton and 1 electron, but no neutron.</p>
+      </div>
+    </div>
+    <div class="row classical-model-row" id="scene_2">
+      <div class="col-lg-4">
+        <h1>The Bohr Model</h1>
+        <p>Niels Bohr proposed the Bohr Model of the Atom in 1915.</p>
+        <p>The Bohr Model contains some errors, but it is important because it describes most of the accepted features
+          of atomic theory without all of the high-level math of the modern version.</p>
+        <p>The Bohr Model is a planetary model in which the negatively charged electrons orbit a small, positively
+          charged nucleus similar to the planets orbiting the sun.</p>
+        <p>In the case of the Hydrogen atom, the nucleus contains only the proton, and the elctron revolves
+          around it due to Coulomb forces.</p>
+      </div>
+    </div>
+    <div class="row real-life-row" id="scene_3">
+      <div class="col-lg-4">
+        <h1>The Quantum Model</h1>
+        <p>As technology became more sophisticated, we developed ways of locating these subatomic particles in space.
+        </p>
+        <p>We found the behaviour of protons and neutrons to mimic the Bohr's Model - they always stayed fixed inside
+          the nucleus.</p>
+        <p>The electron, however, behaved differently, and was located at a different location everytime it was
+          measured.</p>
+        <p>In the adjoining visualization, press 'ENTER' to locate the position of the electron at any given time.</p>
+      </div>
+    </div>
+    <div class="row experiment-row" id="scene_4">
+      <div class="col-lg-4">
+        <h1>Exploring the Distribution</h1>
+        <p>Scientists repeated this experiment again and again and again, until they had more than a million
+          observations. They used this data of measured locations to draw correlations about the existence of electrons
+          with respect to the nucleus.</p>
+        <p>As you can see in the adjoining visualization, most of the measurements they made were around the nucleus.
+          Moreover, as the distance from the nucleus increased, the density of measurements became sparser.</p>
+      </div>
+    </div>
+    <div class="row graph-row" id="scene_5">
+      <div class="col-lg-4">
+        <h1>Probability vs. Distance</h1>
+        <p>Since there seemed to be no angular correlation for the Hydrogen atom, researchers sweeped across the
+          nucleus, and linearly mapped all measurements to their distance from the nucleus. The following graph was
+          observed:</p>
+        <svg id="d3-viz">
+
+        </svg>
+        <p>They found that the highest number of measurements were at the Bohr Radius, which was also defined as the
+          average position of all measurements. </p>
+      </div>
+    </div>
+    <div class="row graph-row" id="scene_6">
+      <div class="col-lg-4">
+        <h1>Zoomed out 1s</h1>
+        <p>Since there seemed to be no angular correlation for the Hydrogen atom, researchers sweeped across the
+          nucleus, and linearly mapped all measurements to their distance from the nucleus. The following graph was
+          observed:</p>
+        <svg id="d3-viz-final">
+
+        </svg>
+        <p>They found that the highest number of measurements were at the Bohr Radius, which was also defined as the
+          average position of all measurements. </p>
+      </div>
+    </div>
+    <div class="row graph-row" id="scene_7">
+      <div class="col-lg-4">
+        <h1>Zoomed out 2s</h1>
+        <p>Since there seemed to be no angular correlation for the Hydrogen atom, researchers sweeped across the
+          nucleus, and linearly mapped all measurements to their distance from the nucleus. The following graph was
+          observed:</p>
+        <svg id="d3-viz-final-2s">
+
+        </svg>
+        <p>They found that the highest number of measurements were at the Bohr Radius, which was also defined as the
+          average position of all measurements. </p>
+      </div>
+    </div>
+    <div class="row graph-row" id="scene_8">
+      <div class="col-lg-4">
+        <h1>Zoomed out 2px</h1>
+        <p>Since there seemed to be no angular correlation for the Hydrogen atom, researchers sweeped across the
+          nucleus, and linearly mapped all measurements to their distance from the nucleus. The following graph was
+          observed:</p>
+        <svg id="d3-viz-final-2p">
+
+        </svg>
+        <p>They found that the highest number of measurements were at the Bohr Radius, which was also defined as the
+          average position of all measurements. </p>
+      </div>
+    </div>
+    <div class="row next-row" id="scene_9">
+      <div class="col-lg-4">
+        <h1>For the sake of simplicity</h1>
+        <p>We now understand that an electron's position is not fixed, and it can exist anywhere. However, such a
+          definition would not allow us to study its interaction with other charge carriers, which is necessary to
+          solidify the concepts of semiconductor physics</p>
+        <p>Hence, for the sake of simplicity, in the following lessons, we will visualize the electron as being static.
+          However, the visualization of the orbital of the electron should remind you, that it is not in fact so!</p>
+        <p>You might think that a Hydrogen atom has only one orbital. However, if the electron gains energy, it can
+          transition into other orbitals. To learn more, go through the next chapter</p>
+      </div>
+    </div>
+    <div id="visualization">
+
+    </div>
+  </div>
+</body>
+
+</html>

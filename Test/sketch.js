@@ -15,6 +15,7 @@ let graphDraw;
 let trueCondition;
 let trueElectron;
 let repText;
+let sweepRadius;
 
 
 setup = () => {
@@ -48,6 +49,8 @@ setup = () => {
   let theta = random(0, 2 * PI);
   trueElectron = new Particle('electron', width / 2 + r * cos(theta), height / 2 + r * sin(theta), r, theta);
 
+  sweepRadius = 10;
+
 }
 
 graphFn = (i) => i / 100 * Math.exp(-i / 100);
@@ -70,8 +73,16 @@ draw = () => {
   }
 
   for (particle of particles_to_show) {
-    particle.show();
-    particle.update();
+    if (sweep == true && abs(particle.r - sweepRadius / 2) < 10) {
+      particle.show(color(255, 247, 174));
+      particle.update();
+    } else if (sweep == true && particle.r < sweepRadius / 2) {
+      particle.show(color(255, 247, 174, 50));
+      particle.update();
+    } else {
+      particle.show();
+      particle.update();
+    }
   }
 
   if (experiment == true && particles_to_show.length < 3000) {
@@ -107,7 +118,8 @@ draw = () => {
     strokeWeight(2);
     let r = abs(mouseX - width / 2);
     if (r < height / 2) {
-      ellipse(width / 2, height / 2, 2 * r, 2 * r);
+      ellipse(width / 2, height / 2, 2 * r + 5, 2 * r + 5);
+      ellipse(width / 2, height / 2, 2 * r - 5, 2 * r - 5);
       let textToShow = `Probability: ${(r * Math.exp(-r / 100)).toFixed(2)}%`;
       textAlign(CENTER, CENTER);
       textSize(16);
@@ -175,28 +187,38 @@ draw = () => {
       particles_to_show.push(electron1);
     }
     stroke(255, 255, 255, 255);
-    line(width / 2, height / 2, width / 2 + 400 * cos(sweepAngle), height / 2 + 400 * sin(sweepAngle));
-    if (sweepAngle < 2 * PI) {
-      sweepAngle += sweepSpeed;
-      sweepSpeed += 0.0003;
-      for (let particle of particles_to_show) {
-        particle.checkSweep(sweepAngle);
-      }
-    } else {
-      sweepAngle = 2 * PI;
-      for (let particle of particles_to_show) {
-        particle.theta = sweepAngle;
-      }
-      d3load();
-      drawGraph = true;
+    // line(width / 2, height / 2, width / 2 + 400 * cos(sweepAngle), height / 2 + 400 * sin(sweepAngle));
+    // if (sweepAngle < 2 * PI) {
+    //   sweepAngle += sweepSpeed;
+    //   sweepSpeed += 0.0003;
+    //   for (let particle of particles_to_show) {
+    //     particle.checkSweep(sweepAngle);
+    //   }
+    // } else {
+    //   sweepAngle = 2 * PI;
+    //   for (let particle of particles_to_show) {
+    //     particle.theta = sweepAngle;
+    //   }
+    d3load();
+    noFill();
+    stroke(255);
+    strokeWeight(1);
+    ellipse(width / 2, height / 2, sweepRadius - 10, sweepRadius - 10);
+    ellipse(width / 2, height / 2, sweepRadius + 10, sweepRadius + 10);
+    if (sweepRadius < 2 * width) {
+      sweepRadius += 10;
     }
+    //   drawGraph = true;
   } else {
-    sweepAngle = 0;
-    sweepSpeed = 0.03;
-    graphInit = 0;
-    drawGraph = false;
-    graphDraw = [];
+    sweepRadius = 10;
   }
+  // } else {
+  //   sweepAngle = 0;
+  //   sweepSpeed = 0.03;
+  //   graphInit = 0;
+  //   drawGraph = false;
+  //   graphDraw = [];
+  // }
 
   if (drawGraph == true) {
     if (graphInit < 400) {
