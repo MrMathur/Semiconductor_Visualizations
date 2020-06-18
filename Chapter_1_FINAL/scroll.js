@@ -105,7 +105,7 @@ StartScroll = () => {
         sceneCount = 5;
         d3load();
       } else {
-        sceneCount = 5;
+        sceneCount = 4;
         d = 50;
       }
     })

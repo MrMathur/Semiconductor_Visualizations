@@ -2,7 +2,7 @@ let graph_1s_dash = i => 4 / 22500 * i * i * Math.exp(-i / 150) * Math.exp(-i / 
 
 let graph_1s = i => 4 / 2500 * i * i * Math.exp(-i / 50) * Math.exp(-i / 50);
 
-let graph_2s = i => i / 50 * i / 50 * (1 - i / 100) * (1 - i / 100) * Math.exp(-i / 50);
+let graph_2s = i => i / 100 * i / 50 * (1 - i / 100) * (1 - i / 100) * Math.exp(-i / 50);
 
 let graph_2p = i => i * i * i * i * Math.exp(-i / 50) / (50 * 50 * 50 * 50 * 24);
 
