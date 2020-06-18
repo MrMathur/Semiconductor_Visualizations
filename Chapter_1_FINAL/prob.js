@@ -107,7 +107,7 @@ function downloadObjectAsJson(exportObj, exportName) {
   downloadAnchorNode.remove();
 }
 
-downloadObjectAsJson(electrons_1s, 'electrons_1s');
-downloadObjectAsJson(electrons_1s_dash, 'electrons_1s_dash');
-downloadObjectAsJson(electrons_2s, 'electrons_2s');
-downloadObjectAsJson(electrons_2p, 'electrons_2p');
+// downloadObjectAsJson(electrons_1s, 'electrons_1s');
+// downloadObjectAsJson(electrons_1s_dash, 'electrons_1s_dash');
+// downloadObjectAsJson(electrons_2s, 'electrons_2s');
+// downloadObjectAsJson(electrons_2p, 'electrons_2p');

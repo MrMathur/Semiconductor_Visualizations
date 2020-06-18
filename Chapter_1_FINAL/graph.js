@@ -1,10 +1,18 @@
+let graph_1s_dash = i => 4 / 22500 * i * i * Math.exp(-i / 150) * Math.exp(-i / 150);
+
+let graph_1s = i => 4 / 2500 * i * i * Math.exp(-i / 50) * Math.exp(-i / 50);
+
+let graph_2s = i => i / 50 * i / 50 * (1 - i / 100) * (1 - i / 100) * Math.exp(-i / 50);
+
+let graph_2p = i => i * i * i * i * Math.exp(-i / 50) / (50 * 50 * 50 * 50 * 24);
+
 d3load = () => {
   let dataset = [];
   let maxIndex = 0;
-  for (let i = 0; i < 600; i++) {
+  for (let i = 0; i < 800; i++) {
     dataset[i] = {
       x: i,
-      y: prob_1s_dash(i)
+      y: graph_1s_dash(i)
     };
 
     if (dataset[i].y > dataset[maxIndex].y) {
@@ -113,7 +121,7 @@ update = d => {
     .attr('x1', xScale(d))
     .attr('y1', yScale(0))
     .attr('x2', xScale(d))
-    .attr('y2', yScale(prob_1s_dash(d)))
+    .attr('y2', yScale(graph_1s_dash(d)))
     .style('stroke', 'white')
     .style('stroke-width', '2px');
 }
@@ -124,7 +132,7 @@ mainGraph1s = () => {
   for (let i = 0; i < 600; i++) {
     dataset1s[i] = {
       x: i,
-      y: prob_1s(i)
+      y: 4 / 2500 * i * i * Math.exp(-i / 50) * Math.exp(-i / 50)
     };
 
     if (dataset1s[i].y > dataset1s[maxIndex].y) {
@@ -246,7 +254,7 @@ updateMain = d => {
     .attr('x1', xScale(d))
     .attr('y1', yScale(0))
     .attr('x2', xScale(d))
-    .attr('y2', yScale(prob_1s(d)))
+    .attr('y2', yScale(graph_1s(d)))
     .style('stroke', 'white')
     .style('stroke-width', '2px');
 }
@@ -257,7 +265,7 @@ mainGraph2s = () => {
   for (let i = 0; i < 600; i++) {
     dataset[i] = {
       x: i,
-      y: prob_2s(i)
+      y: graph_2s(i)
     };
 
     // if (dataset[i].y > dataset[maxIndex].y) {
@@ -352,7 +360,7 @@ mainGraph2s = () => {
     .delay((d, i) => 2.5 * i)
     .duration(2.5)
     .attr('fill', '#FFF7AE')
-    .attr('opacity', 0.2);
+    .attr('opacity', 0.1);
 
   // let points = [
   //   [dataset[maxIndex].x, dataset[maxIndex].y],
@@ -409,7 +417,7 @@ updateMain2s = d => {
     .attr('x1', xScale(d))
     .attr('y1', yScale(0))
     .attr('x2', xScale(d))
-    .attr('y2', yScale(prob_2s(d)))
+    .attr('y2', yScale(graph_2s(d)))
     .style('stroke', 'white')
     .style('stroke-width', '2px');
 }
@@ -420,7 +428,7 @@ mainGraph2p = () => {
   for (let i = 0; i < 600; i++) {
     dataset2p[i] = {
       x: i,
-      y: i * i * i * i * Math.exp(-i / 50) / 150000000
+      y: graph_2p(i)
     };
 
     // if (dataset[i].y > dataset[maxIndex].y) {
@@ -509,14 +517,14 @@ mainGraph2p = () => {
     .delay((d, i) => 2.5 * i)
     .duration(2.5)
     .attr('fill', '#6ECF7F')
-    .attr('opacity', 0.2);
+    .attr('opacity', 0.1);
 
   svg2p.selectAll('.dot1s')
     .transition()
     .delay((d, i) => 2.5 * i)
     .duration(2.5)
     .attr('fill', '#FFF7AE')
-    .attr('opacity', 0.2);
+    .attr('opacity', 0.1);
 
   svg2p.selectAll('.dot2p')
     .data(dataset2p)
@@ -602,7 +610,7 @@ updateMain2p = d => {
     .attr('x1', xScale(d))
     .attr('y1', yScale(0))
     .attr('x2', xScale(d))
-    .attr('y2', yScale(d * d * d * d * Math.exp(-d / 50) / 150000000))
+    .attr('y2', yScale(graph_2p(d)))
     .style('stroke', 'white')
     .style('stroke-width', '2px');
 }

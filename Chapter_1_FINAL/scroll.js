@@ -106,7 +106,7 @@ StartScroll = () => {
         d3load();
       } else {
         sceneCount = 5;
-        d = 0;
+        d = 50;
       }
     })
     .addTo(controller);
@@ -123,11 +123,11 @@ StartScroll = () => {
     .on('start', () => {
       if (sceneCount == 5) {
         sceneCount = 6;
-        d = 0;
+        d = 50;
         mainGraph1s();
       } else {
         sceneCount = 5;
-        d = 0;
+        d = 50;
       }
     })
     .addTo(controller);
@@ -145,7 +145,7 @@ StartScroll = () => {
       if (sceneCount == 6) {
         sceneCount = 7;
         mainGraph2s();
-        d = 0;
+        d = 50;
       } else {
         sceneCount = 6;
       }
@@ -165,7 +165,7 @@ StartScroll = () => {
       if (sceneCount == 7) {
         sceneCount = 8;
         mainGraph2p();
-        d = 0;
+        d = 50;
       } else {
         sceneCount = 7;
       }
@@ -184,9 +184,27 @@ StartScroll = () => {
     .on('start', () => {
       if (sceneCount == 8) {
         sceneCount = 9;
-        d = 0;
+        d = 50;
       } else {
         sceneCount = 8;
+      }
+    })
+    .addTo(controller);
+
+  let scene_10 = new ScrollMagic.Scene({
+      triggerElement: '#scene_10'
+    })
+    .setClassToggle('#scene_10', 'fade-in')
+    // .addIndicators({
+    //   name: 'fade scene',
+    //   colorTrigger: 'white',
+    //   colorStart: '#FFF7AE'
+    // })
+    .on('start', () => {
+      if (sceneCount == 9) {
+        sceneCount = 10;
+      } else {
+        sceneCount = 9;
       }
     })
     .addTo(controller);
