@@ -2,6 +2,8 @@ let electron, proton, neutron;
 
 electrons_1s = [], electrons_2s = [], electrons_1s_dash = [], electrons_2p = [];
 
+let electron1s, electron2s, electron2p;
+
 let x1 = 0,
   y1 = 0,
   x2 = 0,
@@ -16,6 +18,10 @@ d = 50,
 
 let selection = 0;
 
+let pd1s = [],
+  pd2s = [],
+  pd2p = [];
+
 // preload = () => {
 //   electrons_1s = loadJSON('./data/electrons_1s.json');
 //   electrons_1s_dash = loadJSON('./data/electrons_1s_dash.json');
@@ -26,12 +32,49 @@ let selection = 0;
 setup = () => {
   let canvas = createCanvas(2 * windowWidth / 3, windowHeight);
   canvas.parent('visualization');
+
+  for (let i = 0; i < 200; i++) {
+    let electron = electrons_1s[floor(random(electrons_1s.length))];
+    x1 = map(electron.r * cos(electron.alpha), -width / 2, width / 2, -150, 150);
+    y1 = map(electron.r * sin(electron.alpha), -width / 2, width / 2, -150, 150);
+    pd1s.push({
+      x: x1,
+      y: y1
+    });
+
+    let electron2s = electrons_2s[floor(random(electrons_2s.length))];
+    x2 = map(electron2s.r * cos(electron2s.alpha), -width / 2, width / 2, -150, 150);
+    y2 = map(electron2s.r * sin(electron2s.alpha), -width / 2, width / 2, -150, 150);
+    pd2s.push({
+      x: x2,
+      y: y2
+    });
+
+    let electron2p = electrons_2p[floor(random(electrons_2p.length))];
+    x3 = map(electron2p.r * sin(electron2p.alpha), -width / 2, width / 2, -150, 150);
+    y3 = map(electron2p.r * cos(electron2p.alpha), -width / 2, width / 2, -150, 150);
+    pd2p.push({
+      x: x3,
+      y: y3
+    });
+  }
+
+  electron1s = pd1s[0];
+  electron2s = pd2s[0];
+  electron2p = pd2p[0];
 }
 
 draw = () => {
   background(18);
 
   if (sceneCount == 1) {
+
+    electron = new Particle('electron', 2 * width / 5, height / 2 - 50);
+    electron.selectParticle();
+    neutron = new Particle('neutron', 3 * width / 5, height / 2 - 50);
+    neutron.selectParticle();
+    proton = new Particle('proton', 4 * width / 5, height / 2 - 50);
+    proton.selectParticle();
     electron.show();
     proton.show();
     neutron.show();
@@ -65,7 +108,7 @@ draw = () => {
     textSize(24);
     textAlign(CENTER, CENTER);
     textFont('Bai Jamjuree');
-    text("Bohr Model", width / 2, height / 2 + 250);
+    text("Classical Model", width / 2, height / 2 + 250);
     strokeWeight(3);
     stroke(150);
     drawingContext.setLineDash([20, 20]);
@@ -139,7 +182,7 @@ draw = () => {
 
     for (let elec of experiment_electrons) {
       if (d != 0 && abs(d - elec.r) < 9) {
-        fill(255, 247, 174);
+        fill(255, 247, 174, 150);
         dCount++;
       } else {
         fill(255, 247, 174, 25);
@@ -188,7 +231,7 @@ draw = () => {
 
     for (let elec of electrons_1s) {
       if (d != 0 && abs(d - elec.r) < 9) {
-        fill(255, 247, 174);
+        fill(255, 247, 174, 150);
         dCount++;
       } else {
         fill(255, 247, 174, 25);
@@ -235,7 +278,7 @@ draw = () => {
 
     for (let elec of electrons_2s) {
       if (d != 0 && abs(d - elec.r) < 9) {
-        fill(255, 247, 174);
+        fill(255, 247, 174, 150);
         dCount++;
       } else {
         fill(255, 247, 174, 25);
@@ -300,7 +343,7 @@ draw = () => {
 
     for (let elec of electrons_2p) {
       if (d != 0 && abs(d - elec.r) < 9) {
-        fill(255, 247, 174);
+        fill(255, 247, 174, 150);
         dCount++;
       } else {
         fill(255, 247, 174, 25);
@@ -365,7 +408,7 @@ draw = () => {
 
     for (let elec of electrons_2p) {
       if (d != 0 && abs(d - elec.r) < 9) {
-        fill(255, 247, 174);
+        fill(255, 247, 174, 150);
         dCount++;
       } else {
         fill(255, 247, 174, 25);
@@ -410,52 +453,78 @@ draw = () => {
     proton.show();
 
     fill(110, 207, 127);
-    ellipse(width / 4, height / 2, 10, 10);
-    ellipse(3 * width / 4, height / 2, 10, 10);
+    ellipse(width / 4 - 50, height / 2, 10, 10);
+    ellipse(3 * width / 4 + 50, height / 2, 10, 10);
 
     textFont('Bai Jamjuree');
     textSize(24);
     textAlign(CENTER, CENTER);
     if (selection == 0) {
       fill(255);
-      text('Actual Representation', width / 3, height / 2 + 200);
+      text('Probability Distribution', width / 3, height / 2 + 200);
       fill(125);
       text('Simplified Representation', 2 * width / 3, height / 2 + 200);
 
-      if (frameCount % 12 == 0) {
-        let electron = electrons_1s[floor(random(electrons_1s.length))];
-        x1 = map(electron.r * cos(electron.alpha), -width / 2, width / 2, -150, 150);
-        y1 = map(electron.r * sin(electron.alpha), -width / 2, width / 2, -150, 150);
+      // if (frameCount % 12 == 0) {
+      //   let electron = electrons_1s[floor(random(electrons_1s.length))];
+      //   x1 = map(electron.r * cos(electron.alpha), -width / 2, width / 2, -150, 150);
+      //   y1 = map(electron.r * sin(electron.alpha), -width / 2, width / 2, -150, 150);
 
-        let electron2s = electrons_2s[floor(random(electrons_2s.length))];
-        x2 = map(electron2s.r * cos(electron2s.alpha), -width / 2, width / 2, -150, 150);
-        y2 = map(electron2s.r * sin(electron2s.alpha), -width / 2, width / 2, -150, 150);
+      //   let electron2s = electrons_2s[floor(random(electrons_2s.length))];
+      //   x2 = map(electron2s.r * cos(electron2s.alpha), -width / 2, width / 2, -150, 150);
+      //   y2 = map(electron2s.r * sin(electron2s.alpha), -width / 2, width / 2, -150, 150);
 
-        let electron2p = electrons_2p[floor(random(electrons_2p.length))];
-        x3 = map(electron2p.r * sin(electron2p.alpha), -width / 2, width / 2, -150, 150);
-        y3 = map(electron2p.r * cos(electron2p.alpha), -width / 2, width / 2, -150, 150);
+      //   let electron2p = electrons_2p[floor(random(electrons_2p.length))];
+      //   x3 = map(electron2p.r * sin(electron2p.alpha), -width / 2, width / 2, -150, 150);
+      //   y3 = map(electron2p.r * cos(electron2p.alpha), -width / 2, width / 2, -150, 150);
+      // }
+
+      // fill(255, 247, 174);
+      // ellipse(width / 4 + x1, height / 2 + y1, 10, 10);
+      // ellipse(width / 2 + x2, height / 2 + y2, 10, 10);
+      // ellipse(3 * width / 4 + x3, height / 2 + y3, 10, 10);
+      fill(255);
+      text("1s", width / 4 - 50, height / 2 + 100);
+      text("2s", width / 2, height / 2 + 100);
+      text("2p", 3 * width / 4 + 50, height / 2 + 100);
+
+      for (let electron of pd1s) {
+        fill(255, 247, 174, 30);
+        ellipse(width / 4 + electron.x - 50, height / 2 + electron.y, 10, 10);
       }
-
-      fill(255, 247, 174);
-      ellipse(width / 4 + x1, height / 2 + y1, 10, 10);
-      ellipse(width / 2 + x2, height / 2 + y2, 10, 10);
-      ellipse(3 * width / 4 + x3, height / 2 + y3, 10, 10);
+      for (let electron of pd2s) {
+        fill(255, 247, 174, 30);
+        ellipse(width / 2 + electron.x, height / 2 + electron.y, 10, 10);
+      }
+      for (let electron of pd2p) {
+        fill(255, 247, 174, 30);
+        ellipse(3 * width / 4 + electron.x + 50, height / 2 + electron.y, 10, 10);
+      }
+      // if (frameCount % 12 == 0) {
+      //   electron1s = pd1s[floor(random(pd1s.length))];
+      //   electron2s = pd2s[floor(random(pd2s.length))];
+      //   electron2p = pd2p[floor(random(pd2p.length))];
+      // }
+      // fill(255, 247, 174);
+      // ellipse(width / 4 + electron1s.x, height / 2 + electron1s.y, 10, 10);
+      // ellipse(width / 2 + electron2s.x, height / 2 + electron2s.y, 10, 10);
+      // ellipse(3 * width / 4 + electron2p.x, height / 2 + electron2p.y, 10, 10);
     } else {
       fill(125);
-      text('Actual Representation', width / 3, height / 2 + 200);
+      text('Probability Distribution', width / 3, height / 2 + 200);
       fill(255);
       text('Simplified Representation', 2 * width / 3, height / 2 + 200);
 
       fill(255, 247, 174, 100);
       ellipse(width / 2, height / 2, 150, 150);
-      ellipse(width / 4, height / 2, 50, 50);
-      ellipse(3 * width / 4, height / 2 - 40, 100, 75);
-      ellipse(3 * width / 4, height / 2 + 40, 100, 75);
+      ellipse(width / 4 - 50, height / 2, 50, 50);
+      ellipse(3 * width / 4 + 50, height / 2 - 40, 100, 75);
+      ellipse(3 * width / 4 + 50, height / 2 + 40, 100, 75);
 
-
-      fill(255, 247, 174);
-      ellipse(width / 2 + 75, height / 2, 10, 10);
-      ellipse(width / 4 + 25, height / 2, 10, 10);
+      fill(255);
+      text("1s", width / 4 - 50, height / 2 + 100);
+      text("2s", width / 2, height / 2 + 100);
+      text("2p", 3 * width / 4 + 50, height / 2 + 100);
     }
 
     if (mouseIsPressed) {

@@ -17,12 +17,6 @@ StartScroll = () => {
     .on('start', () => {
       if (sceneCount == 0) {
         sceneCount = 1;
-        electron = new Particle('electron', 2 * width / 5, height / 2 - 50);
-        electron.selectParticle();
-        neutron = new Particle('neutron', 3 * width / 5, height / 2 - 50);
-        neutron.selectParticle();
-        proton = new Particle('proton', 4 * width / 5, height / 2 - 50);
-        proton.selectParticle();
       } else {
         sceneCount = 0;
       }
@@ -44,13 +38,6 @@ StartScroll = () => {
         sceneCount = 2;
       } else {
         sceneCount = 1;
-        electron = new Particle('electron', 2 * width / 5, height / 2 - 50);
-        proton.unSelectParticle();
-        electron.selectParticle();
-        neutron = new Particle('neutron', 3 * width / 5, height / 2 - 50);
-        neutron.selectParticle();
-        proton = new Particle('proton', 4 * width / 5, height / 2 - 50);
-        proton.selectParticle();
       }
     })
     .addTo(controller);

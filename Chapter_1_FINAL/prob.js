@@ -1,18 +1,18 @@
 const bohrRadius = 50;
 const bohrRadiusDash = 150;
 
-prob_1s = (r) => {
-  return 2 * r / bohrRadius * Math.exp(-2 * r / bohrRadius);
-}
+// prob_1s = (r) => {
+//   return 2 * r / bohrRadius * Math.exp(-2 * r / bohrRadius);
+// }
 
-prob_1s_dash = (r) => {
-  return 2 * r / bohrRadiusDash * Math.exp(-2 * r / bohrRadiusDash);
-}
+// prob_1s_dash = (r) => {
+//   return 2 * r / bohrRadiusDash * Math.exp(-2 * r / bohrRadiusDash);
+// }
 
-prob_2s = (r) => {
-  let temp = 0.399 * r / bohrRadius * (1 - r / (2 * bohrRadius)) * Math.exp(-r / (2 * bohrRadius));
-  return temp * temp;
-}
+// prob_2s = (r) => {
+//   let temp = 0.399 * r / bohrRadius * (1 - r / (2 * bohrRadius)) * Math.exp(-r / (2 * bohrRadius));
+//   return temp * temp;
+// }
 
 prob_2p = (r, alpha) => {
   if (alpha != undefined) {
@@ -22,6 +22,10 @@ prob_2p = (r, alpha) => {
     return prob_2p(r, 0);
   }
 }
+
+prob_1s = i => 4 / 2500 * i * i * Math.exp(-i / 50) * Math.exp(-i / 50);
+prob_1s_dash = i => 4 / 22500 * i * i * Math.exp(-i / 150) * Math.exp(-i / 150);
+prob_2s = i => i / 100 * i / 50 * (1 - i / 100) * (1 - i / 100) * Math.exp(-i / 50);
 
 let total_prob_2p = (r) => {
   let value = 0;
@@ -38,6 +42,7 @@ let probability_matrix_2p = [];
 
 for (let i = 1; i < 1600; i++) {
   let prob = prob_1s(i) * 5000;
+  console.log(i, prob);
   for (let j = 0; j < prob; j++) {
     probability_matrix_1s.push(i);
   }
@@ -63,7 +68,7 @@ for (let i = 1; i < 1600; i++) {
   }
 }
 
-for (let i = 0; i < 2500; i++) {
+for (let i = 0; i < 1800; i++) {
   let r = probability_matrix_1s[Math.floor((Math.random() * probability_matrix_1s.length))];
   let alpha = Math.random() * 2 * Math.PI;
   electrons_1s.push({

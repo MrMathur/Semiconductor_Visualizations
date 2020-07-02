@@ -1,0 +1,122 @@
+@font-face {
+  font-family: 'Agency FB';
+  src: url('../Agency_FB.ttf');
+}
+
+#body_parent {
+  background-color: #121212;
+}
+
+.title-row {
+  margin-top: 300px;
+}
+
+.title-row h1 {
+
+  font-family: Agency FB;
+  font-style: normal;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 48px;
+  line-height: 96px;
+  /* identical to box height */
+
+  text-align: center;
+
+  color: #FFF7AE;
+}
+
+.title-row p {
+  margin-top: 30px;
+  font-family: Bai Jamjuree;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 30px;
+
+  color: #FFFFFF;
+
+  text-align: center;
+}
+
+.sub-atomic-particle-row,
+.classical-model-row,
+.real-life-row,
+.experiment-row,
+.conclusion-row,
+.graph-row,
+.next-row {
+  margin-top: 200px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.3s ease-out;
+}
+
+.next-row {
+  margin-bottom: 300px;
+}
+
+.sub-atomic-particle-row h1,
+.classical-model-row h1,
+.real-life-row h1,
+.experiment-row h1,
+.conclusion-row h1,
+.graph-row h1,
+.next-row h1 {
+
+  font-family: Agency FB;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 72px;
+
+  color: #FFF7AE;
+}
+
+.sub-atomic-particle-row p,
+.classical-model-row p,
+.real-life-row p,
+.experiment-row p,
+.conclusion-row p,
+.graph-row p,
+.next-row p {
+  margin-top: 30px;
+  font-family: Bai Jamjuree;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+
+  color: #FFFFFF;
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+#visualization {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  z-index: -100;
+}
+
+
+.axis line {
+  stroke: #fff;
+}
+
+.axis path {
+  fill: none;
+  stroke: #fff;
+}
+
+.label {
+  fill: #fff;
+}
+
+#d3-viz {
+  /* background-color: white; */
+  min-height: 400px;
+}
