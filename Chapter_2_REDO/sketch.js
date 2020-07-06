@@ -10,6 +10,9 @@ let add = true;
 
 let sliderRect;
 let screen;
+let call = 1;
+
+let initTime, destTime;
 
 setup = () => {
   let canvas = createCanvas(2 * windowWidth / 3, windowHeight);
@@ -171,6 +174,100 @@ draw = () => {
     strokeWeight(2);
     line(negative_charge.x - 5, negative_charge.y, negative_charge.x + 5, negative_charge.y);
 
+  } else if (sceneCount == 2.5) {
+
+    positive_charge.x = lerp(positive_charge.x, width / 3, 0.05);
+
+
+
+    if (call == 1) {
+      potentialEnergyGraph(width, (negative_charge.x - 2 * width / 3));
+      call = 0;
+    }
+    // negative_charge = {
+    //   x: 2 * width / 3,
+    //   y: height / 2,
+    //   r: 20,
+    //   color: color(255, 247, 174),
+    //   theta: 0,
+    //   radius: int(dist(2 * width / 3, height / 2, width / 2, height / 2))
+    // }
+
+
+
+    if (mouseIsPressed) {
+      potentialChange(width, (negative_charge.x - 2 * width / 3));
+      negative_charge.x = lerp(negative_charge.x, mouseX, 0.01);
+
+      let f = 2000000 / ((negative_charge.x - positive_charge.x) * (negative_charge.x - positive_charge.x));
+
+      let v0 = createVector(negative_charge.x, negative_charge.y);
+      // let v1 = createVector(-positive_charge.x - positive_charge.r / 2 + negative_charge.x, -positive_charge.y + negative_charge.y);
+
+
+      fill(150, 150, 0);
+      textSize(16);
+      text('Applied external force', 2 * width / 3, negative_charge.y + 40);
+
+      fill(255, 255, 255);
+      textSize(16);
+      text('Coulomb force', positive_charge.x, negative_charge.y + 40);
+      // let v0 = createVector(negative_charge.x, negative_charge.y);
+      let v2 = createVector(-f, 0);
+      let v1 = createVector(f, 0);
+      drawArrow(v0, v2, color(255, 255, 255));
+      drawArrow(v0, v1, color(150, 150, 0));
+    } else {
+      stroke(255);
+      strokeWeight(2);
+      line(2 * width / 3, height / 2 - 10, 2 * width / 3, height / 2 + 10);
+
+      noStroke();
+      fill(255, 255, 255);
+      textSize(16);
+      text('Zero P.E.', 2 * width / 3, negative_charge.y + 20);
+
+      stroke(255);
+      strokeWeight(2);
+      drawingContext.setLineDash([5, 15]);
+      line(2 * width / 3, height / 2, negative_charge.x, negative_charge.y);
+      drawingContext.setLineDash([]);
+    }
+
+    stroke(255);
+    strokeWeight(2);
+    // drawingContext.setLineDash([5, 15]);
+    // line(positive_charge.x, positive_charge.y, negative_charge.x, negative_charge.y);
+    // drawingContext.setLineDash([]);
+
+    // line(width / 2, height / 2, width / 2 + 10, height / 2 - 10);
+    // line(width / 2, height / 2, width / 2 + 10, height / 2 + 10);
+
+    fill(positive_charge.color);
+    noStroke();
+    ellipse(positive_charge.x, positive_charge.y, positive_charge.r, positive_charge.r);
+
+    fill(negative_charge.color);
+    noStroke();
+    ellipse(negative_charge.x, negative_charge.y, negative_charge.r, negative_charge.r);
+
+    stroke(50);
+    strokeWeight(2);
+    line(positive_charge.x - 5, positive_charge.y, positive_charge.x + 5, positive_charge.y);
+    line(positive_charge.x, positive_charge.y - 5, positive_charge.x, positive_charge.y + 5);
+
+
+    stroke(50);
+    strokeWeight(2);
+    line(negative_charge.x - 5, negative_charge.y, negative_charge.x + 5, negative_charge.y);
+
+    noStroke();
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textSize(24);
+    textFont('Bai Jamjuree');
+    text('Click at any point to apply external force to electron', width / 2, height / 2 + 250);
+
   } else if (sceneCount == 3) {
     let energies = [];
     let av = 100000 / (negative_charge.radius * negative_charge.radius * negative_charge.radius);
@@ -331,7 +428,8 @@ draw = () => {
           x: 0,
           y: height / 2,
           wavelength: map(sliderRect.x, width / 4 - 80, width / 4 + 80, 380, 540),
-          show: true
+          show: true,
+          check: true
         });
         add = false;
         screen.transparency = 0;
@@ -346,10 +444,13 @@ draw = () => {
 
     for (let photon of photons) {
       if (photon.show) {
-        let color = wavelengthToColor(photon.wavelength);
-        fill(color[1] * 255, color[2] * 255, color[3] * 255, color[4] * 255);
-        noStroke();
-        ellipse(photon.x, photon.y, 10, 10);
+        // let color = wavelengthToColor(photon.wavelength);
+        // fill(color[1] * 255, color[2] * 255, color[3] * 255, color[4] * 255);
+        // noStroke();
+        // ellipse(photon.x, photon.y, 10, 10);
+
+        createWavePacket(photon);
+
       }
       photon.x += 3;
 
@@ -358,12 +459,17 @@ draw = () => {
       if (photon.x >= screen.x && d > 10) {
         screen.transparency = photon.wavelength;
         photon.show = false;
+      } else if (photon.x >= screen.x && photon.check == false) {
+        screen.transparency = photon.wavelength;
+        photon.show = false;
       }
 
-      if (photon.x >= positive_charge.x && d <= 10) {
+      if (photon.x >= positive_charge.x && d <= 10 && photon.show == true && photon.check == true) {
         orbital_to_show.orbital_radius = 150;
         photon.show = false;
-        changeD3();
+        initTime = second();
+        destTime = initTime + 4 * random();
+        console.log(initTime, destTime);
       }
     }
 
@@ -373,14 +479,40 @@ draw = () => {
     fill(positive_charge.color);
     ellipse(positive_charge.x, positive_charge.y, 10, 10);
 
+    if (orbital_to_show.orbital_radius == 150 && second() > destTime) {
+      orbital_to_show.orbital_radius = 50;
+      photons.push({
+        x: width / 2,
+        y: height / 2,
+        wavelength: 380 + 80,
+        show: true,
+        check: false
+      });
+    }
+
     // if (orbital_to_show.orbital_radius > 50) {
     //   orbital_to_show.x += random(-2, 2);
     // }
 
     let color = wavelengthToColor(screen.transparency);
-    fill(color[1] * 255, color[2] * 255, color[3] * 255, color[4] * 255);
+    fill(color[1] * 255, color[2] * 255, color[3] * 255);
     stroke(255);
     rect(screen.x, screen.y, screen.w, screen.h);
+
+    textSize(16);
+    textFont('Bai Jamjuree');
+    textAlign(CENTER, CENTER);
+    if (orbital_to_show.orbital_radius < 150) {
+      fill(255);
+      noStroke();
+      text('1s', width / 2, height / 2 + 200);
+      changeD3(50);
+    } else {
+      fill(255, 0, 0);
+      noStroke();
+      text('Unstable 2s', width / 2, height / 2 + 200);
+      changeD3(25);
+    }
   }
 }
 
@@ -459,4 +591,18 @@ function wavelengthToColor(wavelength) {
 
   return colorSpace;
 
+}
+
+createWavePacket = photon => {
+  let lambda = photon.wavelength;
+  let x = photon.x;
+  noFill();
+  let col = wavelengthToColor(lambda);
+  stroke(col[1] * 255, col[2] * 255, col[3] * 255);
+  strokeWeight(2);
+  beginShape();
+  for (let i = 0; i < lambda / 10; i++) {
+    vertex(x - i, height / 2 + 10 * sin(10 * PI * i / lambda) * sin(100 * PI * i / lambda));
+  }
+  endShape();
 }

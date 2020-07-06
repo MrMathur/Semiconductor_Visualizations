@@ -253,11 +253,156 @@ secondGraph = () => {
 
 }
 
-changeD3 = () => {
+changeD3 = (val) => {
   svg.select('#energy-rect')
-    .attr('height', barYScale(25));
+    .attr('height', barYScale(val));
 
   svg.select('#energy-text')
-    .attr('y', heightD3 / 2 + barYScale(25) + 20)
-    .text('-3.4 eV')
+    .attr('y', heightD3 / 2 + barYScale(val) + 20)
+    .text(() => {
+      if (val == 25) {
+        return '-3.4 eV'
+      } else if (val == 50) {
+        return '-13.6 eV'
+      }
+    })
+}
+
+potentialEnergyGraph = (p5width, currpos) => {
+
+  let dataset = [];
+
+  for (i = -p5width / 3; i <= p5width / 3; i++) {
+    dataset.push({
+      x: i,
+      y: 2000000 / ((p5width / 3 + i + 1) * (p5width / 3 + i + 1))
+    });
+  }
+
+
+  // console.table(areaDataSet);
+
+  heightD3 = 400,
+    widthD3 = 500;
+
+  svgpe = d3.selectAll('#pe-viz')
+    .attr('height', heightD3)
+    .attr('width', widthD3)
+    .attr('transform', 'translate(-60,0)');
+
+  // svgpe.append('rect')
+  //   .attr('width', '100%')
+  //   .attr('height', '100%')
+  //   .attr('fill', 'pink');
+
+  xScale = d3.scaleLinear()
+    .domain([-p5width / 3, p5width / 3])
+    .range([30, widthD3 - 30]);
+
+  barScale = d3.scaleLinear()
+    .domain([1, 3])
+    .range([widthD3 / 4, 3 * widthD3 / 4]);
+
+  yScale = d3.scaleLinear()
+    .domain([0, 200 / (1 * 1)])
+    .range([heightD3 - 60, 30]);
+
+  barYScale = d3.scaleLinear()
+    .domain([0, 200])
+    .range([0, heightD3 / 2]);
+
+  let xAxis = d3.axisBottom()
+    .scale(xScale)
+    .tickValues([]);
+
+  let yAxis = d3.axisLeft()
+    .scale(yScale)
+    .tickValues([]);
+
+  svgpe.append('path')
+    .attr('id', 'area');
+
+  svgpe.append('g')
+    .call(xAxis)
+    .attr('transform', `translate(0,${yScale(0)})`)
+    .attr('class', 'axis');
+
+  svgpe.append('g')
+    .call(yAxis)
+    .attr('transform', `translate(${widthD3/2},0)`)
+    .attr('class', 'axis');
+
+  svgpe.append("text")
+    .attr("transform",
+      "translate(" + (widthD3 / 2) + " ," +
+      (heightD3 - 30) + ")")
+    .attr('class', 'label')
+    .style("text-anchor", "middle")
+    .text("Displacement from Zero P.E.");
+
+  svgpe.selectAll('.pe-circle')
+    .data(dataset)
+    .enter()
+    .append('circle')
+    .attr('class', 'pe-circle')
+    .attr('cx', d => xScale(d.x))
+    .attr('cy', d => yScale(d.y))
+    .attr('r', 1)
+    .attr('fill', 'white');
+
+  svgpe.append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 30)
+    .attr("x", 0 - (heightD3 / 2))
+    .attr("dy", "1em")
+    .attr('class', 'label')
+    .style("text-anchor", "middle")
+    .text("External force");
+
+  svgpe.append('rect')
+    .attr('width', 16)
+    .attr('height', 16)
+    .attr('transform', `translate(${widthD3 - 100}, ${40})`)
+    .attr('fill', "#FFF7AE");
+
+  svgpe.append('text')
+    .attr('transform', `translate(${widthD3 - 80}, ${56})`)
+    .attr('class', 'label')
+    .text('Work Done');
+}
+
+potentialChange = (p5width, currpos) => {
+  let areaDataSet = [];
+
+  if (currpos > 0) {
+    for (let i = 0; i <= currpos; i++) {
+      areaDataSet.push({
+        x: i,
+        y: 2000000 / ((p5width / 3 + i + 1) * (p5width / 3 + i + 1))
+      });
+    }
+  } else {
+    for (let i = currpos; i <= 0; i++) {
+      areaDataSet.push({
+        x: i,
+        y: 2000000 / ((p5width / 3 + i + 1) * (p5width / 3 + i + 1))
+      });
+    }
+  }
+
+  svgpe.select('#area')
+    .datum(areaDataSet)
+    .attr('id', 'area')
+    .attr("fill", "#FFF7AE")
+    .attr("stroke", "#FFF7AE")
+    .attr("stroke-width", 1.5)
+    .attr("d", d3.area()
+      .x(function (d) {
+        return xScale(d.x)
+      })
+      .y0(yScale(0))
+      .y1(function (d) {
+        return yScale(d.y)
+      })
+    )
 }

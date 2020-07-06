@@ -39,6 +39,23 @@ let StartScroll = () => {
     })
     .addTo(controller);
 
+  let scene_2and5 = new ScrollMagic.Scene({
+      triggerElement: '#scene_2and5'
+    })
+    .setClassToggle('#scene_2and5', 'fade-in')
+    // .addIndicators({
+    //   name: 'fade scene',
+    //   colorTrigger: 'white',
+    //   colorStart: '#FFF7AE'
+    // })
+    .on('start', () => {
+      if (sceneCount == 2) {
+        sceneCount = 2.5;
+      } else {
+        sceneCount = 2;
+      }
+    })
+    .addTo(controller);
   let scene_3 = new ScrollMagic.Scene({
       triggerElement: '#scene_3'
     })
@@ -49,11 +66,11 @@ let StartScroll = () => {
     //   colorStart: '#FFF7AE'
     // })
     .on('start', () => {
-      if (sceneCount == 2) {
+      if (sceneCount == 2.5) {
         sceneCount = 3;
         d3onload();
       } else {
-        sceneCount = 2;
+        sceneCount = 2.5;
       }
     })
     .addTo(controller);
