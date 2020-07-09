@@ -16,8 +16,9 @@ const bohrRadiusDash = 150;
 
 prob_2p = (r, alpha) => {
   if (alpha != undefined) {
-    let temp = 0.099 * ((r * Math.cos(alpha)) / bohrRadius) * Math.exp(-r / (2 * bohrRadius));
-    return temp * temp;
+    let z = r * Math.cos(alpha);
+    let temp = 0.099 * (z / bohrRadius) * Math.exp(-r / (2 * bohrRadius));
+    return temp * temp * Math.abs(z);
   } else {
     return prob_2p(r, 0);
   }
@@ -42,7 +43,7 @@ let probability_matrix_2p = [];
 
 for (let i = 1; i < 1600; i++) {
   let prob = prob_1s(i) * 5000;
-  console.log(i, prob);
+  // console.log(i, prob);
   for (let j = 0; j < prob; j++) {
     probability_matrix_1s.push(i);
   }
@@ -58,7 +59,8 @@ for (let i = 1; i < 1600; i++) {
   }
 
   for (let alpha = -Math.PI; alpha < Math.PI; alpha += 0.01) {
-    let prob2p = prob_2p(i, alpha) * 50000;
+    let prob2p = prob_2p(i, alpha) * 1100;
+    // console.log(i, alpha, prob2p);
     for (let j = 0; j < prob2p; j++) {
       probability_matrix_2p.push({
         r: i,
@@ -67,6 +69,8 @@ for (let i = 1; i < 1600; i++) {
     }
   }
 }
+
+// console.table(probability_matrix_2p);
 
 for (let i = 0; i < 1800; i++) {
   let r = probability_matrix_1s[Math.floor((Math.random() * probability_matrix_1s.length))];

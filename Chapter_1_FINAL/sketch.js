@@ -181,7 +181,7 @@ draw = () => {
     proton.moveToPos(width / 2, height / 2);
 
     for (let elec of experiment_electrons) {
-      if (d != 0 && abs(d - elec.r) < 9) {
+      if (d != 0 && abs(d - elec.r) < 5) {
         fill(255, 247, 174, 150);
         dCount++;
       } else {
@@ -208,8 +208,8 @@ draw = () => {
       noFill();
       strokeWeight(1);
       stroke(255);
-      ellipse(width / 2, height / 2, d * 2 + 15, d * 2 + 15);
-      ellipse(width / 2, height / 2, d * 2 - 15, d * 2 - 15);
+      ellipse(width / 2, height / 2, d * 2 + 10, d * 2 + 10);
+      ellipse(width / 2, height / 2, d * 2 - 10, d * 2 - 10);
 
       textFont('Bai Jamjuree');
       textAlign(CENTER, CENTER);
@@ -230,7 +230,7 @@ draw = () => {
     proton.moveToPos(width / 2, height / 2);
 
     for (let elec of electrons_1s) {
-      if (d != 0 && abs(d - elec.r) < 9) {
+      if (d != 0 && abs(d - elec.r) < 5) {
         fill(255, 247, 174, 150);
         dCount++;
       } else {
@@ -257,8 +257,8 @@ draw = () => {
       noFill();
       strokeWeight(1);
       stroke(255);
-      ellipse(width / 2, height / 2, d * 2 + 15, d * 2 + 15);
-      ellipse(width / 2, height / 2, d * 2 - 15, d * 2 - 15);
+      ellipse(width / 2, height / 2, d * 2 + 10, d * 2 + 10);
+      ellipse(width / 2, height / 2, d * 2 - 10, d * 2 - 10);
 
       textFont('Bai Jamjuree');
       textAlign(CENTER, CENTER);
@@ -277,7 +277,7 @@ draw = () => {
     proton.moveToPos(width / 2, height / 2);
 
     for (let elec of electrons_2s) {
-      if (d != 0 && abs(d - elec.r) < 9) {
+      if (d != 0 && abs(d - elec.r) < 5) {
         fill(255, 247, 174, 150);
         dCount++;
       } else {
@@ -304,8 +304,8 @@ draw = () => {
       noFill();
       strokeWeight(1);
       stroke(255);
-      ellipse(width / 2, height / 2, d * 2 + 15, d * 2 + 15);
-      ellipse(width / 2, height / 2, d * 2 - 15, d * 2 - 15);
+      ellipse(width / 2, height / 2, d * 2 + 10, d * 2 + 10);
+      ellipse(width / 2, height / 2, d * 2 - 10, d * 2 - 10);
 
       textFont('Bai Jamjuree');
       textAlign(CENTER, CENTER);
@@ -342,7 +342,7 @@ draw = () => {
     proton.moveToPos(width / 2, height / 2);
 
     for (let elec of electrons_2p) {
-      if (d != 0 && abs(d - elec.r) < 9) {
+      if (d != 0 && abs(d - elec.r) < 5) {
         fill(255, 247, 174, 150);
         dCount++;
       } else {
@@ -369,8 +369,8 @@ draw = () => {
       noFill();
       strokeWeight(1);
       stroke(255);
-      ellipse(width / 2, height / 2, d * 2 + 15, d * 2 + 15);
-      ellipse(width / 2, height / 2, d * 2 - 15, d * 2 - 15);
+      ellipse(width / 2, height / 2, d * 2 + 10, d * 2 + 10);
+      ellipse(width / 2, height / 2, d * 2 - 10, d * 2 - 10);
 
       textFont('Bai Jamjuree');
       textAlign(CENTER, CENTER);
@@ -407,7 +407,7 @@ draw = () => {
     proton.moveToPos(width / 2, height / 2);
 
     for (let elec of electrons_2p) {
-      if (d != 0 && abs(d - elec.r) < 9) {
+      if (d != 0 && abs(d - elec.r) < 5) {
         fill(255, 247, 174, 150);
         dCount++;
       } else {
@@ -434,8 +434,8 @@ draw = () => {
       noFill();
       strokeWeight(1);
       stroke(255);
-      ellipse(width / 2, height / 2, d * 2 + 15, d * 2 + 15);
-      ellipse(width / 2, height / 2, d * 2 - 15, d * 2 - 15);
+      ellipse(width / 2, height / 2, d * 2 + 10, d * 2 + 10);
+      ellipse(width / 2, height / 2, d * 2 - 10, d * 2 - 10);
 
       textFont('Bai Jamjuree');
       textAlign(CENTER, CENTER);
