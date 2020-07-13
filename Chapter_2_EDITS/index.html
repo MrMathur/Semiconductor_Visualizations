@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 2: Energies of Subatomic Particles</title>
+
+  <link href="./style.css" rel="stylesheet" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.1/d3.min.js"></script>
+
+  <script src="./scroll.js"></script>
+  <script src="./sketch.js"></script>
+  <script src="./graph.js"></script>
+</head>
+
+<body id="body_parent" onload="StartScroll()">
+  <div class="container">
+    <div class="row title-row">
+      <h1 class="col-lg-12">Energies of Subatomic Particles</h1>
+      <div class="col-lg-1"></div>
+      <p class="col-lg-10">
+        Before we begin our journey looking at how semiconductor devices work, we need to understand the inner workings
+        of atoms. The Hydrogen Atom, due to its simple structure, has been extensively studied, and
+        provides a good starting point to understand the fundamentals, before we move onto semiconductors such as
+        Silicon.
+      </p>
+      <div class="col-lg-1"></div>
+    </div>
+    <div class="row sub-atomic-particle-row" id="scene_1">
+      <div class="col-lg-4">
+        <h1>The Subatomic Particles</h1>
+        <p>Each atom of any element is composed of certain subatomic particles. These subatomic particles are the
+          electron, the proton and the neutron.</p>
+        <p>An electron is a negative charge carrier, with negligible mass. Each element has as many electrons as its
+          atomic number. A proton is a positive charge carrier, and contributes to the mass of the atom. Together, these
+          two subatomic particles ensure that the atom is neutral, or has a net charge of 0.</p>
+        <p>A hydrogen atom has 1 proton and 1 electron, but no neutron.</p>
+      </div>
+    </div>
+    <div class="row sub-atomic-particle-row" id="scene_2">
+      <div class="col-lg-4">
+        <h1>The Subatomic Particles</h1>
+        <p>Each atom of any element is composed of certain subatomic particles. These subatomic particles are the
+          electron, the proton and the neutron.</p>
+        <p>An electron is a negative charge carrier, with negligible mass. Each element has as many electrons as its
+          atomic number. A proton is a positive charge carrier, and contributes to the mass of the atom. Together, these
+          two subatomic particles ensure that the atom is neutral, or has a net charge of 0.</p>
+        <p>A hydrogen atom has 1 proton and 1 electron, but no neutron.</p>
+      </div>
+    </div>
+    <div class="row sub-atomic-particle-row" id="scene_2and5">
+      <div class="col-lg-4">
+        <h1>The Subatomic Particles</h1>
+        <p>Each atom of any element is composed of certain subatomic particles. These subatomic particles are the
+          electron, the proton and the neutron.</p>
+        <svg id="pe-viz"></svg>
+        <p>An electron is a negative charge carrier, with negligible mass. Each element has as many electrons as its
+          atomic number. A proton is a positive charge carrier, and contributes to the mass of the atom. Together, these
+          two subatomic particles ensure that the atom is neutral, or has a net charge of 0.</p>
+        <p>A hydrogen atom has 1 proton and 1 electron, but no neutron.</p>
+      </div>
+    </div>
+    <div class="row sub-atomic-particle-row" id="scene_3">
+      <div class="col-lg-4">
+        <h1>The Classical Model</h1>
+        <p>Each atom of any element is composed of certain subatomic particles. These subatomic particles are the
+          electron, the proton and the neutron.</p>
+        <svg id="d3-viz"></svg>
+        <p>An electron is a negative charge carrier, with negligible mass. Each element has as many electrons as its
+          atomic number. A proton is a positive charge carrier, and contributes to the mass of the atom. Together, these
+          two subatomic particles ensure that the atom is neutral, or has a net charge of 0.</p>
+        <p>A hydrogen atom has 1 proton and 1 electron, but no neutron.</p>
+      </div>
+    </div>
+    <div class="row sub-atomic-particle-row" id="scene_3and5">
+      <div class="col-lg-4">
+        <h1>The Classical Model</h1>
+        <p>Each atom of any element is composed of certain subatomic particles. These subatomic particles are the
+          electron, the proton and the neutron.</p>
+        <svg id="d3-viz"></svg>
+        <p>An electron is a negative charge carrier, with negligible mass. Each element has as many electrons as its
+          atomic number. A proton is a positive charge carrier, and contributes to the mass of the atom. Together, these
+          two subatomic particles ensure that the atom is neutral, or has a net charge of 0.</p>
+        <p>A hydrogen atom has 1 proton and 1 electron, but no neutron.</p>
+      </div>
+    </div>
+    <div class="row sub-atomic-particle-row" id="scene_4">
+      <div class="col-lg-4">
+        <h1>The Classical Model</h1>
+        <p>Each atom of any element is composed of certain subatomic particles. These subatomic particles are the
+          electron, the proton and the neutron.</p>
+        <svg id="sec-viz"></svg>
+        <p>An electron is a negative charge carrier, with negligible mass. Each element has as many electrons as its
+          atomic number. A proton is a positive charge carrier, and contributes to the mass of the atom. Together, these
+          two subatomic particles ensure that the atom is neutral, or has a net charge of 0.</p>
+        <p>A hydrogen atom has 1 proton and 1 electron, but no neutron.</p>
+      </div>
+    </div>
+    <div id="visualization">
+
+    </div>
+  </div>
+</body>
+
+</html>
