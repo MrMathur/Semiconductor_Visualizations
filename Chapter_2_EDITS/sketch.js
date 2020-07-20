@@ -1,3 +1,5 @@
+let con = false;
+
 sceneCount = 0;
 
 let positive_charge, negative_charge, zero_potential, temp;
@@ -472,14 +474,19 @@ draw = () => {
     textAlign(CENTER, CENTER);
     textSize(24);
     textFont('Bai Jamjuree');
-    text('Click at any point to apply external force to electron', width / 2, height / 2 - 250);
+    if (negative_charge.radius <= 200) {
+      text('Select a wavelength to emit a photon', width / 2, height / 2 - 250);
+    } else {
+      text('Reset to start again', width / 2, height / 2 - 250);
+    }
 
-    let pe = -10000 / negative_charge.radius;
+
+    let pe = -500 / negative_charge.radius;
     energies.push({
       type: 1,
       value: pe
     });
-    let ke = 5000 / negative_charge.radius;
+    let ke = 250 / negative_charge.radius;
     energies.push({
       type: 2,
       value: ke
@@ -554,18 +561,456 @@ draw = () => {
         x: 0,
         y: height / 2,
         wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 820),
-        show: true,
-        check: true
+        show: false,
+        check: false
       }
       let wl = photon.wavelength;
       let e = 1239.8 / wl;
       // console.log(negative_charge.radius * energies[2].value);
-      rinv = (-e / 5000) + (1 / negative_charge.radius);
+      rinv = (-e / 250) + (1 / negative_charge.radius);
       console.log(1 / rinv);
       negative_charge.radius = 1 / rinv;
     }
 
   } else if (sceneCount == 4) {
+    positive_charge.x = width / 3;
+
+    let color = wavelengthToColor(screen.transparency);
+    fill(color[1] * 255, color[2] * 255, color[3] * 255);
+    stroke(255, 255, 255, 50);
+    beginShape();
+    vertex(screen.x - screen.w / 2, screen.y - screen.h / 2 - 20);
+    vertex(screen.x + screen.w / 2, screen.y - screen.h / 2 + 20);
+    vertex(screen.x + screen.w / 2, screen.y + screen.h / 2 + 20);
+    vertex(screen.x - screen.w / 2, screen.y + screen.h / 2 - 20);
+    vertex(screen.x - screen.w / 2, screen.y - screen.h / 2 - 20);
+    endShape();
+
+    // noStroke();
+    // fill(255);
+    // textAlign(CENTER, CENTER);
+    // textSize(24);
+    // textFont('Bai Jamjuree');
+    // text('Change wavelength of photon', width / 2, height / 2 - 300);
+
+
+    noFill();
+    stroke(255);
+    line(width / 2 - 400, sliderRect.y + sliderRect.h / 2, width / 2 + 400, sliderRect.y + sliderRect.h / 2);
+    noStroke();
+    fill(255);
+    rect(sliderRect.x, sliderRect.y, sliderRect.w, sliderRect.h);
+
+    let d1e = 10.2,
+      d2e = 1.89,
+      d3e = 12.09;
+    let d1l = 1239.8 / d1e,
+      d2l = 1239.8 / d2e,
+      d3l = 1239.8 / d3e;
+    let d1x = map(d1l, 20, 800, width / 2 - 400, width / 2 + 400),
+      d2x = map(d2l, 20, 800, width / 2 - 400, width / 2 + 400),
+      d3x = map(d3l, 20, 800, width / 2 - 400, width / 2 + 400);
+
+    if (orbital_to_show.orbital_radius == 50) {
+      stroke(255);
+      line(d1x, sliderRect.y + sliderRect.h / 2 + 10, d1x, sliderRect.y + sliderRect.h / 2 - 10);
+      line(d3x, sliderRect.y + sliderRect.h / 2 + 10, d3x, sliderRect.y + sliderRect.h / 2 - 10);
+      stroke(255, 255, 255, 50);
+      line(d2x, sliderRect.y + sliderRect.h / 2 + 10, d2x, sliderRect.y + sliderRect.h / 2 - 10);
+    } else if (orbital_to_show.orbital_radius == 150) {
+
+      stroke(255, 255, 255, 50);
+      line(d1x, sliderRect.y + sliderRect.h / 2 + 10, d1x, sliderRect.y + sliderRect.h / 2 - 10);
+      line(d3x, sliderRect.y + sliderRect.h / 2 + 10, d3x, sliderRect.y + sliderRect.h / 2 - 10);
+      stroke(255);
+      line(d2x, sliderRect.y + sliderRect.h / 2 + 10, d2x, sliderRect.y + sliderRect.h / 2 - 10);
+    } else {
+      stroke(255, 255, 255, 50);
+      line(d1x, sliderRect.y + sliderRect.h / 2 + 10, d1x, sliderRect.y + sliderRect.h / 2 - 10);
+      line(d3x, sliderRect.y + sliderRect.h / 2 + 10, d3x, sliderRect.y + sliderRect.h / 2 - 10);
+      line(d2x, sliderRect.y + sliderRect.h / 2 + 10, d2x, sliderRect.y + sliderRect.h / 2 - 10);
+    }
+
+    let lambda = map(sliderRect.x, width / 2 - 400, width / 2 + 400, 0.02, 0.8);
+    let eValue = 1.2398 / lambda;
+    textAlign(CENTER, CENTER);
+    textSize(16);
+    noStroke();
+    fill(255);
+    text(eValue.toFixed(1) + ' eV', sliderRect.x, sliderRect.y - 15);
+    text((lambda * 1000).toFixed(0) + ' nm', sliderRect.x, sliderRect.y - 40);
+
+    stroke(255, 255, 255, 100);
+    noFill();
+    strokeWeight(1);
+    rect(width / 2 - 400, sliderRect.y + 40, 800, 8);
+    noStroke();
+    for (let i = -400; i < 400; i++) {
+      let colors = wavelengthToColor(i + 420);
+      fill(colors[1] * 255, colors[2] * 255, colors[3] * 255, colors[4] * 255);
+      rect(width / 2 + i, sliderRect.y + 40, 1, 8);
+    }
+    textAlign(CENTER, CENTER);
+    textSize(16);
+    noStroke();
+    fill(255, 255, 255, 100);
+    text('Ultraviolet', width / 2 - 250, sliderRect.y + 80);
+    text('Visible Spectrum', width / 2 + 150, sliderRect.y + 80);
+    text('Infrared', width / 2 + 400, sliderRect.y + 80);
+
+    if (mouseIsPressed) {
+      sliderRect.x = constrain(mouseX - 5, width / 2 - 400, width / 2 + 390);
+    }
+
+    if (photon.show) {
+      createWavePacket(photon);
+      photon.x += 3;
+    }
+    // if (photon1.show) {
+    //   createWavePacket(photon1);
+    //   photon1.x += 3;
+    // }
+    // if (photon2.show) {
+    //   createWavePacket(photon2);
+    //   photon2.x += 3;
+    // }
+
+
+    if (photon.x >= screen.x) {
+      screen.transparency = photon.wavelength;
+      photon = {
+        x: 0,
+        y: height / 2,
+        wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 800),
+        show: false,
+        check: false
+      }
+    }
+    // if (photon1.x >= screen.x) {
+    //   screen.transparency = photon1.wavelength;
+    //   photon1 = {
+    //     x: 0,
+    //     y: height / 2,
+    //     wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 800),
+    //     show: false,
+    //     check: true
+    //   }
+    // }
+    // if (photon2.x >= screen.x) {
+    //   screen.transparency = photon2.wavelength;
+    //   photon2 = {
+    //     x: 0,
+    //     y: height / 2,
+    //     wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 800),
+    //     show: false,
+    //     check: true
+    //   }
+    // }
+
+    if (abs(photon.x - positive_charge.x) < 5 && photon.check) {
+      if (orbital_to_show.orbital_radius == 50) {
+        if (abs(photon.wavelength - d1l) < 10) {
+          orbital_to_show.orbital_radius = 150;
+          photon = {
+            x: 0,
+            y: height / 2,
+            wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 800),
+            show: false,
+            check: false
+          }
+          // destTime = second() + random(5, 10);
+
+        } else if (abs(photon.wavelength - d3l) < 10) {
+          orbital_to_show.orbital_radius = 200;
+          photon = {
+            x: 0,
+            y: height / 2,
+            wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 800),
+            show: false,
+            check: false
+          }
+          // destTime = second() + random(2, 4);
+
+        }
+      } else if (orbital_to_show.orbital_radius == 150 && abs(photon.wavelength - 672) < 10) {
+        orbital_to_show.orbital_radius = 200;
+        photon = {
+          x: 0,
+          y: height / 2,
+          wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 800),
+          show: false,
+          check: false
+        }
+        // destTime = second() + random(2, 4);
+      }
+    }
+
+
+    // }
+
+    if (orbital_to_show.orbital_radius <= 150) {
+      fill(negative_charge.color);
+      noStroke();
+      ellipse(orbital_to_show.x, orbital_to_show.y, orbital_to_show.orbital_radius, orbital_to_show.orbital_radius);
+    } else {
+      fill(negative_charge.color);
+      noStroke();
+      ellipse(orbital_to_show.x, orbital_to_show.y - 40, 100, 75);
+      ellipse(orbital_to_show.x, orbital_to_show.y + 40, 100, 75);
+    }
+    fill(positive_charge.color);
+    ellipse(positive_charge.x, positive_charge.y, 10, 10);
+
+    // if (orbital_to_show.orbital_radius == 150 && second() > destTime) {
+    //   orbital_to_show.orbital_radius = 50;
+    //   photon1 = {
+    //     x: positive_charge.x,
+    //     y: height / 2,
+    //     wavelength: d1l,
+    //     show: true,
+    //     check: false
+    //   }
+    // } else if (orbital_to_show.orbital_radius == 200 && second() > destTime) {
+    //   if (random(0, 1) < 0.5) {
+    //     orbital_to_show.orbital_radius = 50;
+    //     photon2 = {
+    //       x: positive_charge.x,
+    //       y: height / 2,
+    //       wavelength: d3l,
+    //       show: true,
+    //       check: false
+    //     }
+    //   } else {
+    //     orbital_to_show.orbital_radius = 150;
+    //     initTime = second();
+    //     destTime = initTime + random(3, 5);
+    //     photon2 = {
+    //       x: positive_charge.x,
+    //       y: height / 2,
+    //       wavelength: d2l,
+    //       show: true,
+    //       check: false
+    //     }
+    //   }
+    // }
+
+    // if (orbital_to_show.orbital_radius > 50) {
+    //   orbital_to_show.x += random(-2, 2);
+    // }
+
+
+
+    textSize(16);
+    textFont('Bai Jamjuree');
+    textAlign(CENTER, CENTER);
+    if (orbital_to_show.orbital_radius < 150) {
+      fill(255);
+      noStroke();
+      text('1s Orbital', positive_charge.x, positive_charge.y - 200);
+      changeD3(-13.6);
+    } else if (orbital_to_show.orbital_radius == 150) {
+      fill(234, 159, 162);
+      noStroke();
+      text('Unstable 2s Orbital', positive_charge.x, positive_charge.y - 200);
+      changeD3(-3.4);
+    } else {
+      fill(234, 159, 162);
+      noStroke();
+      text('Unstable 2p Orbital', positive_charge.x, positive_charge.y - 200);
+      changeD3(-1.51);
+    }
+  } else if (sceneCount == 5) {
+    positive_charge.x = width / 3;
+
+    let color = wavelengthToColor(screen.transparency);
+    fill(color[1] * 255, color[2] * 255, color[3] * 255);
+    stroke(255, 255, 255, 50);
+    beginShape();
+    vertex(screen.x - screen.w / 2, screen.y - screen.h / 2 - 20);
+    vertex(screen.x + screen.w / 2, screen.y - screen.h / 2 + 20);
+    vertex(screen.x + screen.w / 2, screen.y + screen.h / 2 + 20);
+    vertex(screen.x - screen.w / 2, screen.y + screen.h / 2 - 20);
+    vertex(screen.x - screen.w / 2, screen.y - screen.h / 2 - 20);
+    endShape();
+
+    let d1e = 10.2,
+      d2e = 1.89,
+      d3e = 12.09;
+    let d1l = 1239.8 / d1e,
+      d2l = 1239.8 / d2e,
+      d3l = 1239.8 / d3e;
+    let d1x = map(d1l, 20, 800, width / 2 - 400, width / 2 + 400),
+      d2x = map(d2l, 20, 800, width / 2 - 400, width / 2 + 400),
+      d3x = map(d3l, 20, 800, width / 2 - 400, width / 2 + 400);
+
+
+    stroke(255);
+    line(d1x, sliderRect.y + sliderRect.h / 2 + 10, d1x, sliderRect.y + sliderRect.h / 2 + 5);
+    line(d3x, sliderRect.y + sliderRect.h / 2 + 10, d3x, sliderRect.y + sliderRect.h / 2 + 5);
+    line(d2x, sliderRect.y + sliderRect.h / 2 + 10, d2x, sliderRect.y + sliderRect.h / 2 + 5);
+
+    stroke(255, 255, 255, 100);
+    noFill();
+    strokeWeight(1);
+    rect(width / 2 - 400, sliderRect.y + 40, 800, 8);
+    noStroke();
+    for (let i = -400; i < 400; i++) {
+      let colors = wavelengthToColor(i + 420);
+      fill(colors[1] * 255, colors[2] * 255, colors[3] * 255, colors[4] * 255);
+      rect(width / 2 + i, sliderRect.y + 40, 1, 8);
+    }
+    textAlign(CENTER, CENTER);
+    textSize(16);
+    noStroke();
+
+    fill(255, 255, 255, 100);
+    text('Ultraviolet', width / 2 - 250, sliderRect.y + 80);
+    text('Visible Spectrum', width / 2 + 150, sliderRect.y + 80);
+    text('Infrared', width / 2 + 400, sliderRect.y + 80);
+
+    if (photon1.show) {
+      createWavePacket(photon1);
+      photon1.x += 3;
+    }
+    if (photon2.show) {
+      createWavePacket(photon2);
+      photon2.x += 3;
+    }
+
+    if (photon1.x >= screen.x) {
+      screen.transparency = photon1.wavelength;
+      photon1 = {
+        x: 0,
+        y: height / 2,
+        wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 800),
+        show: false,
+        check: true
+      }
+    }
+    if (photon2.x >= screen.x) {
+      screen.transparency = photon2.wavelength;
+      photon2 = {
+        x: 0,
+        y: height / 2,
+        wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 800),
+        show: false,
+        check: true
+      }
+    }
+
+    if (abs(photon.x - positive_charge.x) < 5 && photon.check) {
+      if (orbital_to_show.orbital_radius == 50) {
+        if (abs(photon.wavelength - d1l) < 10) {
+          orbital_to_show.orbital_radius = 150;
+          photon = {
+            x: 0,
+            y: height / 2,
+            wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 800),
+            show: false,
+            check: false
+          }
+          destTime = second() + random(2, 4);
+
+        } else if (abs(photon.wavelength - d3l) < 10) {
+          orbital_to_show.orbital_radius = 200;
+          photon = {
+            x: 0,
+            y: height / 2,
+            wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 800),
+            show: false,
+            check: false
+          }
+          destTime = second() + random(1, 3);
+
+        }
+      } else if (orbital_to_show.orbital_radius == 150 && abs(photon.wavelength - d2l) < 10) {
+        orbital_to_show.orbital_radius = 200;
+        photon = {
+          x: 0,
+          y: height / 2,
+          wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 800),
+          show: false,
+          check: false
+        }
+        destTime = second() + random(2, 4);
+      }
+    }
+
+
+    // }
+
+    if (orbital_to_show.orbital_radius <= 150) {
+      fill(negative_charge.color);
+      noStroke();
+      ellipse(orbital_to_show.x, orbital_to_show.y, orbital_to_show.orbital_radius, orbital_to_show.orbital_radius);
+    } else {
+      fill(negative_charge.color);
+      noStroke();
+      ellipse(orbital_to_show.x, orbital_to_show.y - 40, 100, 75);
+      ellipse(orbital_to_show.x, orbital_to_show.y + 40, 100, 75);
+    }
+    fill(positive_charge.color);
+    ellipse(positive_charge.x, positive_charge.y, 10, 10);
+
+    if (orbital_to_show.orbital_radius == 150 && second() > destTime) {
+      orbital_to_show.orbital_radius = 50;
+      photon1 = {
+        x: positive_charge.x,
+        y: height / 2,
+        wavelength: d1l,
+        show: true,
+        check: false
+      }
+    } else if (orbital_to_show.orbital_radius == 200 && second() > destTime) {
+      if (random(0, 1) < 0.5) {
+        orbital_to_show.orbital_radius = 50;
+        photon2 = {
+          x: positive_charge.x,
+          y: height / 2,
+          wavelength: d3l,
+          show: true,
+          check: false
+        }
+      } else {
+        orbital_to_show.orbital_radius = 150;
+        initTime = second();
+        destTime = initTime + random(3, 5);
+        photon2 = {
+          x: positive_charge.x,
+          y: height / 2,
+          wavelength: d2l,
+          show: true,
+          check: false
+        }
+      }
+    }
+
+    // if (orbital_to_show.orbital_radius > 50) {
+    //   orbital_to_show.x += random(-2, 2);
+    // }
+
+
+
+    textSize(16);
+    textFont('Bai Jamjuree');
+    textAlign(CENTER, CENTER);
+    if (orbital_to_show.orbital_radius < 150) {
+      fill(255);
+      noStroke();
+      text('1s Orbital', positive_charge.x, positive_charge.y - 200);
+      changeD3(-13.6);
+    } else if (orbital_to_show.orbital_radius == 150) {
+      fill(234, 159, 162);
+      noStroke();
+      text('Unstable 2s Orbital', positive_charge.x, positive_charge.y - 200);
+      changeD3(-3.4);
+    } else {
+      fill(234, 159, 162);
+      noStroke();
+      text('Unstable 2p Orbital', positive_charge.x, positive_charge.y - 200);
+      changeD3(-1.51);
+    }
+  } else if (sceneCount == 6) {
     positive_charge.x = width / 3;
 
     let color = wavelengthToColor(screen.transparency);
@@ -612,16 +1057,15 @@ draw = () => {
       line(d2x, sliderRect.y + sliderRect.h / 2 + 10, d2x, sliderRect.y + sliderRect.h / 2 - 10);
     } else if (orbital_to_show.orbital_radius == 150) {
 
-      stroke(255);
+      stroke(255, 255, 255, 50);
       line(d1x, sliderRect.y + sliderRect.h / 2 + 10, d1x, sliderRect.y + sliderRect.h / 2 - 10);
       line(d3x, sliderRect.y + sliderRect.h / 2 + 10, d3x, sliderRect.y + sliderRect.h / 2 - 10);
-      stroke(255, 255, 255, 50);
+      stroke(255);
       line(d2x, sliderRect.y + sliderRect.h / 2 + 10, d2x, sliderRect.y + sliderRect.h / 2 - 10);
     } else {
-      stroke(255);
+      stroke(255, 255, 255, 50);
       line(d1x, sliderRect.y + sliderRect.h / 2 + 10, d1x, sliderRect.y + sliderRect.h / 2 - 10);
       line(d3x, sliderRect.y + sliderRect.h / 2 + 10, d3x, sliderRect.y + sliderRect.h / 2 - 10);
-      stroke(255, 255, 255, 50);
       line(d2x, sliderRect.y + sliderRect.h / 2 + 10, d2x, sliderRect.y + sliderRect.h / 2 - 10);
     }
 
@@ -677,8 +1121,8 @@ draw = () => {
         x: 0,
         y: height / 2,
         wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 800),
-        show: true,
-        check: true
+        show: false,
+        check: false
       }
     }
     if (photon1.x >= screen.x) {
@@ -710,8 +1154,8 @@ draw = () => {
             x: 0,
             y: height / 2,
             wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 800),
-            show: true,
-            check: true
+            show: false,
+            check: false
           }
           destTime = second() + random(5, 10);
 
@@ -721,25 +1165,27 @@ draw = () => {
             x: 0,
             y: height / 2,
             wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 800),
-            show: true,
-            check: true
+            show: false,
+            check: false
           }
           destTime = second() + random(2, 4);
 
         }
-      } else if (orbital_to_show.orbital_radius == 150 && abs(photon.wavelength - d2l) < 10) {
+      } else if (orbital_to_show.orbital_radius == 150 && (abs(photon.wavelength - 672) < 10)) {
         orbital_to_show.orbital_radius = 200;
         photon = {
           x: 0,
           y: height / 2,
           wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 800),
-          show: true,
-          check: true
+          show: false,
+          check: false
         }
         destTime = second() + random(2, 4);
       }
     }
 
+
+    console.log(d2l, photon.wavelength);
 
     // }
 
@@ -899,7 +1345,11 @@ createWavePacket = photon => {
   let x = photon.x;
   noFill();
   let col = wavelengthToColor(lambda);
-  stroke(col[1] * 255, col[2] * 255, col[3] * 255);
+  if (col[1] == 0 && col[2] == 0 && col[3] == 0) {
+    stroke(255);
+  } else {
+    stroke(col[1] * 255, col[2] * 255, col[3] * 255);
+  }
   strokeWeight(2);
   beginShape();
   for (let i = 0; i < lambda / 2; i++) {
@@ -933,23 +1383,36 @@ keyPressed = () => {
 
 reset = () => {
   if (sceneCount == 3.5) {
-    negative_charge.radius = 100;
+    negative_charge.radius = 200;
     sliderRect.x = width / 2;
   }
-  if (sceneCount == 4) {
+  if (sceneCount == 4 || sceneCount == 6) {
     orbital_to_show.orbital_radius = 50;
     sliderRect.x = width / 2;
+  }
+
+  if (sceneCount == 5) {
+    orbital_to_show.orbital_radius = 200;
+    destTime = second() + random(2, 4);
+  }
+
+  photon = {
+    x: 0,
+    y: height / 2,
+    wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 800),
+    show: true,
+    check: true
   }
 }
 
 mouseReleased = () => {
-  if (sceneCount == 3.5 || sceneCount == 4) {
-    // photon = {
-    //   x: 0,
-    //   y: height / 2,
-    //   wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 820),
-    //   show: true,
-    //   check: true
-    // }
+  if (sceneCount == 3.5 || sceneCount == 4 || sceneCount == 6) {
+    photon = {
+      x: 0,
+      y: height / 2,
+      wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 820),
+      show: true,
+      check: true
+    }
   }
 }

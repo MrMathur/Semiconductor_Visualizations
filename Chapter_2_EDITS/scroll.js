@@ -117,6 +117,48 @@ let StartScroll = () => {
     })
     .addTo(controller);
 
+  let scene_5 = new ScrollMagic.Scene({
+      triggerElement: '#scene_5'
+    })
+    .setClassToggle('#scene_5', 'fade-in')
+    // .addIndicators({
+    //   name: 'fade scene',
+    //   colorTrigger: 'white',
+    //   colorStart: '#FFF7AE'
+    // })
+    .on('start', () => {
+      if (sceneCount == 4) {
+        sceneCount = 5;
+        reset();
+        // secondGraph();
+      } else {
+        sceneCount = 4;
+        // d3onload();
+      }
+    })
+    .addTo(controller);
+
+  let scene_6 = new ScrollMagic.Scene({
+      triggerElement: '#scene_6'
+    })
+    .setClassToggle('#scene_6', 'fade-in')
+    // .addIndicators({
+    //   name: 'fade scene',
+    //   colorTrigger: 'white',
+    //   colorStart: '#FFF7AE'
+    // })
+    .on('start', () => {
+      if (sceneCount == 5) {
+        sceneCount = 6;
+        reset();
+        // secondGraph();
+      } else {
+        sceneCount = 5;
+        // d3onload();
+      }
+    })
+    .addTo(controller);
+
   // let scene_4 = new ScrollMagic.Scene({
   //     triggerElement: '#scene_4'
   //   })

@@ -27,7 +27,7 @@ d3onload = () => {
     .range([heightD3 - 60, 30]);
 
   barYScale = d3.scaleLinear()
-    .domain([0, 200])
+    .domain([0, 80])
     .range([0, heightD3 / 2]);
 
   let xAxis = d3.axisBottom()
@@ -166,7 +166,7 @@ drawEnergies = (energies) => {
         return (heightD3 / 2 + barYScale(d.value)) + 10;
       }
     })
-    .text(d => `${(d.value/10).toFixed(1)} eV`);
+    .text(d => `${(d.value).toFixed(1)} eV`);
 }
 
 potentialEnergyGraph = (p5width, currpos) => {
@@ -492,11 +492,23 @@ secondGraph = () => {
 }
 
 changeD3 = (val) => {
+  if (val == -1.51 && con == false) {
+    let r = [-30, 0, 30];
+    let i = Math.floor(Math.random() * r.length)
+    x = widthD3 / 4 + 15 + r[i];
+    con = true;
+  } else if (val != -1.51) {
+    x = widthD3 / 4 + 15;
+    con = false;
+  }
+
   svg.select('#electron')
+    .transition()
+    .duration(100)
     .attr('stroke', '#FFF7AE')
     .attr('stroke-width', '4px')
-    .attr('x1', widthD3 / 4 + 15)
-    .attr('x2', widthD3 / 4 + 15)
+    .attr('x1', x)
+    .attr('x2', x)
     .attr('y1', yScale(val) - 25)
     .attr('y2', yScale(val) - 5);
 }
