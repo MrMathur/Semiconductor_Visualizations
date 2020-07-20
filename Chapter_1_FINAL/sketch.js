@@ -67,6 +67,14 @@ setup = () => {
 draw = () => {
   background(18);
 
+  if (mouseX > 0) {
+    select('body').addClass('noselect');
+  } else {
+    if (select('body').hasClass('noselect')) {
+      select('body').removeClass('noselect');
+    }
+  }
+
   if (sceneCount == 1) {
 
     electron = new Particle('electron', 2 * width / 5, height / 2 - 50);

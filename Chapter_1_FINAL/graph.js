@@ -153,20 +153,20 @@ mainGraph1s = () => {
   //   .attr('height', '100%')
   //   .attr('fill', 'pink');
 
-  xScale = d3.scaleLinear()
+  xScale1s = d3.scaleLinear()
     .domain(d3.extent(dataset1s, d => d.x))
     .range([60, widthD3 - 30]);
 
-  yScale = d3.scaleLinear()
+  yScale1s = d3.scaleLinear()
     .domain([0, d3.max(dataset1s, d => d.y)])
     .range([heightD3 - 60, 30]);
 
   let xAxis = d3.axisBottom()
-    .scale(xScale)
+    .scale(xScale1s)
     .tickValues([]);
 
   let yAxis = d3.axisLeft()
-    .scale(yScale)
+    .scale(yScale1s)
     .tickValues([]);
 
   svg1s.append('g')
@@ -201,8 +201,8 @@ mainGraph1s = () => {
     .enter()
     .append('circle')
     .attr('class', 'dot')
-    .attr('cx', (d, i) => xScale(d.x))
-    .attr('cy', (d, i) => yScale(d.y))
+    .attr('cx', (d, i) => xScale1s(d.x))
+    .attr('cy', (d, i) => yScale1s(d.y))
     .attr('r', '2px')
     .attr('fill', 'none');
 
@@ -218,15 +218,15 @@ mainGraph1s = () => {
   ];
 
   svg1s.append('line')
-    .attr('x1', xScale(points[0][0]))
-    .attr('y1', yScale(points[0][1]))
-    .attr('x2', xScale(points[1][0]))
-    .attr('y2', yScale(points[1][1]))
+    .attr('x1', xScale1s(points[0][0]))
+    .attr('y1', yScale1s(points[0][1]))
+    .attr('x2', xScale1s(points[1][0]))
+    .attr('y2', yScale1s(points[1][1]))
     .style('stroke', 'white')
     .style('stroke-width', '2px');
 
   svg1s.append("text")
-    .attr("transform", `translate(${xScale(points[0][0]) + 15}, ${heightD3/2})`)
+    .attr("transform", `translate(${xScale1s(points[0][0]) + 15}, ${heightD3/2})`)
     .attr('class', 'label')
     .style("text-anchor", "left")
     .text("Bohr Radius");
@@ -236,14 +236,14 @@ mainGraph1s = () => {
     .attr('stroke', 'none');
 
   svg1s.append('rect')
-    .attr('x', xScale(500))
+    .attr('x', xScale1s(500))
     .attr('y', 100)
     .attr('height', 16)
     .attr('width', 16)
     .attr('fill', '#FFF7AE');
 
   svg1s.append("text")
-    .attr("transform", `translate(${xScale(530)}, ${116})`)
+    .attr("transform", `translate(${xScale1s(530)}, ${116})`)
     .attr('class', 'label')
     .style("text-anchor", "left")
     .text("1s");
@@ -251,10 +251,10 @@ mainGraph1s = () => {
 
 updateMain = d => {
   svg1s.select('#selection')
-    .attr('x1', xScale(d))
-    .attr('y1', yScale(0))
-    .attr('x2', xScale(d))
-    .attr('y2', yScale(graph_1s(d)))
+    .attr('x1', xScale1s(d))
+    .attr('y1', yScale1s(0))
+    .attr('x2', xScale1s(d))
+    .attr('y2', yScale1s(graph_1s(d)))
     .style('stroke', 'white')
     .style('stroke-width', '2px');
 }

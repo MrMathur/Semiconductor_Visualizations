@@ -36,8 +36,8 @@ setup = () => {
   }
 
   sliderRect = {
-    x: width / 4 - 80,
-    y: height / 2 + 150,
+    x: width / 2,
+    y: height / 2 + 250,
     w: 10,
     h: 30
   }
@@ -75,7 +75,7 @@ setup = () => {
   photon = {
     x: 0,
     y: height / 2,
-    wavelength: map(sliderRect.x, width / 4 - 80, width / 4 + 80, 380, 540),
+    wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 800),
     show: true,
     check: true
   }
@@ -100,6 +100,14 @@ setup = () => {
 
 draw = () => {
   background(18);
+
+  if (mouseX > 0) {
+    select('body').addClass('noselect');
+  } else {
+    if (select('body').hasClass('noselect')) {
+      select('body').removeClass('noselect');
+    }
+  }
 
   if (sceneCount == 1) {
     // stroke(255);
@@ -203,13 +211,14 @@ draw = () => {
   } else if (sceneCount == 2.5) {
 
     positive_charge.x = lerp(positive_charge.x, width / 3, 0.05);
+    negative_charge.y = lerp(negative_charge.y, positive_charge.y, 0.05)
 
 
 
-    if (call == 1) {
-      potentialEnergyGraph(width, (negative_charge.x - 2 * width / 3));
-      call = 0;
-    }
+    // if (call == 1) {
+    // potentialEnergyGraph(width, (negative_charge.x - 2 * width / 3));
+    //   call = 0;
+    // }
     // negative_charge = {
     //   x: 2 * width / 3,
     //   y: height / 2,
@@ -335,9 +344,15 @@ draw = () => {
       // // drawArrow(v0, v1, color(50, 50, 240));
       let d = int(dist(positive_charge.x, positive_charge.y, negative_charge.x, negative_charge.y));
       let f = 1500000 / ((d + 1) * (d + 1));
-      let v0 = createVector(x1 + f * cos(negative_charge.theta), y1 + f * sin(negative_charge.theta));
-      let v2 = createVector(-f * cos(negative_charge.theta), -f * sin(negative_charge.theta));
-      drawArrow(v0, v2, color(150, 150, 0));
+      if (f < d) {
+        let v0 = createVector(x1, y1);
+        let v2 = createVector(-f * cos(negative_charge.theta), -f * sin(negative_charge.theta));
+        drawArrow(v0, v2, color(150, 150, 0));
+      } else {
+        let v0 = createVector(x1 + f * cos(negative_charge.theta), y1 + f * sin(negative_charge.theta));
+        let v2 = createVector(-f * cos(negative_charge.theta), -f * sin(negative_charge.theta));
+        drawArrow(v0, v2, color(150, 150, 0));
+      }
 
       noStroke();
       fill(50, 50, 240);
@@ -375,7 +390,7 @@ draw = () => {
       line(positive_charge.x, positive_charge.y, negative_charge.x, negative_charge.y);
       noFill();
       stroke(255, 255, 255, 100);
-      ellipse(width / 2, height / 2, negative_charge.radius * 2, negative_charge.radius * 2);
+      ellipse(positive_charge.x, positive_charge.y, negative_charge.radius * 2, negative_charge.radius * 2);
       drawingContext.setLineDash([]);
     }
 
@@ -423,7 +438,7 @@ draw = () => {
   } else if (sceneCount == 3.5) {
     let energies = [];
     let av = 100000 / (negative_charge.radius * negative_charge.radius * negative_charge.radius);
-    positive_charge.x = lerp(positive_charge.x, width / 2, 0.05);
+    positive_charge.x = lerp(positive_charge.x, width / 3, 0.05);
 
     fill(positive_charge.color);
     ellipse(positive_charge.x, positive_charge.y, positive_charge.r, positive_charge.r);
@@ -439,60 +454,8 @@ draw = () => {
     strokeWeight(2);
     line(negative_charge.x - 5, negative_charge.y, negative_charge.x + 5, negative_charge.y);
 
-    // if (mouseIsPressed) {
-
-    //   negative_charge.x = lerp(negative_charge.x, mouseX, 0.06);
-    //   negative_charge.y = lerp(negative_charge.y, mouseY, 0.06);
-
-    //   let x1 = negative_charge.x;
-    //   let y1 = negative_charge.y;
-    //   let x2 = lerp(negative_charge.x, mouseX, 0.5);
-    //   let y2 = lerp(negative_charge.y, mouseY, 0.5);
-
-    //   // let v0 = createVector(x1, y1);
-    //   // let v1 = createVector(mouseX - x1, mouseY - y1);
-    //   // // drawArrow(v0, v1, color(50, 50, 240));
-    //   // let d = int(dist(positive_charge.x, positive_charge.y, negative_charge.x, negative_charge.y));
-    //   // let f = 7500000 / ((d + 1) * (d + 1));
-    //   // let v2 = createVector(-f * cos(negative_charge.theta), -f * sin(negative_charge.theta));
-    //   // drawArrow(v0, v2, color(150, 150, 0));
-
-    //   // let v1 = createVector(mouseX - x1, mouseY - y1);
-    //   // // drawArrow(v0, v1, color(50, 50, 240));
-    //   let d = int(dist(positive_charge.x, positive_charge.y, negative_charge.x, negative_charge.y));
-    //   let f = 1500000 / ((d + 1) * (d + 1));
-    //   let v0 = createVector(x1 + f * cos(negative_charge.theta), y1 + f * sin(negative_charge.theta));
-    //   let v2 = createVector(-f * cos(negative_charge.theta), -f * sin(negative_charge.theta));
-    //   drawArrow(v0, v2, color(150, 150, 0));
-
-    //   noStroke();
-    //   fill(50, 50, 240);
-    //   textAlign(CENTER, CENTER);
-    //   textSize(16);
-    //   textFont('Bai Jamjuree');
-    //   // text('Displacement of electron', mouseX, mouseY + 50);
-    //   fill(150, 150, 0);
-    //   text('Coulomb Force', negative_charge.x + f / 2 * cos(negative_charge.theta), negative_charge.y + f / 2 * sin(negative_charge.theta));
-
-    //   // stroke(50, 50, 240);
-    //   // strokeWeight(3);
-    //   // stroke(50, 50, 240);
-    //   // line(x1, y1, x2, y2);
-    //   // stroke(150, 150, 0);
-    //   // line(negative_charge.x, negative_charge.y, negative_charge.x + 100 * cos(negative_charge.theta), negative_charge.y + 100 * sin(negative_charge.theta));
-    //   // noStroke();
-
-    //   negative_charge.radius = int(dist(negative_charge.x, negative_charge.y, width / 2, height / 2));
-    //   if (mouseY >= height / 2) {
-    //     negative_charge.theta = acos((negative_charge.x - width / 2) / negative_charge.radius);
-    //   } else if (mouseX > width / 2) {
-    //     negative_charge.theta = asin((negative_charge.y - height / 2) / negative_charge.radius);
-    //   } else {
-    //     negative_charge.theta = acos((-negative_charge.x + width / 2) / negative_charge.radius) + PI;
-    //   }
-    // } else {
-    negative_charge.x = width / 2 + negative_charge.radius * cos(negative_charge.theta);
-    negative_charge.y = height / 2 + negative_charge.radius * sin(negative_charge.theta);
+    negative_charge.x = positive_charge.x + negative_charge.radius * cos(negative_charge.theta);
+    negative_charge.y = positive_charge.y + negative_charge.radius * sin(negative_charge.theta);
     negative_charge.theta += av;
 
     stroke(255);
@@ -501,34 +464,22 @@ draw = () => {
     line(positive_charge.x, positive_charge.y, negative_charge.x, negative_charge.y);
     noFill();
     stroke(255, 255, 255, 100);
-    ellipse(width / 2, height / 2, negative_charge.radius * 2, negative_charge.radius * 2);
+    ellipse(positive_charge.x, positive_charge.y, negative_charge.radius * 2, negative_charge.radius * 2);
     drawingContext.setLineDash([]);
-    // }
-
 
     noStroke();
     fill(255);
     textAlign(CENTER, CENTER);
     textSize(24);
     textFont('Bai Jamjuree');
-    text('Click at any point to apply external force to electron', width / 2, height / 2 + 250);
-
-    // fill(255);
-    // noStroke();
-    // textAlign(CENTER, CENTER);
-    // textFont('Bai Jamjuree');
-    // textSize(16);
-    // text(`Speed: ${floor(av*negative_charge.radius*100)/100}`, width / 2, height / 2 + 100);
-    // text(`K.E.`, 3 * width / 4 - 20, height / 2);
-    // text(`P.E.`, 3 * width / 4 + 60, height / 2);
-    // text(`T.E.`, 3 * width / 4 + 140, height / 2);
+    text('Click at any point to apply external force to electron', width / 2, height / 2 - 250);
 
     let pe = -10000 / negative_charge.radius;
     energies.push({
       type: 1,
       value: pe
     });
-    let ke = av * negative_charge.radius * av * negative_charge.radius;
+    let ke = 5000 / negative_charge.radius;
     energies.push({
       type: 2,
       value: ke
@@ -553,12 +504,12 @@ draw = () => {
 
     noFill();
     stroke(255);
-    line(width / 4 - 80, sliderRect.y + sliderRect.h / 2, width / 4 + 320, sliderRect.y + sliderRect.h / 2);
+    line(width / 2 - 400, sliderRect.y + sliderRect.h / 2, width / 2 + 400, sliderRect.y + sliderRect.h / 2);
     noStroke();
     fill(255);
     rect(sliderRect.x, sliderRect.y, sliderRect.w, sliderRect.h);
 
-    let lambda = map(sliderRect.x, width / 4 - 80, width / 4 - 80 + 400, 0.380, 0.780);
+    let lambda = map(sliderRect.x, width / 2 - 400, width / 2 + 400, 0.02, 0.82);
     let eValue = 1.2398 / lambda;
     textAlign(CENTER, CENTER);
     textSize(16);
@@ -566,40 +517,53 @@ draw = () => {
     fill(255);
     text(eValue.toFixed(1) + ' eV', sliderRect.x, sliderRect.y - 15);
 
-    for (let i = 1; i < 400; i++) {
-      let colors = wavelengthToColor(i + 380);
+    stroke(255, 255, 255, 100);
+    noFill();
+    strokeWeight(1);
+    rect(width / 2 - 400, sliderRect.y + 40, 800, 8);
+    noStroke();
+    for (let i = -400; i < 400; i++) {
+      let colors = wavelengthToColor(i + 420);
       fill(colors[1] * 255, colors[2] * 255, colors[3] * 255, colors[4] * 255);
-      rect(width / 4 - 80 + i, sliderRect.y + 40, 1, 8);
+      rect(width / 2 + i, sliderRect.y + 40, 1, 8);
     }
+    textAlign(CENTER, CENTER);
+    textSize(16);
+    noStroke();
+    fill(255, 255, 255, 100);
+    text('Ultraviolet', width / 2 - 250, sliderRect.y + 80);
+    text('Visible Spectrum', width / 2 + 150, sliderRect.y + 80);
+    text('Infrared', width / 2 + 400, sliderRect.y + 80);
 
     if (mouseIsPressed) {
-      sliderRect.x = constrain(mouseX - 5, width / 4 - 80, width / 4 + 310);
+      sliderRect.x = constrain(mouseX - 5, width / 2 - 400, width / 2 + 390);
     }
 
 
-
-    if (photon.show) {
-      createWavePacket(photon);
-      photon.x += 3;
+    if (negative_charge.radius <= 200) {
+      if (photon.show) {
+        createWavePacket(photon);
+        photon.x += 3;
+      }
     }
+
     noStroke();
 
     if (photon.x > positive_charge.x) {
       photon = {
         x: 0,
         y: height / 2,
-        wavelength: map(sliderRect.x, width / 4 - 80, width / 4 + 80, 380, 540),
+        wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 820),
         show: true,
         check: true
       }
-      let increase = floor(photon.wavelength / 50);
-      negative_charge.radius += increase;
+      let wl = photon.wavelength;
+      let e = 1239.8 / wl;
+      // console.log(negative_charge.radius * energies[2].value);
+      rinv = (-e / 5000) + (1 / negative_charge.radius);
+      console.log(1 / rinv);
+      negative_charge.radius = 1 / rinv;
     }
-
-    // fill(255);
-    // rect(3 * width / 4, height / 2 - ke, 40, ke);
-    // rect(3 * width / 4 + 80, height / 2 - pe, 40, pe);
-    // rect(3 * width / 4 + 160, height / 2 - pe - ke, 40, pe + ke);
 
   } else if (sceneCount == 4) {
     positive_charge.x = width / 3;
@@ -614,83 +578,83 @@ draw = () => {
     vertex(screen.x - screen.w / 2, screen.y + screen.h / 2 - 20);
     vertex(screen.x - screen.w / 2, screen.y - screen.h / 2 - 20);
     endShape();
-    // rect(screen.x, screen.y, screen.w, screen.h);
 
     noStroke();
     fill(255);
     textAlign(CENTER, CENTER);
     textSize(24);
     textFont('Bai Jamjuree');
-    text('Change wavelength of photon', width / 2, height / 2 + 250);
-    // noFill();
-    // stroke(255);
-    // rect(width / 4 - 50, height / 2 + 100, 100, 40);
-    // textAlign(CENTER, CENTER);
-    // textSize(16);
-    // noStroke();
-    // fill(255);
-    // text('Emit photons', width / 4, height / 2 + 120);
+    text('Change wavelength of photon', width / 2, height / 2 - 300);
 
 
     noFill();
     stroke(255);
-    line(width / 4 - 80, sliderRect.y + sliderRect.h / 2, width / 4 + 320, sliderRect.y + sliderRect.h / 2);
+    line(width / 2 - 400, sliderRect.y + sliderRect.h / 2, width / 2 + 400, sliderRect.y + sliderRect.h / 2);
     noStroke();
     fill(255);
     rect(sliderRect.x, sliderRect.y, sliderRect.w, sliderRect.h);
 
+    let d1e = 10.2,
+      d2e = 1.89,
+      d3e = 12.09;
+    let d1l = 1239.8 / d1e,
+      d2l = 1239.8 / d2e,
+      d3l = 1239.8 / d3e;
+    let d1x = map(d1l, 20, 800, width / 2 - 400, width / 2 + 400),
+      d2x = map(d2l, 20, 800, width / 2 - 400, width / 2 + 400),
+      d3x = map(d3l, 20, 800, width / 2 - 400, width / 2 + 400);
+
     if (orbital_to_show.orbital_radius == 50) {
       stroke(255);
-      line(width / 4 + 54.6, sliderRect.y + sliderRect.h / 2 + 10, width / 4 + 54.6, sliderRect.y + sliderRect.h / 2 - 10);
-      line(width / 4 + 100, sliderRect.y + sliderRect.h / 2 + 10, width / 4 + 100, sliderRect.y + sliderRect.h / 2 - 10);
+      line(d1x, sliderRect.y + sliderRect.h / 2 + 10, d1x, sliderRect.y + sliderRect.h / 2 - 10);
+      line(d3x, sliderRect.y + sliderRect.h / 2 + 10, d3x, sliderRect.y + sliderRect.h / 2 - 10);
       stroke(255, 255, 255, 50);
-      line(width / 4 + 150, sliderRect.y + sliderRect.h / 2 + 10, width / 4 + 150, sliderRect.y + sliderRect.h / 2 - 10);
+      line(d2x, sliderRect.y + sliderRect.h / 2 + 10, d2x, sliderRect.y + sliderRect.h / 2 - 10);
     } else if (orbital_to_show.orbital_radius == 150) {
-      stroke(255, 255, 255, 50);
-      line(width / 4 + 54.6, sliderRect.y + sliderRect.h / 2 + 10, width / 4 + 54.6, sliderRect.y + sliderRect.h / 2 - 10);
-      line(width / 4 + 100, sliderRect.y + sliderRect.h / 2 + 10, width / 4 + 100, sliderRect.y + sliderRect.h / 2 - 10);
+
       stroke(255);
-      line(width / 4 + 150, sliderRect.y + sliderRect.h / 2 + 10, width / 4 + 150, sliderRect.y + sliderRect.h / 2 - 10);
-    } else {
+      line(d1x, sliderRect.y + sliderRect.h / 2 + 10, d1x, sliderRect.y + sliderRect.h / 2 - 10);
+      line(d3x, sliderRect.y + sliderRect.h / 2 + 10, d3x, sliderRect.y + sliderRect.h / 2 - 10);
       stroke(255, 255, 255, 50);
-      line(width / 4 + 54.6, sliderRect.y + sliderRect.h / 2 + 10, width / 4 + 54.6, sliderRect.y + sliderRect.h / 2 - 10);
-      line(width / 4 + 100, sliderRect.y + sliderRect.h / 2 + 10, width / 4 + 100, sliderRect.y + sliderRect.h / 2 - 10);
-      line(width / 4 + 150, sliderRect.y + sliderRect.h / 2 + 10, width / 4 + 150, sliderRect.y + sliderRect.h / 2 - 10);
+      line(d2x, sliderRect.y + sliderRect.h / 2 + 10, d2x, sliderRect.y + sliderRect.h / 2 - 10);
+    } else {
+      stroke(255);
+      line(d1x, sliderRect.y + sliderRect.h / 2 + 10, d1x, sliderRect.y + sliderRect.h / 2 - 10);
+      line(d3x, sliderRect.y + sliderRect.h / 2 + 10, d3x, sliderRect.y + sliderRect.h / 2 - 10);
+      stroke(255, 255, 255, 50);
+      line(d2x, sliderRect.y + sliderRect.h / 2 + 10, d2x, sliderRect.y + sliderRect.h / 2 - 10);
     }
 
-    let lambda = map(sliderRect.x, width / 4 - 80, width / 4 - 80 + 400, 0.380, 0.780);
+    let lambda = map(sliderRect.x, width / 2 - 400, width / 2 + 400, 0.02, 0.8);
     let eValue = 1.2398 / lambda;
     textAlign(CENTER, CENTER);
     textSize(16);
     noStroke();
     fill(255);
     text(eValue.toFixed(1) + ' eV', sliderRect.x, sliderRect.y - 15);
+    text((lambda * 1000).toFixed(0) + ' nm', sliderRect.x, sliderRect.y - 40);
 
-    for (let i = 1; i < 400; i++) {
-      let colors = wavelengthToColor(i + 380);
+    stroke(255, 255, 255, 100);
+    noFill();
+    strokeWeight(1);
+    rect(width / 2 - 400, sliderRect.y + 40, 800, 8);
+    noStroke();
+    for (let i = -400; i < 400; i++) {
+      let colors = wavelengthToColor(i + 420);
       fill(colors[1] * 255, colors[2] * 255, colors[3] * 255, colors[4] * 255);
-      rect(width / 4 - 80 + i, sliderRect.y + 40, 1, 8);
+      rect(width / 2 + i, sliderRect.y + 40, 1, 8);
     }
+    textAlign(CENTER, CENTER);
+    textSize(16);
+    noStroke();
 
-
-    // if (mouseIsPressed && mouseX < 250 && mouseY > height / 2 + 120) {
-    //   if (add) {
-    //     photons.push({
-    //       x: 0,
-    //       y: height / 2,
-    //       wavelength: map(sliderRect.x, width / 4 - 80, width / 4 + 80, 380, 540),
-    //       show: true,
-    //       check: true
-    //     });
-    //     add = false;
-    //     screen.transparency = 0;
-    //   }
-    // } else {
-    //   add = true;
-    // }
+    fill(255, 255, 255, 100);
+    text('Ultraviolet', width / 2 - 250, sliderRect.y + 80);
+    text('Visible Spectrum', width / 2 + 150, sliderRect.y + 80);
+    text('Infrared', width / 2 + 400, sliderRect.y + 80);
 
     if (mouseIsPressed) {
-      sliderRect.x = constrain(mouseX - 5, width / 4 - 80, width / 4 + 310);
+      sliderRect.x = constrain(mouseX - 5, width / 2 - 400, width / 2 + 390);
     }
 
     if (photon.show) {
@@ -712,7 +676,7 @@ draw = () => {
       photon = {
         x: 0,
         y: height / 2,
-        wavelength: map(sliderRect.x, width / 4 - 80, width / 4 + 80, 380, 540),
+        wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 800),
         show: true,
         check: true
       }
@@ -722,7 +686,7 @@ draw = () => {
       photon1 = {
         x: 0,
         y: height / 2,
-        wavelength: map(sliderRect.x, width / 4 - 80, width / 4 + 80, 380, 540),
+        wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 800),
         show: false,
         check: true
       }
@@ -732,7 +696,7 @@ draw = () => {
       photon2 = {
         x: 0,
         y: height / 2,
-        wavelength: map(sliderRect.x, width / 4 - 80, width / 4 + 80, 380, 540),
+        wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 800),
         show: false,
         check: true
       }
@@ -740,35 +704,35 @@ draw = () => {
 
     if (abs(photon.x - positive_charge.x) < 5 && photon.check) {
       if (orbital_to_show.orbital_radius == 50) {
-        if (abs(photon.wavelength - 514) < 10) {
+        if (abs(photon.wavelength - d1l) < 10) {
           orbital_to_show.orbital_radius = 150;
           photon = {
             x: 0,
             y: height / 2,
-            wavelength: map(sliderRect.x, width / 4 - 80, width / 4 + 80, 380, 540),
+            wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 800),
             show: true,
             check: true
           }
           destTime = second() + random(5, 10);
 
-        } else if (abs(photon.wavelength - 564) < 10) {
+        } else if (abs(photon.wavelength - d3l) < 10) {
           orbital_to_show.orbital_radius = 200;
           photon = {
             x: 0,
             y: height / 2,
-            wavelength: map(sliderRect.x, width / 4 - 80, width / 4 + 80, 380, 540),
+            wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 800),
             show: true,
             check: true
           }
           destTime = second() + random(2, 4);
 
         }
-      } else if (orbital_to_show.orbital_radius == 150 && abs(photon.wavelength - 614) < 10) {
+      } else if (orbital_to_show.orbital_radius == 150 && abs(photon.wavelength - d2l) < 10) {
         orbital_to_show.orbital_radius = 200;
         photon = {
           x: 0,
           y: height / 2,
-          wavelength: map(sliderRect.x, width / 4 - 80, width / 4 + 80, 380, 540),
+          wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 800),
           show: true,
           check: true
         }
@@ -797,7 +761,7 @@ draw = () => {
       photon1 = {
         x: positive_charge.x,
         y: height / 2,
-        wavelength: 514,
+        wavelength: d1l,
         show: true,
         check: false
       }
@@ -807,7 +771,7 @@ draw = () => {
         photon2 = {
           x: positive_charge.x,
           y: height / 2,
-          wavelength: 564,
+          wavelength: d3l,
           show: true,
           check: false
         }
@@ -818,7 +782,7 @@ draw = () => {
         photon2 = {
           x: positive_charge.x,
           y: height / 2,
-          wavelength: 614,
+          wavelength: d2l,
           show: true,
           check: false
         }
@@ -938,8 +902,8 @@ createWavePacket = photon => {
   stroke(col[1] * 255, col[2] * 255, col[3] * 255);
   strokeWeight(2);
   beginShape();
-  for (let i = 0; i < lambda / 10; i++) {
-    vertex(x - i, height / 2 + 10 * sin(10 * PI * i / lambda) * sin(100 * PI * i / lambda));
+  for (let i = 0; i < lambda / 2; i++) {
+    vertex(x - i, height / 2 + 120 * sin(2 * PI * i / lambda) * sin(40 * PI * i / lambda));
   }
   endShape();
 }
@@ -964,5 +928,28 @@ keyPressed = () => {
     screen.transparency = 0;
   } else {
     add = true;
+  }
+}
+
+reset = () => {
+  if (sceneCount == 3.5) {
+    negative_charge.radius = 100;
+    sliderRect.x = width / 2;
+  }
+  if (sceneCount == 4) {
+    orbital_to_show.orbital_radius = 50;
+    sliderRect.x = width / 2;
+  }
+}
+
+mouseReleased = () => {
+  if (sceneCount == 3.5 || sceneCount == 4) {
+    // photon = {
+    //   x: 0,
+    //   y: height / 2,
+    //   wavelength: map(sliderRect.x, width / 2 - 400, width / 2 + 400, 20, 820),
+    //   show: true,
+    //   check: true
+    // }
   }
 }

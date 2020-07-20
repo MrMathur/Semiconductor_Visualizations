@@ -51,6 +51,7 @@ let StartScroll = () => {
     .on('start', () => {
       if (sceneCount == 2) {
         sceneCount = 2.5;
+        potentialEnergyGraph(width, (negative_charge.x - 2 * width / 3));
       } else {
         sceneCount = 2;
       }
@@ -71,6 +72,8 @@ let StartScroll = () => {
         d3onload();
       } else {
         sceneCount = 2.5;
+        call = 1;
+        potentialEnergyGraph(width, (negative_charge.x - 2 * width / 3));
       }
     })
     .addTo(controller);
