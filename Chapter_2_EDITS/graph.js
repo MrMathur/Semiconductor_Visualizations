@@ -27,7 +27,7 @@ d3onload = () => {
     .range([heightD3 - 60, 30]);
 
   barYScale = d3.scaleLinear()
-    .domain([0, 80])
+    .domain([0, 200])
     .range([0, heightD3 / 2]);
 
   let xAxis = d3.axisBottom()
@@ -155,7 +155,7 @@ drawEnergies = (energies) => {
       }
     })
     .attr('fill', 'white')
-    .text(d => `${(d.value/10).toFixed(1)} eV`);
+    .text(d => `${d.value.toFixed(1)} eV`);
 
   svg.selectAll('.values')
     .data(energies)
@@ -166,8 +166,107 @@ drawEnergies = (energies) => {
         return (heightD3 / 2 + barYScale(d.value)) + 10;
       }
     })
-    .text(d => `${(d.value).toFixed(1)} eV`);
+    .text(d => `${d.value.toFixed(1)} eV`);
 }
+
+// secondGraph = () => {
+
+//   heightD3 = 400,
+//     widthD3 = 500;
+
+//   svg = d3.selectAll('#sec-viz')
+//     .attr('height', heightD3)
+//     .attr('width', widthD3)
+//     .attr('transform', 'translate(-60,0)');
+
+//   // svg.append('rect')
+//   //   .attr('width', '100%')
+//   //   .attr('height', '100%')
+//   //   .attr('fill', 'pink');
+
+
+//   xScale = d3.scaleLinear()
+//     .domain([1, 3])
+//     .range([60, widthD3 - 30]);
+
+//   barScale = d3.scaleLinear()
+//     .domain([1, 3])
+//     .range([widthD3 / 4, 3 * widthD3 / 4]);
+
+//   yScale = d3.scaleLinear()
+//     .domain([0, 200000])
+//     .range([heightD3 - 60, 30]);
+
+//   barYScale = d3.scaleLinear()
+//     .domain([0, 200])
+//     .range([0, heightD3 / 2]);
+
+//   let xAxis = d3.axisBottom()
+//     .scale(xScale)
+//     .tickValues([]);
+
+//   let yAxis = d3.axisLeft()
+//     .scale(yScale)
+//     .tickValues([]);
+
+//   svg.append('g')
+//     .call(xAxis)
+//     .attr('transform', `translate(0,${heightD3/2})`)
+//     .attr('class', 'axis');
+
+//   svg.append("text")
+//     .attr("transform",
+//       "translate(" + (widthD3 / 2) + " ," +
+//       (heightD3 - 30) + ")")
+//     .attr('class', 'label')
+//     .style("text-anchor", "middle")
+//     .text("Total Energy");
+
+//   svg.append('g')
+//     .call(yAxis)
+//     .attr('transform', `translate(58,0)`)
+//     .attr('class', 'axis');
+
+//   svg.append("text")
+//     .attr("transform", "rotate(-90)")
+//     .attr("y", 30)
+//     .attr("x", 0 - (heightD3 / 2))
+//     .attr("dy", "1em")
+//     .attr('class', 'label')
+//     .style("text-anchor", "middle")
+//     .text("Energy");
+
+//   svg.append('rect')
+//     .attr('id', 'energy-rect')
+//     .attr('x', widthD3 / 2)
+//     .attr('y', heightD3 / 2)
+//     .attr('width', 30)
+//     .attr('height', barYScale(50))
+//     .attr('fill', 'white');
+
+//   svg.append('text')
+//     .attr('id', 'energy-text')
+//     .attr('x', widthD3 / 2)
+//     .attr('y', heightD3 / 2 + barYScale(50) + 20)
+//     .text('-13.6eV')
+//     .attr('fill', 'white');
+
+// }
+
+// changeD3 = (val) => {
+//   svg.select('#energy-rect')
+//     .attr('height', barYScale(val));
+
+//   svg.select('#energy-text')
+//     .attr('y', heightD3 / 2 + barYScale(val) + 20)
+//     .text(() => {
+//       if (val == 25) {
+//         return '-3.4 eV'
+//       } else if (val == 50) {
+//         return '-13.6 eV'
+//       }
+//     })
+// }
 
 potentialEnergyGraph = (p5width, currpos) => {
 
@@ -255,24 +354,24 @@ potentialEnergyGraph = (p5width, currpos) => {
   svgpe.append('rect')
     .attr('width', 16)
     .attr('height', 16)
-    .attr('transform', `translate(${widthD3 - 180}, ${heightD3 - 112})`)
+    .attr('transform', `translate(${widthD3 - 100}, ${80})`)
     .attr('fill', "#FFF7AE");
 
   svgpe.append('text')
-    .attr('transform', `translate(${widthD3 - 160}, ${heightD3 - 96})`)
+    .attr('transform', `translate(${widthD3 - 80}, ${96})`)
     .attr('class', 'label')
-    .text('Negative P.E.');
+    .text('-ve P.E.');
 
   svgpe.append('rect')
     .attr('width', 16)
     .attr('height', 16)
-    .attr('transform', `translate(${widthD3 - 180}, ${heightD3 - 152})`)
+    .attr('transform', `translate(${widthD3 - 100}, ${120})`)
     .attr('fill', "#6ECF7F");
 
   svgpe.append('text')
-    .attr('transform', `translate(${widthD3 - 160}, ${heightD3 - 136})`)
+    .attr('transform', `translate(${widthD3 - 80}, ${136})`)
     .attr('class', 'label')
-    .text('Positive P.E.');
+    .text('+ve P.E.');
 }
 
 potentialChange = (p5width, currpos) => {
@@ -492,23 +591,11 @@ secondGraph = () => {
 }
 
 changeD3 = (val) => {
-  if (val == -1.51 && con == false) {
-    let r = [-30, 0, 30];
-    let i = Math.floor(Math.random() * r.length)
-    x = widthD3 / 4 + 15 + r[i];
-    con = true;
-  } else if (val != -1.51) {
-    x = widthD3 / 4 + 15;
-    con = false;
-  }
-
   svg.select('#electron')
-    .transition()
-    .duration(100)
     .attr('stroke', '#FFF7AE')
-    .attr('stroke-width', '4px')
-    .attr('x1', x)
-    .attr('x2', x)
+    .attr('stroke-width', '2px')
+    .attr('x1', widthD3 / 4 + 15)
+    .attr('x2', widthD3 / 4 + 15)
     .attr('y1', yScale(val) - 25)
     .attr('y2', yScale(val) - 5);
 }

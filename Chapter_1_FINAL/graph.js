@@ -76,21 +76,39 @@ d3load = () => {
     .style("text-anchor", "middle")
     .text("No. of Measurements");
 
+  // svg.selectAll('.dot')
+  //   .data(dataset)
+  //   .enter()
+  //   .append('circle')
+  //   .attr('class', 'dot')
+  //   .attr('cx', (d, i) => xScale(d.x))
+  //   .attr('cy', (d, i) => yScale(d.y))
+  //   .attr('r', '2px')
+  //   .attr('fill', 'none');
+
   svg.selectAll('.dot')
     .data(dataset)
     .enter()
-    .append('circle')
+    .append('line')
     .attr('class', 'dot')
-    .attr('cx', (d, i) => xScale(d.x))
-    .attr('cy', (d, i) => yScale(d.y))
-    .attr('r', '2px')
-    .attr('fill', 'none');
+    .attr('x1', d => xScale(d.x))
+    .attr('x2', d => xScale(d.x))
+    .attr('y1', d => yScale(d.y))
+    .attr('y2', heightD3 - 58)
+    .attr('stroke-width', 1)
+    .attr('stroke', 'none');
 
   svg.selectAll('.dot')
     .transition()
     .delay((d, i) => 2.5 * i)
     .duration(2.5)
-    .attr('fill', '#FFF7AE');
+    .attr('stroke', d => {
+      if (d.x % 10 == 0) {
+        return '#FFF7AE';
+      } else {
+        return 'none';
+      }
+    });
 
   let points = [
     [dataset[maxIndex].x, dataset[maxIndex].y],
@@ -153,20 +171,20 @@ mainGraph1s = () => {
   //   .attr('height', '100%')
   //   .attr('fill', 'pink');
 
-  xScale1s = d3.scaleLinear()
+  xScale = d3.scaleLinear()
     .domain(d3.extent(dataset1s, d => d.x))
     .range([60, widthD3 - 30]);
 
-  yScale1s = d3.scaleLinear()
+  yScale = d3.scaleLinear()
     .domain([0, d3.max(dataset1s, d => d.y)])
     .range([heightD3 - 60, 30]);
 
   let xAxis = d3.axisBottom()
-    .scale(xScale1s)
+    .scale(xScale)
     .tickValues([]);
 
   let yAxis = d3.axisLeft()
-    .scale(yScale1s)
+    .scale(yScale)
     .tickValues([]);
 
   svg1s.append('g')
@@ -196,21 +214,45 @@ mainGraph1s = () => {
     .style("text-anchor", "middle")
     .text("No. of Measurements");
 
+  // svg1s.selectAll('.dot')
+  //   .data(dataset1s)
+  //   .enter()
+  //   .append('circle')
+  //   .attr('class', 'dot')
+  //   .attr('cx', (d, i) => xScale(d.x))
+  //   .attr('cy', (d, i) => yScale(d.y))
+  //   .attr('r', '2px')
+  //   .attr('fill', 'none');
+
   svg1s.selectAll('.dot')
     .data(dataset1s)
     .enter()
-    .append('circle')
+    .append('line')
     .attr('class', 'dot')
-    .attr('cx', (d, i) => xScale1s(d.x))
-    .attr('cy', (d, i) => yScale1s(d.y))
-    .attr('r', '2px')
-    .attr('fill', 'none');
+    .attr('x1', d => xScale(d.x))
+    .attr('x2', d => xScale(d.x))
+    .attr('y1', d => yScale(d.y))
+    .attr('y2', heightD3 - 58)
+    .attr('stroke-width', 1)
+    .attr('stroke', 'none');
+
+  // svg1s.selectAll('.dot')
+  //   .transition()
+  //   .delay((d, i) => 2.5 * i)
+  //   .duration(2.5)
+  //   .attr('fill', '#FFF7AE');
 
   svg1s.selectAll('.dot')
     .transition()
     .delay((d, i) => 2.5 * i)
     .duration(2.5)
-    .attr('fill', '#FFF7AE');
+    .attr('stroke', d => {
+      if (d.x % 10 == 0) {
+        return '#FFF7AE';
+      } else {
+        return 'none';
+      }
+    });
 
   points = [
     [dataset1s[maxIndex].x, dataset1s[maxIndex].y],
@@ -218,15 +260,15 @@ mainGraph1s = () => {
   ];
 
   svg1s.append('line')
-    .attr('x1', xScale1s(points[0][0]))
-    .attr('y1', yScale1s(points[0][1]))
-    .attr('x2', xScale1s(points[1][0]))
-    .attr('y2', yScale1s(points[1][1]))
+    .attr('x1', xScale(points[0][0]))
+    .attr('y1', yScale(points[0][1]))
+    .attr('x2', xScale(points[1][0]))
+    .attr('y2', yScale(points[1][1]))
     .style('stroke', 'white')
     .style('stroke-width', '2px');
 
   svg1s.append("text")
-    .attr("transform", `translate(${xScale1s(points[0][0]) + 15}, ${heightD3/2})`)
+    .attr("transform", `translate(${xScale(points[0][0]) + 15}, ${heightD3/2})`)
     .attr('class', 'label')
     .style("text-anchor", "left")
     .text("Bohr Radius");
@@ -236,14 +278,14 @@ mainGraph1s = () => {
     .attr('stroke', 'none');
 
   svg1s.append('rect')
-    .attr('x', xScale1s(500))
+    .attr('x', xScale(500))
     .attr('y', 100)
     .attr('height', 16)
     .attr('width', 16)
     .attr('fill', '#FFF7AE');
 
   svg1s.append("text")
-    .attr("transform", `translate(${xScale1s(530)}, ${116})`)
+    .attr("transform", `translate(${xScale(530)}, ${116})`)
     .attr('class', 'label')
     .style("text-anchor", "left")
     .text("1s");
@@ -251,10 +293,10 @@ mainGraph1s = () => {
 
 updateMain = d => {
   svg1s.select('#selection')
-    .attr('x1', xScale1s(d))
-    .attr('y1', yScale1s(0))
-    .attr('x2', xScale1s(d))
-    .attr('y2', yScale1s(graph_1s(d)))
+    .attr('x1', xScale(d))
+    .attr('y1', yScale(0))
+    .attr('x2', xScale(d))
+    .attr('y2', yScale(graph_1s(d)))
     .style('stroke', 'white')
     .style('stroke-width', '2px');
 }
@@ -329,15 +371,15 @@ mainGraph2s = () => {
     .style("text-anchor", "middle")
     .text("No. of Measurements");
 
-  svg2s.selectAll('.dot')
-    .data(dataset)
-    .enter()
-    .append('circle')
-    .attr('class', 'dot')
-    .attr('cx', (d, i) => xScale(d.x))
-    .attr('cy', (d, i) => yScale(d.y))
-    .attr('r', '2px')
-    .attr('fill', 'none');
+  // svg2s.selectAll('.dot')
+  //   .data(dataset)
+  //   .enter()
+  //   .append('circle')
+  //   .attr('class', 'dot')
+  //   .attr('cx', (d, i) => xScale(d.x))
+  //   .attr('cy', (d, i) => yScale(d.y))
+  //   .attr('r', '2px')
+  //   .attr('fill', 'none');
 
   svg2s.selectAll('.dot1s')
     .data(dataset1s)
@@ -349,11 +391,11 @@ mainGraph2s = () => {
     .attr('r', '2px')
     .attr('fill', 'none');
 
-  svg2s.selectAll('.dot')
-    .transition()
-    .delay((d, i) => 2.5 * i)
-    .duration(2.5)
-    .attr('fill', '#6ECF7F');
+  // svg2s.selectAll('.dot')
+  //   .transition()
+  //   .delay((d, i) => 2.5 * i)
+  //   .duration(2.5)
+  //   .attr('fill', '#6ECF7F');
 
   svg2s.selectAll('.dot1s')
     .transition()
@@ -361,6 +403,30 @@ mainGraph2s = () => {
     .duration(2.5)
     .attr('fill', '#FFF7AE')
     .attr('opacity', 0.1);
+
+  svg2s.selectAll('.dot')
+    .data(dataset)
+    .enter()
+    .append('line')
+    .attr('class', 'dot')
+    .attr('x1', d => xScale(d.x))
+    .attr('x2', d => xScale(d.x))
+    .attr('y1', d => yScale(d.y))
+    .attr('y2', heightD3 - 58)
+    .attr('stroke-width', 1)
+    .attr('stroke', 'none');
+
+  svg2s.selectAll('.dot')
+    .transition()
+    .delay((d, i) => 2.5 * i)
+    .duration(2.5)
+    .attr('stroke', d => {
+      if (d.x % 10 == 0) {
+        return '#6ECF7F';
+      } else {
+        return 'none';
+      }
+    });
 
   // let points = [
   //   [dataset[maxIndex].x, dataset[maxIndex].y],
@@ -529,18 +595,44 @@ mainGraph2p = () => {
   svg2p.selectAll('.dot2p')
     .data(dataset2p)
     .enter()
-    .append('circle')
+    .append('line')
     .attr('class', 'dot2p')
-    .attr('cx', (d, i) => xScale(d.x))
-    .attr('cy', (d, i) => yScale(d.y))
-    .attr('r', '2px')
-    .attr('fill', 'none');
+    .attr('x1', d => xScale(d.x))
+    .attr('x2', d => xScale(d.x))
+    .attr('y1', d => yScale(d.y))
+    .attr('y2', heightD3 - 58)
+    .attr('stroke-width', 1)
+    .attr('stroke', 'none');
 
   svg2p.selectAll('.dot2p')
     .transition()
     .delay((d, i) => 2.5 * i)
     .duration(2.5)
-    .attr('fill', '#EA9FA2');
+    .attr('stroke', d => {
+      if (d.x % 10 == 0) {
+        return '#EA9FA2';
+      } else {
+        return 'none';
+      }
+    });
+
+  // svg2p.selectAll('.dot2p')
+  //   .data(dataset2p)
+  //   .enter()
+  //   .append('circle')
+  //   .attr('class', 'dot2p')
+  //   .attr('cx', (d, i) => xScale(d.x))
+  //   .attr('cy', (d, i) => yScale(d.y))
+  //   .attr('r', '2px')
+  //   .attr('fill', 'none');
+
+  // svg2p.selectAll('.dot2p')
+  //   .transition()
+  //   .delay((d, i) => 2.5 * i)
+  //   .duration(2.5)
+  //   .attr('fill', '#EA9FA2');
+
+
 
   // let points = [
   //   [dataset[maxIndex].x, dataset[maxIndex].y],

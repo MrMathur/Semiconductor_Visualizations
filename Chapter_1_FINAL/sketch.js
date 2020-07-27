@@ -93,8 +93,8 @@ draw = () => {
 
     textAlign(RIGHT, CENTER);
     textSize(18);
-    text("Mass:", width / 5, height / 2 + 50);
-    text("Charge:", width / 5, height / 2 + 100);
+    text("Mass (kg):", width / 5, height / 2 + 50);
+    text("Charge (C):", width / 5, height / 2 + 100);
     text("9.11 x 10", 2 * width / 5 - 2, height / 2 + 50);
     text("- 1.6 x 10", 2 * width / 5 - 2, height / 2 + 100);
     text("1.67 x 10", 3 * width / 5, height / 2 + 50);
@@ -135,7 +135,7 @@ draw = () => {
     textSize(24);
     textAlign(CENTER, CENTER);
     textFont('Bai Jamjuree');
-    text("Click Enter to locate the electron", width / 2, height / 2 + 250);
+    text("Click to locate the electron", width / 2, height / 2 + 250);
 
     for (let elec of experiment_electrons) {
       fill(255, 247, 174, 50);
@@ -545,7 +545,7 @@ draw = () => {
   }
 }
 
-keyPressed = () => {
+mousePressed = () => {
   if (sceneCount == 3) {
     experiment_electrons.push(electrons_1s_dash.pop());
   }

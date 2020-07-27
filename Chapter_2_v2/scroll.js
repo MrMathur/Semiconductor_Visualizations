@@ -51,6 +51,7 @@ let StartScroll = () => {
     .on('start', () => {
       if (sceneCount == 2) {
         sceneCount = 2.5;
+        potentialEnergyGraph(width, (negative_charge.x - 2 * width / 3));
       } else {
         sceneCount = 2;
       }
@@ -71,6 +72,28 @@ let StartScroll = () => {
         d3onload();
       } else {
         sceneCount = 2.5;
+        call = 1;
+        potentialEnergyGraph(width, (negative_charge.x - 2 * width / 3));
+      }
+    })
+    .addTo(controller);
+
+  let scene_3and5 = new ScrollMagic.Scene({
+      triggerElement: '#scene_3and5'
+    })
+    .setClassToggle('#scene_3and5', 'fade-in')
+    // .addIndicators({
+    //   name: 'fade scene',
+    //   colorTrigger: 'white',
+    //   colorStart: '#FFF7AE'
+    // })
+    .on('start', () => {
+      if (sceneCount == 3) {
+        sceneCount = 3.5;
+        reset();
+        d3onload();
+      } else {
+        sceneCount = 3;
       }
     })
     .addTo(controller);
@@ -85,12 +108,54 @@ let StartScroll = () => {
     //   colorStart: '#FFF7AE'
     // })
     .on('start', () => {
-      if (sceneCount == 3) {
+      if (sceneCount == 3.5) {
         sceneCount = 4;
         secondGraph();
       } else {
-        sceneCount = 3;
+        sceneCount = 3.5;
         d3onload();
+      }
+    })
+    .addTo(controller);
+
+  let scene_5 = new ScrollMagic.Scene({
+      triggerElement: '#scene_5'
+    })
+    .setClassToggle('#scene_5', 'fade-in')
+    // .addIndicators({
+    //   name: 'fade scene',
+    //   colorTrigger: 'white',
+    //   colorStart: '#FFF7AE'
+    // })
+    .on('start', () => {
+      if (sceneCount == 4) {
+        sceneCount = 5;
+        reset();
+        // secondGraph();
+      } else {
+        sceneCount = 4;
+        // d3onload();
+      }
+    })
+    .addTo(controller);
+
+  let scene_6 = new ScrollMagic.Scene({
+      triggerElement: '#scene_6'
+    })
+    .setClassToggle('#scene_6', 'fade-in')
+    // .addIndicators({
+    //   name: 'fade scene',
+    //   colorTrigger: 'white',
+    //   colorStart: '#FFF7AE'
+    // })
+    .on('start', () => {
+      if (sceneCount == 5) {
+        sceneCount = 6;
+        reset();
+        // secondGraph();
+      } else {
+        sceneCount = 5;
+        // d3onload();
       }
     })
     .addTo(controller);

@@ -29,64 +29,57 @@
       <div class="col-lg-1"></div>
       <p class="col-lg-10">
         Before we begin our journey looking at how semiconductor devices work, we need to understand the inner workings
-        of atoms. The Hydrogen Atom, due to its simple structure, has been extensively studied, and
-        provides a good starting point to understand the fundamentals, before we move onto semiconductors such as
-        Silicon.
+        of atoms. The Hydrogen Atom, due to its simple structure, provides a good starting point to understand the
+        fundamentals, before we move onto semiconductors such as Silicon.
       </p>
       <div class="col-lg-1"></div>
     </div>
     <div class="row sub-atomic-particle-row" id="scene_1">
       <div class="col-lg-4">
         <h1>The Subatomic Particles</h1>
-        <p>Each atom of any element is composed of certain subatomic particles. These subatomic particles are the
-          electron, the proton and the neutron.</p>
-        <p>An electron is a negative charge carrier, with negligible mass. Each element has as many electrons as its
-          atomic number. A proton is a positive charge carrier, and contributes to the mass of the atom. Together, these
-          two subatomic particles ensure that the atom is neutral, or has a net charge of 0.</p>
-        <p>A hydrogen atom has 1 proton and 1 electron, but no neutron.</p>
+        <p>A hydrogen atom has one electron, one proton, and no neutrons .</p>
+
+        <p>What is the net charge of the hydrogen atom?</p>
+
+        <p>What is the total weight of the hydrogen atom?</p>
       </div>
     </div>
     <div class="row classical-model-row" id="scene_2">
       <div class="col-lg-4">
         <h1>The Classical Model</h1>
-        <p>The Classical Model is a planetary model in which the negatively charged electrons orbit a small, positively
-          charged nucleus similar to the planets orbiting the sun.</p>
-        <p>In the case of the Hydrogen atom, the nucleus contains only the proton, and the elctron revolves
-          around it due to Coulomb forces.</p>
-        <p>The Classical Model contains some errors, but it is important because it describes most of the accepted
-          features
-          of atomic theory without all of the high-level math of the modern version.</p>
+        <p>The Classical Model is a planetary model.</p>
+
+        <p>Why is the proton stationary and only the electron orbit?</p>
+
+        <p>This simple model based on classical physics is wrong and cannot explain many of the atom’s property.</p>
       </div>
     </div>
     <div class="row real-life-row" id="scene_3">
       <div class="col-lg-4">
         <h1>The Quantum Model</h1>
-        <p>As our understanding became clearer, we developed ways of predicting the location of these subatomic
-          particles in space.
+        <p>At such a small scale, we can never predict the exact location of a particle. At any point in time, in
+          principle we can obtain the electron position only if we perform a “measurement.” If we repeat the
+          measurements many times, we can obtain the probability of finding the electron at various positions.</p>
+
+        <p>Perform the measurement many times and see if you find a pattern. Where is most likely to find the electron?
         </p>
-        <p>We found the behaviour of protons and neutrons to mimic the Classical Model - they always stayed fixed inside
-          the nucleus.</p>
-        <p>The electron, however, behaved differently, and was located at a different location everytime.</p>
-        <p>In the adjoining visualization, press 'ENTER' to locate the position of the electron at any given time.</p>
       </div>
     </div>
     <div class="row experiment-row" id="scene_4">
       <div class="col-lg-4">
         <h1>Exploring the Distribution</h1>
-        <p>Scientists plotted more than a million
-          of these predictions along space. This data of predicted locations was used to draw correlations between the
-          location of electrons
-          and the distance to the nucleus.</p>
-        <p>As you can see in the adjoining visualization, most of the predictions they made were around the nucleus.
-          Moreover, as the distance from the nucleus increased, the density of predictions became sparser.</p>
+        <p>If you do thousands of experiments and keep a trace of each measurement you would see something like this.
+          Now, where do you think it is most likely to find the electron?</p>
       </div>
     </div>
     <div class="row graph-row" id="scene_5">
       <div class="col-lg-4">
         <h1>Probability vs. Distance</h1>
-        <p>Since there seemed to be no angular correlation for the Hydrogen atom, researchers sweeped across the
-          nucleus, and linearly mapped all predictions to their distance from the nucleus. The following graph was
-          observed:</p>
+        <p>You might have guessed the likelihood of finding the electron increases the closer you get to the nucleus. To
+          test this impression, let’s count the number of times electron is found between these two spherical shapes.
+        </p>
+
+        <p>Where do you count the most? The closer to the nucleus , the farther, or somewhere in the middle?</p>
         <svg id="d3-viz">
 
         </svg>
@@ -95,48 +88,44 @@
     <div class="row graph-row" id="scene_6">
       <div class="col-lg-4">
         <h1>Zooming Out</h1>
-        <p>As we zoom out, we can see that even though some predictions are farther from the nucleus, most of the times
-          the electron is close to the nucleus.</p>
+        <p>As we zoom out and increase the number of experiments, we can see that a few times the electron may be
+          located far from the nucleus. However, the probability drops rapidly.</p>
         <svg id="d3-viz-final">
 
         </svg>
-        <p>They found that the highest number of predictoins were at the Bohr Radius, which was also defined as the
-          average position of all predictions. </p>
       </div>
     </div>
     <div class="row graph-row" id="scene_7">
       <div class="col-lg-4">
         <h1>The 2s Orbital</h1>
-        <p>Upon repeating the experiment multiple times, scietists found a variety of different distributions that
-          existed. Each of these different distributions is called an "orbital".</p>
+        <p>What you saw was the electron in its lowest energy level which is the most stable condition. If we excite
+          the electron by, for example, shining light on it, the electron can go to the next energy level which is the
+          2s Orbital.</p>
         <svg id="d3-viz-final-2s">
 
         </svg>
-        <p>The 2s orbital has electrons farther from the nucleus, indicating they're more loosely bound than the
-          previous 1s orbital electrons.</p>
+        <p>Where is most likely to find the electron when it is the 2s orbital.</p>
       </div>
     </div>
     <div class="row graph-row" id="scene_8">
       <div class="col-lg-4">
         <h1>The 2px Orbital</h1>
-        <p>The 2p orbital breaks the radial symmetry so far observed. Electrons were found to be closer along a
-          particular axis,
-          mimicing the shape of a dumbbell.</p>
+        <p>The next energy level corresponds to three possible orbitals: 2px, 2py and 2pz. Here is the pattern you see
+          for 2px orbital. Where do you think it is unlikely to find the electron?</p>
         <svg id="d3-viz-final-2p">
 
         </svg>
-        <p>The adjoining visualization shows a 2px orbital, where the electrons are closer to the x-axis. </p>
+        <p>At what distance from the nucleus is it most likely to find the electron?</p>
       </div>
     </div>
     <div class="row graph-row" id="scene_9">
       <div class="col-lg-4">
         <h1>2py and 2pz</h1>
-        <p>Similarly, electrons also exist in 2py and 2pz orbitals. These are identical to the 2px orbitals, other than
-          their spatial orientation.</p>
+        <p>These orbitals are identical to the 2px orbitals except for their orientation. Here is the pattern you see
+          for 2px orbital. Where do you think it is unlikely to find the electron?</p>
         <svg id="d3-viz-final-2p">
 
         </svg>
-        <p>The adjoining plot shows a 2py orbital.</p>
       </div>
     </div>
     <div class="row next-row" id="scene_10">
