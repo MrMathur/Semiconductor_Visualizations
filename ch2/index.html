@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 2: Energies of Subatomic Particles</title>
+
+  <link href="./style.css" rel="stylesheet" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.1/d3.min.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <script src="./scroll.js"></script>
+  <script src="./sketch.js"></script>
+  <script src="./graph.js"></script>
+</head>
+
+<body id="body_parent" onload="StartScroll()">
+  <a href="../index.html"><img id="back-icon" src="../images/arrow-left.svg" /></a>
+  <div class="container">
+    <div class="row title-row">
+      <h1 class="col-lg-12">Energies of Subatomic Particles</h1>
+      <div class="col-lg-1"></div>
+      <p class="col-lg-10">
+        So far, we have seen that an electron may exist in the form of different orbitals. A key concept for
+        understanding semiconductor physics, is understanding the variation of energy levels across these different
+        orbitals. How is the energy of an orbital defined? What influences its energy? These are some of the
+        questions we'll answer in this chapter.
+      </p>
+      <div class="col-lg-1"></div>
+    </div>
+    <div class="row sub-atomic-particle-row" id="scene_1">
+      <div class="col-lg-4">
+        <h1>The Subatomic Particles</h1>
+        <p>Once again, we look at the simplistic case of a Hydrogen atom, that consists of one electron and one proton.
+        </p>
+        <p>These subatomic particles are equally, but oppositely, charged.</p>
+      </div>
+    </div>
+    <div class="row sub-atomic-particle-row" id="scene_2">
+      <div class="col-lg-4">
+        <h1>Coulomb Force of Attraction</h1>
+        <p>Due to these charges, there is a force of attraction that acts on these particles.</p>
+        <p>This force is governed by the Coulomb law, which states that \[F = {-k * q1 * q2 \over r^2}\]</p>
+        <p>Here k is a constant, q1 and q2 are the charges of both particles, and r is the distance between the two.</p>
+      </div>
+    </div>
+    <div class="row sub-atomic-particle-row" id="scene_2and5">
+      <div class="col-lg-4">
+        <h1>The Potential Energy</h1>
+        <p>If we consider the two charges as a system, the coulombic force gives rise to a potential energy. This energy
+          is governed by the equation \[E = {-k * q1 * q2 \over r}\]</p>
+        <svg id="pe-viz"></svg>
+        <p>As with any potential, it is defined as 0 at a reference point.</p>
+        <p>The potential energy of all other points is
+          defined as the negative of the work done by an external force, in moving the charge from that point to the
+          reference point.</p>
+      </div>
+    </div>
+    <div class="row sub-atomic-particle-row" id="scene_3">
+      <div class="col-lg-4">
+        <h1>Total Energy of Electron</h1>
+        <p>The classical model assumed that the electron revolves around the proton, giving rise to a kinetic energy
+          defined by \[E = {1* m * v^2\over 2\ }\]</p>
+        <svg id="d3-viz"></svg>
+        <p>The total energy of the electron would hence be the sum of the potential and kinetic energies, as shown.</p>
+        <p>We can see that these are change with changing radii of the electron.</p>
+      </div>
+    </div>
+    <div class="row sub-atomic-particle-row" id="scene_3and5">
+      <div class="col-lg-4">
+        <h1>Absorption of Energy</h1>
+        <p>When light is shone on hydrogen gas, the molecules may absorb energy depending on the wavelength of light.
+        </p>
+        <svg id="d3-viz"></svg>
+        <button type="button" onclick="reset()">Click to reset!</button>
+        <p>If the classical model was correct, we would observe all light being absorbed by the gas, and see a dark
+          screen throughout as a result.</p>
+      </div>
+    </div>
+    <div class="row sub-atomic-particle-row" id="scene_4">
+      <div class="col-lg-4">
+        <h1>Observed Transition</h1>
+        <p>This was not observed.</p>
+        <svg id="sec-viz"></svg>
+        <button type="button" onclick="reset()">Click to reset!</button>
+        <p>Instead, the screen would light up on most wavelegnth, indicating that the gas does not absorbs all
+          wavelength.</p>
+        <p>Which wavelengths do does the Hydrogen molecule absorb?</p>
+      </div>
+    </div>
+    <div class="row sub-atomic-particle-row" id="scene_5">
+      <div class="col-lg-4">
+        <h1>Unstable orbitals</h1>
+        <p>As we saw, only certain wavelength were absorbed by the hydrogen gas.</p>
+        <svg id="sec-viz"></svg>
+        <button type="button" onclick="reset()">Click to reset!</button>
+        <p>Moreover, the hydrogen atom would also release energy, emitting photons of light, lighting up the screen.</p>
+        <p>Which photons does the Hydrogen gas release?</p>
+      </div>
+    </div>
+    <div class="row sub-atomic-particle-row" id="scene_6">
+      <div class="col-lg-4">
+        <h1>Orbitals and Energy</h1>
+        <p>The orbitals can only exist at discrete energy levels, proving the classical model incorrect.</p>
+        <svg id="sec-viz"></svg>
+        <button type="button" onclick="reset()">Click to reset!</button>
+        <p>Energy transtitions can only happen when the exact amount of energy is transferred.</p>
+        <p>Can you reach the 3s orbital by shining the correct wavelengths?</p>
+      </div>
+    </div>
+    <div id="visualization">
+
+    </div>
+  </div>
+</body>
+
+</html>
