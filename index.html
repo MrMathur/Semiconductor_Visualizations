@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VISUALIZING CONCEPTS OF QUANTUM PHYSICS</title>
+
+  <link href="./style.css" rel="stylesheet" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.1/d3.min.js"></script>
+
+  <script src="./scroll.js"></script>
+  <script src="./sketch.js"></script>
+  <script src="./hydrogen.js"></script>
+  <script src="./prob.js"></script>
+  <script src="./graph.js"></script>
+</head>
+
+<body id="body_parent" onload="StartScroll()">
+  <div class="container">
+    <div class="row title-row">
+      <h1 class="col-lg-12">VISUALIZING CONCEPTS OF QUANTUM PHYSICS</h1>
+      <div class="col-lg-1"></div>
+      <p class="col-lg-10">
+        This is a repository of chapters that interactively visualize foundational concepts of semi-conductor physics.
+        Click on any chapter to understand the inner workings of atoms and molecules, and how they influence the
+        phenomena we observe.
+      </p>
+      <div class="col-lg-1"></div>
+    </div>
+    <div class="row projects-row">
+      <a href="./ch1/index.html" class="col-lg-4">
+        <div>
+          <h2>CHAPTER 1</h2>
+          <h3>Understanding a Hydrogen Atom</h3>
+          <img src="./images/Ch1.png" />
+          <p>
+            Understanding the shortcomings of the classical model, and seeing how the quantum model predicts the
+            position of electrons.
+          </p>
+        </div>
+      </a>
+      <a href="./ch2/index.html" class="col-lg-4">
+        <div>
+          <h2>CHAPTER 2</h2>
+          <h3>Energies of a Subatomic Particle</h3>
+          <img src="./images/Ch2.png" />
+          <p>Explore potential and kinetic energies of an electron and see the differences between the predictions of
+            classical and quantum physics.</p>
+        </div>
+      </a>
+      <a href="./ch3/index.html" class="col-lg-4">
+        <div>
+          <h2>CHAPTER 3</h2>
+          <h3>Bonding of a Hydrogen<br /> Atom</h3>
+          <img src="./images/Ch3.png" />
+          <p>See why and how two hydrogen atoms form a bond and form a Hydrogen molecule.</p>
+        </div>
+      </a>
+    </div>
+    <div class="row projects-row">
+      <a href="./ch4/index.html" class="col-lg-4">
+        <div>
+          <h2>CHAPTER 4</h2>
+          <h3>Hybridization of Silicon<br /> Atoms</h3>
+          <img src="./images/Ch4.png" />
+          <p>What happens when atoms with more than one electron bond together?</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</body>
+
+</html>

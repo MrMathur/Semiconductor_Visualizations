@@ -27,32 +27,40 @@ preload = () => {
   electrons_1s_dash = loadJSON('./data/electrons_1s_dash.json');
   electrons_2s = loadJSON('./data/electrons_2s.json');
   electrons_2p = loadJSON('./data/electrons_2p.json');
+
+
 }
 
 setup = () => {
   let canvas = createCanvas(2 * windowWidth / 3, windowHeight);
   canvas.parent('visualization');
 
+  electrons_1s_dash = Object.values(electrons_1s_dash);
+  electrons_1s = Object.values(electrons_1s);
+  electrons_2s = Object.values(electrons_2s);
+  electrons_2p = Object.values(electrons_2p);
+
   for (let i = 0; i < 200; i++) {
     let electron = electrons_1s[floor(random(electrons_1s.length))];
-    x1 = map(electron.r * cos(electron.alpha), -width / 2, width / 2, -150, 150);
-    y1 = map(electron.r * sin(electron.alpha), -width / 2, width / 2, -150, 150);
+    // electron.r = Math.sqrt(elec);
+    let x1 = map(electron.r * cos(electron.alpha), -width / 2, width / 2, -150, 150);
+    let y1 = map(electron.r * sin(electron.alpha), -width / 2, width / 2, -150, 150);
     pd1s.push({
       x: x1,
       y: y1
     });
 
     let electron2s = electrons_2s[floor(random(electrons_2s.length))];
-    x2 = map(electron2s.r * cos(electron2s.alpha), -width / 2, width / 2, -150, 150);
-    y2 = map(electron2s.r * sin(electron2s.alpha), -width / 2, width / 2, -150, 150);
+    let x2 = map(electron2s.r * cos(electron2s.alpha), -width / 2, width / 2, -150, 150);
+    let y2 = map(electron2s.r * sin(electron2s.alpha), -width / 2, width / 2, -150, 150);
     pd2s.push({
       x: x2,
       y: y2
     });
 
     let electron2p = electrons_2p[floor(random(electrons_2p.length))];
-    x3 = map(electron2p.r * sin(electron2p.alpha), -width / 2, width / 2, -150, 150);
-    y3 = map(electron2p.r * cos(electron2p.alpha), -width / 2, width / 2, -150, 150);
+    let x3 = map(electron2p.r * sin(electron2p.alpha), -width / 2, width / 2, -150, 150);
+    let y3 = map(electron2p.r * cos(electron2p.alpha), -width / 2, width / 2, -150, 150);
     pd2p.push({
       x: x3,
       y: y3
@@ -62,11 +70,6 @@ setup = () => {
   electron1s = pd1s[0];
   electron2s = pd2s[0];
   electron2p = pd2p[0];
-
-  electrons_1s_dash = Object.values(electrons_1s_dash);
-  electrons_1s = Object.values(electrons_1s);
-  electrons_2s = Object.values(electrons_2s);
-  electrons_2p = Object.values(electrons_2p);
 }
 
 draw = () => {

@@ -1,4 +1,4 @@
-con1 = false, con2 = false;
+let con = false;
 
 sceneCount = 0;
 
@@ -617,7 +617,7 @@ draw = () => {
       line(d3x, sliderRect.y + sliderRect.h / 2 + 10, d3x, sliderRect.y + sliderRect.h / 2 - 10);
       stroke(255, 255, 255, 50);
       line(d2x, sliderRect.y + sliderRect.h / 2 + 10, d2x, sliderRect.y + sliderRect.h / 2 - 10);
-    } else if (orbital_to_show.orbital_radius == 200) {
+    } else if (orbital_to_show.orbital_radius == 150) {
 
       stroke(255, 255, 255, 50);
       line(d1x, sliderRect.y + sliderRect.h / 2 + 10, d1x, sliderRect.y + sliderRect.h / 2 - 10);
@@ -710,7 +710,7 @@ draw = () => {
     if (abs(photon.x - positive_charge.x) < 5 && photon.check) {
       if (orbital_to_show.orbital_radius == 50) {
         if (abs(photon.wavelength - d1l) < 10) {
-          orbital_to_show.orbital_radius = 200;
+          orbital_to_show.orbital_radius = 150;
           photon = {
             x: 0,
             y: height / 2,
@@ -721,7 +721,7 @@ draw = () => {
           // destTime = second() + random(5, 10);
 
         } else if (abs(photon.wavelength - d3l) < 10) {
-          orbital_to_show.orbital_radius = 450;
+          orbital_to_show.orbital_radius = 200;
           photon = {
             x: 0,
             y: height / 2,
@@ -732,8 +732,8 @@ draw = () => {
           // destTime = second() + random(2, 4);
 
         }
-      } else if (orbital_to_show.orbital_radius == 200 && abs(photon.wavelength - 672) < 10) {
-        orbital_to_show.orbital_radius = 450;
+      } else if (orbital_to_show.orbital_radius == 150 && abs(photon.wavelength - 672) < 10) {
+        orbital_to_show.orbital_radius = 200;
         photon = {
           x: 0,
           y: height / 2,
@@ -748,16 +748,16 @@ draw = () => {
 
     // }
 
-    // if (orbital_to_show.orbital_radius <= 150) {
-    fill(negative_charge.color);
-    noStroke();
-    ellipse(orbital_to_show.x, orbital_to_show.y, orbital_to_show.orbital_radius, orbital_to_show.orbital_radius);
-    // } else {
-    //   fill(negative_charge.color);
-    //   noStroke();
-    //   ellipse(orbital_to_show.x, orbital_to_show.y - 40, 100, 75);
-    //   ellipse(orbital_to_show.x, orbital_to_show.y + 40, 100, 75);
-    // }
+    if (orbital_to_show.orbital_radius <= 150) {
+      fill(negative_charge.color);
+      noStroke();
+      ellipse(orbital_to_show.x, orbital_to_show.y, orbital_to_show.orbital_radius, orbital_to_show.orbital_radius);
+    } else {
+      fill(negative_charge.color);
+      noStroke();
+      ellipse(orbital_to_show.x, orbital_to_show.y - 40, 100, 75);
+      ellipse(orbital_to_show.x, orbital_to_show.y + 40, 100, 75);
+    }
     fill(positive_charge.color);
     ellipse(positive_charge.x, positive_charge.y, 10, 10);
 
@@ -803,20 +803,20 @@ draw = () => {
     textSize(16);
     textFont('Bai Jamjuree');
     textAlign(CENTER, CENTER);
-    if (orbital_to_show.orbital_radius < 200) {
+    if (orbital_to_show.orbital_radius < 150) {
       fill(255);
       noStroke();
-      text('1s Orbital', positive_charge.x, positive_charge.y - 300);
+      text('1s Orbital', positive_charge.x, positive_charge.y - 200);
       changeD3(-13.6);
-    } else if (orbital_to_show.orbital_radius == 200) {
+    } else if (orbital_to_show.orbital_radius == 150) {
       fill(234, 159, 162);
       noStroke();
-      text('Unstable 2s Orbital', positive_charge.x, positive_charge.y - 300);
+      text('Unstable 2s Orbital', positive_charge.x, positive_charge.y - 200);
       changeD3(-3.4);
     } else {
       fill(234, 159, 162);
       noStroke();
-      text('Unstable 3s Orbital', positive_charge.x, positive_charge.y - 300);
+      text('Unstable 2p Orbital', positive_charge.x, positive_charge.y - 200);
       changeD3(-1.51);
     }
   } else if (sceneCount == 5) {
@@ -901,7 +901,7 @@ draw = () => {
     if (abs(photon.x - positive_charge.x) < 5 && photon.check) {
       if (orbital_to_show.orbital_radius == 50) {
         if (abs(photon.wavelength - d1l) < 10) {
-          orbital_to_show.orbital_radius = 200;
+          orbital_to_show.orbital_radius = 150;
           photon = {
             x: 0,
             y: height / 2,
@@ -912,7 +912,7 @@ draw = () => {
           destTime = second() + random(2, 4);
 
         } else if (abs(photon.wavelength - d3l) < 10) {
-          orbital_to_show.orbital_radius = 450;
+          orbital_to_show.orbital_radius = 200;
           photon = {
             x: 0,
             y: height / 2,
@@ -923,8 +923,8 @@ draw = () => {
           destTime = second() + random(1, 3);
 
         }
-      } else if (orbital_to_show.orbital_radius == 200 && abs(photon.wavelength - d2l) < 10) {
-        orbital_to_show.orbital_radius = 450;
+      } else if (orbital_to_show.orbital_radius == 150 && abs(photon.wavelength - d2l) < 10) {
+        orbital_to_show.orbital_radius = 200;
         photon = {
           x: 0,
           y: height / 2,
@@ -939,20 +939,20 @@ draw = () => {
 
     // }
 
-    // if (orbital_to_show.orbital_radius <= 150) {
-    fill(negative_charge.color);
-    noStroke();
-    ellipse(orbital_to_show.x, orbital_to_show.y, orbital_to_show.orbital_radius, orbital_to_show.orbital_radius);
-    // } else {
-    //   fill(negative_charge.color);
-    //   noStroke();
-    //   ellipse(orbital_to_show.x, orbital_to_show.y - 40, 100, 75);
-    //   ellipse(orbital_to_show.x, orbital_to_show.y + 40, 100, 75);
-    // }
+    if (orbital_to_show.orbital_radius <= 150) {
+      fill(negative_charge.color);
+      noStroke();
+      ellipse(orbital_to_show.x, orbital_to_show.y, orbital_to_show.orbital_radius, orbital_to_show.orbital_radius);
+    } else {
+      fill(negative_charge.color);
+      noStroke();
+      ellipse(orbital_to_show.x, orbital_to_show.y - 40, 100, 75);
+      ellipse(orbital_to_show.x, orbital_to_show.y + 40, 100, 75);
+    }
     fill(positive_charge.color);
     ellipse(positive_charge.x, positive_charge.y, 10, 10);
 
-    if (orbital_to_show.orbital_radius == 200 && second() > destTime) {
+    if (orbital_to_show.orbital_radius == 150 && second() > destTime) {
       orbital_to_show.orbital_radius = 50;
       photon1 = {
         x: positive_charge.x,
@@ -961,7 +961,7 @@ draw = () => {
         show: true,
         check: false
       }
-    } else if (orbital_to_show.orbital_radius == 450 && second() > destTime) {
+    } else if (orbital_to_show.orbital_radius == 200 && second() > destTime) {
       if (random(0, 1) < 0.5) {
         orbital_to_show.orbital_radius = 50;
         photon2 = {
@@ -972,7 +972,7 @@ draw = () => {
           check: false
         }
       } else {
-        orbital_to_show.orbital_radius = 200;
+        orbital_to_show.orbital_radius = 150;
         initTime = second();
         destTime = initTime + random(3, 5);
         photon2 = {
@@ -994,20 +994,20 @@ draw = () => {
     textSize(16);
     textFont('Bai Jamjuree');
     textAlign(CENTER, CENTER);
-    if (orbital_to_show.orbital_radius < 200) {
+    if (orbital_to_show.orbital_radius < 150) {
       fill(255);
       noStroke();
-      text('1s Orbital', positive_charge.x, positive_charge.y - 300);
+      text('1s Orbital', positive_charge.x, positive_charge.y - 200);
       changeD3(-13.6);
-    } else if (orbital_to_show.orbital_radius == 200) {
+    } else if (orbital_to_show.orbital_radius == 150) {
       fill(234, 159, 162);
       noStroke();
-      text('Unstable 2s Orbital', positive_charge.x, positive_charge.y - 300);
+      text('Unstable 2s Orbital', positive_charge.x, positive_charge.y - 200);
       changeD3(-3.4);
     } else {
       fill(234, 159, 162);
       noStroke();
-      text('Unstable 3s Orbital', positive_charge.x, positive_charge.y - 300);
+      text('Unstable 2p Orbital', positive_charge.x, positive_charge.y - 200);
       changeD3(-1.51);
     }
   } else if (sceneCount == 6) {
@@ -1029,7 +1029,7 @@ draw = () => {
     textAlign(CENTER, CENTER);
     textSize(24);
     textFont('Bai Jamjuree');
-    // text('Change wavelength of photon', width / 2, height / 2 - 300);
+    text('Change wavelength of photon', width / 2, height / 2 - 300);
 
 
     noFill();
@@ -1055,7 +1055,7 @@ draw = () => {
       line(d3x, sliderRect.y + sliderRect.h / 2 + 10, d3x, sliderRect.y + sliderRect.h / 2 - 10);
       stroke(255, 255, 255, 50);
       line(d2x, sliderRect.y + sliderRect.h / 2 + 10, d2x, sliderRect.y + sliderRect.h / 2 - 10);
-    } else if (orbital_to_show.orbital_radius == 200) {
+    } else if (orbital_to_show.orbital_radius == 150) {
 
       stroke(255, 255, 255, 50);
       line(d1x, sliderRect.y + sliderRect.h / 2 + 10, d1x, sliderRect.y + sliderRect.h / 2 - 10);
@@ -1149,7 +1149,7 @@ draw = () => {
     if (abs(photon.x - positive_charge.x) < 5 && photon.check) {
       if (orbital_to_show.orbital_radius == 50) {
         if (abs(photon.wavelength - d1l) < 10) {
-          orbital_to_show.orbital_radius = 200;
+          orbital_to_show.orbital_radius = 150;
           photon = {
             x: 0,
             y: height / 2,
@@ -1160,7 +1160,7 @@ draw = () => {
           destTime = second() + random(5, 10);
 
         } else if (abs(photon.wavelength - d3l) < 10) {
-          orbital_to_show.orbital_radius = 450;
+          orbital_to_show.orbital_radius = 200;
           photon = {
             x: 0,
             y: height / 2,
@@ -1171,8 +1171,8 @@ draw = () => {
           destTime = second() + random(2, 4);
 
         }
-      } else if (orbital_to_show.orbital_radius == 200 && (abs(photon.wavelength - 672) < 10)) {
-        orbital_to_show.orbital_radius = 450;
+      } else if (orbital_to_show.orbital_radius == 150 && (abs(photon.wavelength - 672) < 10)) {
+        orbital_to_show.orbital_radius = 200;
         photon = {
           x: 0,
           y: height / 2,
@@ -1189,20 +1189,20 @@ draw = () => {
 
     // }
 
-    // if (orbital_to_show.orbital_radius <= 150) {
-    fill(negative_charge.color);
-    noStroke();
-    ellipse(orbital_to_show.x, orbital_to_show.y, orbital_to_show.orbital_radius, orbital_to_show.orbital_radius);
-    // } else {
-    //   fill(negative_charge.color);
-    //   noStroke();
-    //   ellipse(orbital_to_show.x, orbital_to_show.y - 40, 100, 75);
-    //   ellipse(orbital_to_show.x, orbital_to_show.y + 40, 100, 75);
-    // }
+    if (orbital_to_show.orbital_radius <= 150) {
+      fill(negative_charge.color);
+      noStroke();
+      ellipse(orbital_to_show.x, orbital_to_show.y, orbital_to_show.orbital_radius, orbital_to_show.orbital_radius);
+    } else {
+      fill(negative_charge.color);
+      noStroke();
+      ellipse(orbital_to_show.x, orbital_to_show.y - 40, 100, 75);
+      ellipse(orbital_to_show.x, orbital_to_show.y + 40, 100, 75);
+    }
     fill(positive_charge.color);
     ellipse(positive_charge.x, positive_charge.y, 10, 10);
 
-    if (orbital_to_show.orbital_radius == 200 && second() > destTime) {
+    if (orbital_to_show.orbital_radius == 150 && second() > destTime) {
       orbital_to_show.orbital_radius = 50;
       photon1 = {
         x: positive_charge.x,
@@ -1211,7 +1211,7 @@ draw = () => {
         show: true,
         check: false
       }
-    } else if (orbital_to_show.orbital_radius == 450 && second() > destTime) {
+    } else if (orbital_to_show.orbital_radius == 200 && second() > destTime) {
       if (random(0, 1) < 0.5) {
         orbital_to_show.orbital_radius = 50;
         photon2 = {
@@ -1222,7 +1222,7 @@ draw = () => {
           check: false
         }
       } else {
-        orbital_to_show.orbital_radius = 200;
+        orbital_to_show.orbital_radius = 150;
         initTime = second();
         destTime = initTime + random(3, 5);
         photon2 = {
@@ -1244,20 +1244,20 @@ draw = () => {
     textSize(16);
     textFont('Bai Jamjuree');
     textAlign(CENTER, CENTER);
-    if (orbital_to_show.orbital_radius < 200) {
+    if (orbital_to_show.orbital_radius < 150) {
       fill(255);
       noStroke();
-      text('1s Orbital', positive_charge.x, positive_charge.y - 300);
+      text('1s Orbital', positive_charge.x, positive_charge.y - 200);
       changeD3(-13.6);
-    } else if (orbital_to_show.orbital_radius == 200) {
+    } else if (orbital_to_show.orbital_radius == 150) {
       fill(234, 159, 162);
       noStroke();
-      text('Unstable 2s Orbital', positive_charge.x, positive_charge.y - 300);
+      text('Unstable 2s Orbital', positive_charge.x, positive_charge.y - 200);
       changeD3(-3.4);
     } else {
       fill(234, 159, 162);
       noStroke();
-      text('Unstable 3s Orbital', positive_charge.x, positive_charge.y - 300);
+      text('Unstable 2p Orbital', positive_charge.x, positive_charge.y - 200);
       changeD3(-1.51);
     }
   }
@@ -1392,7 +1392,7 @@ reset = () => {
   }
 
   if (sceneCount == 5) {
-    orbital_to_show.orbital_radius = 450;
+    orbital_to_show.orbital_radius = 200;
     destTime = second() + random(2, 4);
   }
 

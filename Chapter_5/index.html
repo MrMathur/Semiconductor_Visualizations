@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 4: Hybridization</title>
+
+  <link href="./style.css" rel="stylesheet" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.1/d3.min.js"></script>
+
+  <link rel="stylesheet" href="./anythingzoomer.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="./anythingZoomer.js"></script>
+
+  <script src="./scroll.js"></script>
+  <script src="./sketch.js"></script>
+  <script src="./graph.js"></script>
+  <!-- <script src="./prob.js"></script> -->
+</head>
+
+<body id="body_parent" onload="StartScroll()">
+  <a href="../index.html"><img id="back-icon" src="../images/arrow-left.svg" /></a>
+  <div class="container">
+    <div class="row title-row">
+      <h1 class="col-lg-12">Conductors, Semiconductors and Insulators</h1>
+      <div class="col-lg-1"></div>
+      <p class="col-lg-10">
+        We have seen that orbital splitting happens to stabilise an electron in a Hydrogen atom. What happens in more
+        complex atoms with more subatomic particles? Let's find out.
+      </p>
+      <div class="col-lg-1"></div>
+    </div>
+    <div class="row sub-atomic-particle-row" id="scene_0">
+      <div class="col-lg-4">
+        <h1>The Silicon Atom</h1>
+        <p>Unlike Hydrogen, a Silicon Atom has a more complex makeup of sub-atomic particles.</p>
+        <p>As we can see, a Silicon Atom has 14 electrons, 14 protons and 14 neutrons.</p>
+      </div>
+    </div>
+    <div class="row sub-atomic-particle-row" id="scene_1">
+      <div class="col-lg-4">
+        <h1>Insulators</h1>
+        <p>Due to the higher number of electrons, they are able to occupy some higher states. </p>
+
+        <svg id="d3-viz6" viewBox="0 0 250 500">
+
+        </svg>
+        <p>As we can see that the Silicon Atom has electrons all the way up to the 3p orbital. Interact with the atom to
+          learn more.
+        </p>
+        <p>Temperature: </p>
+        <input type="range" min="1" max="100" value="50">
+
+      </div>
+    </div>
+    <div class="row classical-model-row" id="scene_2">
+      <div class="col-lg-4">
+        <h1>Conductors</h1>
+        <p>Due to the higher number of electrons, they are able to occupy some higher states. </p>
+
+        <svg id="d3-viz6" viewBox="0 0 500 500">
+
+        </svg>
+        <p>As we can see that the Silicon Atom has electrons all the way up to the 3p orbital. Interact with the atom to
+          learn more.
+        </p>
+        <p>Temperature: </p>
+        <input type="range" min="1" max="100" value="50">
+
+      </div>
+    </div>
+    <div class="row graph-row" id="scene_3">
+      <div class="col-lg-4">
+        <h1>Hybridization</h1>
+        <p>Hybridization refers to the combination of multiple orbitals to give rise to newer orbitals with an
+          aggregation of the properties of its compenent orbitals.</p>
+
+        <p>As we can see, Hybridization causes one 3s orbital mixed with three 3p orbitals, to result in four new sp3
+          orbitals.</p>
+      </div>
+    </div>
+    <div class="row graph-row" id="scene_3_and_5">
+      <div class="col-lg-4">
+        <h1>Two interacting atoms</h1>
+        <p>When two Silicon Atoms are left in the same system, the valence orbitals interact with each other, and
+          hybridize to give rise to 4 sp3 orbitals.</p><svg id="d3-viz3">
+
+        </svg>
+        <p>Interact with the atoms to learn more about the sp3 orbital.</p>
+      </div>
+    </div>
+    <div class="row graph-row" id="scene_4">
+      <div class="col-lg-4">
+        <h1>Splitting of Hybrid Orbitals</h1>
+        <p>These orbitals behave like orbitals we have encountered. For Silicon, two sp3 orbitals interact to form a
+          bond between the atoms.</p>
+        <svg id="d3-viz4">
+
+        </svg>
+        <p>As the bond formation happens, the sp3 orbital splits, similar to how the 1s orbital split for Hydrogen.</p>
+      </div>
+    </div>
+    <div class="row conclusion-row" id="scene_5">
+      <div class="col-lg-4">
+        <h1>Bonding with Multiple Atoms</h1>
+        <p>Unlike a Hydrogen Atom, a Silicon Atom still has 3 electrons after forming one bond. It then looks for three
+          other Silicon Atoms to for a bond.</p>
+        <svg id="d3-viz5">
+
+        </svg>
+        <p>These new bonds result in more splitting. Can you predict what happens when more atoms are bonded together?
+        </p>
+      </div>
+    </div>
+    <div class="row conclusion-row" id="scene_6">
+      <div class="row">
+        <div class="col-lg-4">
+          <h1>A Silicon Lattice</h1>
+          <p>A Silicon Lattice has a very large nummber of Silicon Atoms within it. Since each of these bonds results in
+            a
+            split, the energy levels are packed very close together.</p>
+          <!-- <p>
+            <label class="switch">
+              <input id="zoom-check" type="checkbox" onchange="toggleZoom()">
+              <span class="slider round"></span>
+            </label>
+            Zoom In
+          </p> -->
+        </div>
+      </div>
+      <div class="row">
+        <div id="zoom">
+          <div class="small">
+            <svg id="d3-viz6" viewBox="0 0 500 500">
+
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <p>Since they are very tightly packed, they appear almost as if they are continuous bands. However, upon
+            zooming
+            in, we can see that they are an aggregation of discrete energy levels.</p>
+
+        </div>
+      </div>
+    </div>
+    <!-- -->
+    <div id="visualization">
+
+    </div>
+  </div>
+</body>
+
+</html>

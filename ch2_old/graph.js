@@ -375,24 +375,24 @@ secondGraph = () => {
 
   svg.append("text")
     .attr("transform",
-      `translate(${100},${(yScale(-13.6) - 10)} )`)
+      `translate(${(widthD3 / 2) + 50},${(yScale(-13.6) - 10)} )`)
     .attr('class', 'label')
     .style("text-anchor", "middle")
-    .text("n = 1");
+    .text("1s Orbital");
 
   svg.append("text")
     .attr("transform",
-      `translate(${100},${(yScale(-3.4) - 10)} )`)
+      `translate(${(widthD3 / 2)+ 50},${(yScale(-3.4) - 10)} )`)
     .attr('class', 'label')
     .style("text-anchor", "middle")
-    .text("n = 2");
+    .text("2s Orbital");
 
   svg.append("text")
     .attr("transform",
-      `translate(${100},${(yScale(-1.51) - 10)} )`)
+      `translate(${(widthD3 / 2)+ 50},${(yScale(-1.51) - 10)} )`)
     .attr('class', 'label')
     .style("text-anchor", "middle")
-    .text("n = 3");
+    .text("2p Orbital");
 
   svg.append("text")
     .attr("transform",
@@ -418,108 +418,35 @@ secondGraph = () => {
   svg.append('rect')
     .attr('fill', 'none')
     .attr('stroke', 'white')
-    .attr('x', widthD3 / 2)
+    .attr('x', widthD3 / 4)
     .attr('y', yScale(-13.6) - 31)
     .attr('width', 30)
     .attr('height', 30);
-
   svg.append('rect')
     .attr('fill', 'none')
     .attr('stroke', 'white')
-    .attr('x', widthD3 / 2 - 45)
+    .attr('x', widthD3 / 4)
     .attr('y', yScale(-3.4) - 31)
     .attr('width', 30)
     .attr('height', 30);
   svg.append('rect')
     .attr('fill', 'none')
     .attr('stroke', 'white')
-    .attr('x', widthD3 / 2 - 15)
-    .attr('y', yScale(-3.4) - 31)
-    .attr('width', 30)
-    .attr('height', 30);
-  svg.append('rect')
-    .attr('fill', 'none')
-    .attr('stroke', 'white')
-    .attr('x', widthD3 / 2 + 15)
-    .attr('y', yScale(-3.4) - 31)
-    .attr('width', 30)
-    .attr('height', 30);
-  svg.append('rect')
-    .attr('fill', 'none')
-    .attr('stroke', 'white')
-    .attr('x', widthD3 / 2 + 45)
-    .attr('y', yScale(-3.4) - 31)
-    .attr('width', 30)
-    .attr('height', 30);
-
-  svg.append('rect')
-    .attr('fill', 'none')
-    .attr('stroke', 'white')
-    .attr('x', widthD3 / 2)
+    .attr('x', widthD3 / 4)
     .attr('y', yScale(-1.51) - 31)
     .attr('width', 30)
     .attr('height', 30);
-
   svg.append('rect')
     .attr('fill', 'none')
     .attr('stroke', 'white')
-    .attr('x', widthD3 / 2 + 30)
+    .attr('x', widthD3 / 4 + 30)
     .attr('y', yScale(-1.51) - 31)
     .attr('width', 30)
     .attr('height', 30);
-
   svg.append('rect')
     .attr('fill', 'none')
     .attr('stroke', 'white')
-    .attr('x', widthD3 / 2 - 30)
-    .attr('y', yScale(-1.51) - 31)
-    .attr('width', 30)
-    .attr('height', 30);
-
-  svg.append('rect')
-    .attr('fill', 'none')
-    .attr('stroke', 'white')
-    .attr('x', widthD3 / 2 + 60)
-    .attr('y', yScale(-1.51) - 31)
-    .attr('width', 30)
-    .attr('height', 30);
-
-  svg.append('rect')
-    .attr('fill', 'none')
-    .attr('stroke', 'white')
-    .attr('x', widthD3 / 2 - 60)
-    .attr('y', yScale(-1.51) - 31)
-    .attr('width', 30)
-    .attr('height', 30);
-
-  svg.append('rect')
-    .attr('fill', 'none')
-    .attr('stroke', 'white')
-    .attr('x', widthD3 / 2 + 90)
-    .attr('y', yScale(-1.51) - 31)
-    .attr('width', 30)
-    .attr('height', 30);
-
-  svg.append('rect')
-    .attr('fill', 'none')
-    .attr('stroke', 'white')
-    .attr('x', widthD3 / 2 - 90)
-    .attr('y', yScale(-1.51) - 31)
-    .attr('width', 30)
-    .attr('height', 30);
-
-  svg.append('rect')
-    .attr('fill', 'none')
-    .attr('stroke', 'white')
-    .attr('x', widthD3 / 2 + 120)
-    .attr('y', yScale(-1.51) - 31)
-    .attr('width', 30)
-    .attr('height', 30);
-
-  svg.append('rect')
-    .attr('fill', 'none')
-    .attr('stroke', 'white')
-    .attr('x', widthD3 / 2 - 120)
+    .attr('x', widthD3 / 4 - 30)
     .attr('y', yScale(-1.51) - 31)
     .attr('width', 30)
     .attr('height', 30);
@@ -528,8 +455,8 @@ secondGraph = () => {
     .attr('id', 'electron')
     .attr('stroke', '#FFF7AE')
     .attr('stroke-width', '2px')
-    .attr('x1', widthD3 / 2 + 15)
-    .attr('x2', widthD3 / 2 + 15)
+    .attr('x1', widthD3 / 4 + 15)
+    .attr('x2', widthD3 / 4 + 15)
     .attr('y1', yScale(-13.6) - 25)
     .attr('y2', yScale(-13.6) - 5);
 
@@ -565,22 +492,14 @@ secondGraph = () => {
 }
 
 changeD3 = (val) => {
-  if (val == -1.51 && !con1) {
-    let r = [-120, -90, -60, -30, 0, 30, 60, 90, 120];
+  if (val == -1.51 && con == false) {
+    let r = [-30, 0, 30];
     let i = Math.floor(Math.random() * r.length)
-    x = widthD3 / 2 + 15 + r[i];
-    con1 = true;
-    con2 = false;
-  } else if (val == -3.4 && !con2) {
-    let r = [-45, -15, 15, 45];
-    let i = Math.floor(Math.random() * r.length)
-    x = widthD3 / 2 + 15 + r[i];
-    con2 = true;
-    con1 = false;
-  } else if (val == -13.6) {
-    x = widthD3 / 2 + 15;
-    con1 = false;
-    con2 = false;
+    x = widthD3 / 4 + 15 + r[i];
+    con = true;
+  } else if (val != -1.51) {
+    x = widthD3 / 4 + 15;
+    con = false;
   }
 
   svg.select('#electron')

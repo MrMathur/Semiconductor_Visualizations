@@ -30,85 +30,91 @@
       <h1 class="col-lg-12">ENERGIES OF SUBATOMIC PARTICLES</h1>
       <div class="col-lg-1"></div>
       <p class="col-lg-10">
-        So far, we have seen that an electron may exist in the form of various orbitals. A key concept for understanding
-        semiconductor physics, is understanding the allowed energy values for an electron.
+        So far, we have seen that an electron may exist in the form of different orbitals. A key concept for
+        understanding semiconductor physics, is understanding the variation of energy levels across these different
+        orbitals. How is the energy of an orbital defined? What influences its energy? These are some of the
+        questions we'll answer in this chapter.
       </p>
       <div class="col-lg-1"></div>
     </div>
     <div class="row sub-atomic-particle-row" id="scene_1">
       <div class="col-lg-4">
-        <h1>Hydrogen Atom</h1>
-        <p>Once again, we look at a Hydrogen atom that consists of one electron and one proton.
+        <h1>The Subatomic Particles</h1>
+        <p>Once again, we look at the simplistic case of a Hydrogen atom, that consists of one electron and one proton.
         </p>
         <p>These subatomic particles are equally, but oppositely, charged.</p>
       </div>
     </div>
     <div class="row sub-atomic-particle-row" id="scene_2">
       <div class="col-lg-4">
-        <h1>Coulomb Force</h1>
-        <p>The attraction force between the electron and proton is governed by the Coulomb law:</p>
-        <p>\[F = {q^2 \over 4 \pi \epsilon_0 r^2}\]</p>
-        <p>Here \[\epsilon_0\] is permittivity of free space, q is electron charge, and r is the distance between the
-          particles.
-        </p>
+        <h1>Coulomb Force of Attraction</h1>
+        <p>Due to these charges, there is a force of attraction that acts on these particles.</p>
+        <p>This force is governed by the Coulomb law, which states that \[F = {-k * q1 * q2 \over r^2}\]</p>
+        <p>Here k is a constant, q1 and q2 are the charges of both particles, and r is the distance between the two.</p>
       </div>
     </div>
     <div class="row sub-atomic-particle-row" id="scene_2and5">
       <div class="col-lg-4">
         <h1>The Potential Energy</h1>
-        <p>The electron’s potential energy at any point in space is the work done by an external force to move the
-          electron from the reference point to that point at a constant velocity.</p>
+        <p>If we consider the two charges as a system, the coulombic force gives rise to a potential energy. This energy
+          is governed by the equation \[E = {-k * q1 * q2 \over r}\]</p>
         <svg id="pe-viz"></svg>
-        <p>If we define the potential to be zero at infinity, the potential energy can be calculated as \[E_p = {-q^2
-          \over4 \pi \epsilon_0 r}\]</p>
+        <p>As with any potential, it is defined as 0 at a reference point.</p>
+        <p>The potential energy of all other points is
+          defined as the negative of the work done by an external force, in moving the charge from that point to the
+          reference point.</p>
       </div>
     </div>
     <div class="row sub-atomic-particle-row" id="scene_3">
       <div class="col-lg-4">
         <h1>Total Energy of Electron</h1>
         <p>The classical model assumed that the electron revolves around the proton, giving rise to a kinetic energy
-          defined by \[E_k = {1 \over 2} m v ^2\]</p>
+          defined by \[E = {1* m * v^2\over 2\ }\]</p>
         <svg id="d3-viz"></svg>
-        <!-- <p>The total energy of the electron would hence be the sum of the potential and kinetic energies, as shown.</p>
-        <p>We can see that these are change with changing radii of the electron.</p> -->
+        <p>The total energy of the electron would hence be the sum of the potential and kinetic energies, as shown.</p>
+        <p>We can see that these are change with changing radii of the electron.</p>
       </div>
     </div>
     <div class="row sub-atomic-particle-row" id="scene_3and5">
       <div class="col-lg-4">
         <h1>Absorption of Energy</h1>
-        <p>If a photon is shined on a hydrogen atom, the electron may absorb its energy. With the classical model, any
-          photon can be absorbed.
+        <p>When light is shone on hydrogen gas, the molecules may absorb energy depending on the wavelength of light.
         </p>
         <svg id="d3-viz"></svg>
         <button type="button" onclick="reset()">Click to reset!</button>
-        <!-- <p>If the classical model was correct, we would observe all light being absorbed by the gas, and see a dark
-          screen throughout as a result.</p> -->
+        <p>If the classical model was correct, we would observe all light being absorbed by the gas, and see a dark
+          screen throughout as a result.</p>
       </div>
     </div>
     <div class="row sub-atomic-particle-row" id="scene_4">
       <div class="col-lg-4">
         <h1>Observed Transition</h1>
-        <p>However, the experiments show only photos with particular wavelength (hence energy) are absorbed.</p>
+        <p>This was not observed.</p>
         <svg id="sec-viz"></svg>
         <button type="button" onclick="reset()">Click to reset!</button>
-        <p>Can you find which photon energies are absorbed?</p>
+        <p>Instead, the screen would light up on most wavelegnth, indicating that the gas does not absorbs all
+          wavelength.</p>
+        <p>Which wavelengths do does the Hydrogen molecule absorb?</p>
       </div>
     </div>
     <div class="row sub-atomic-particle-row" id="scene_5">
       <div class="col-lg-4">
         <h1>Unstable orbitals</h1>
-        <p>Moreover, a hydrogen atom in an excited state would can emit a photon and lose energy.</p>
+        <p>As we saw, only certain wavelength were absorbed by the hydrogen gas.</p>
         <svg id="sec-viz"></svg>
         <button type="button" onclick="reset()">Click to reset!</button>
-        <p>What photon energies are emitted?</p>
+        <p>Moreover, the hydrogen atom would also release energy, emitting photons of light, lighting up the screen.</p>
+        <p>Which photons does the Hydrogen gas release?</p>
       </div>
     </div>
     <div class="row sub-atomic-particle-row" id="scene_6">
       <div class="col-lg-4">
         <h1>Orbitals and Energy</h1>
-        <p>Can you excited the electron to the 3rd energy level by shining the right photons?</p>
+        <p>The orbitals can only exist at discrete energy levels, proving the classical model incorrect.</p>
         <svg id="sec-viz"></svg>
         <button type="button" onclick="reset()">Click to reset!</button>
+        <p>Energy transtitions can only happen when the exact amount of energy is transferred.</p>
+        <p>Can you reach the 3s orbital by shining the correct wavelengths?</p>
       </div>
     </div>
     <div id="visualization">

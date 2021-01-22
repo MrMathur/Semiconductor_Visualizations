@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 3: Bonding of Silicon Atoms</title>
+
+  <link href="./style.css" rel="stylesheet" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.1/d3.min.js"></script>
+
+  <script src="./scroll.js"></script>
+  <script src="./sketch.js"></script>
+  <script src="./graph.js"></script>
+  <script src="./prob.js"></script>
+</head>
+
+<body id="body_parent" onload="StartScroll()">
+  <a href="../index.html"><img id="back-icon" src="../images/arrow-left.svg" /></a>
+  <div class="container">
+    <div class="row title-row">
+      <h1 class="col-lg-12">BONDING OF HYDROGEN ATOMS</h1>
+      <div class="col-lg-1"></div>
+      <p class="col-lg-10">We have reviewed the concepts of energy and position for electrons in isolated Hydrogen atoms. However, atoms seldom exist in isolation. Let’s study the bonding of Hydrogen atoms.</p>
+      <div class="col-lg-1"></div>
+    </div>
+    <div class="row sub-atomic-particle-row" id="scene_1">
+      <div class="col-lg-4">
+        <h1>Hydrogen Atom</h1>
+        <p>Let’s consider the two lowest energy levels for an electron in a Hydrogen atom.
+        </p>
+        <svg id="d3-viz">
+
+        </svg>
+        <p>The electron is going to be mostly in the lowest energy level.</p>
+      </div>
+    </div>
+    <div class="row classical-model-row" id="scene_2">
+      <div class="col-lg-4">
+        <h1>Two Isolated Atoms</h1>
+        <p>For two atoms that are far from each other and do not interact, the orbitals and energy levels for electrons
+          in each atom are going to stay the same.</p>
+        <svg id="d3-viz2">
+
+        </svg>
+      </div>
+    </div>
+    <div class="row graph-row" id="scene_5">
+      <div class="col-lg-4">
+        <h1>Two Interacting Atoms</h1>
+        <p>However, when we consider two atoms together, each energy state splits into two energy states called bonding and anti-bonding states.</p>
+        <svg id="d3-viz5">
+
+        </svg>
+        <p>See how energy splitting changes as you vary the separation between the two atoms.</p>
+      </div>
+    </div>
+    <div class="row conclusion-row" id="scene_6">
+      <div class="col-lg-4">
+        <h1>Probability Density Function</h1>
+        <p>For an electron in a bonding state, the wavefunctions of the two orbitals interfere constructively in the middle. That means if you conduct many experiments to find the electron, in many cases you will find the electron between the two atoms.</p>
+        <svg id="d3-vizbo">
+
+        </svg>
+        <p>This is the bonding state between the two 1s orbitals.</p>
+      </div>
+    </div>
+    <div class="row conclusion-row" id="scene_7">
+      <div class="col-lg-4">
+        <h1>Antibonding</h1>
+        <p>For an electron in an antibonding state, the wavefunctions of the two orbitals interfere destructively in the middle. That means if you conduct many experiments to find the electron, in many cases you will rarely find the electron between the two atoms.</p>
+        <svg id="d3-vizab">
+
+        </svg>
+      </div>
+    </div>
+    <div class="row graph-row" id="scene_5and5">
+      <div class="col-lg-4">
+        <h1>Energy Well</h1>
+        <p>In a Hydrogen molecule, both electrons can be in the 1s bonding state whose energy decreases as the two atoms become closer. What about the total energy?</p>
+        <svg id="d3-viz5-5">
+
+        </svg>
+        <input type="checkbox" id="te" name="te" value="te" checked>
+        <label for="te"> Total Energy</label><br>
+        <input type="checkbox" id="ppr" name="ppr" value="ppr">
+        <label for="ppr">Proton-Proton Repulsions</label><br>
+        <input type="checkbox" id="eer" name="eer" value="eer">
+        <label for="eer"> Electron-Electron Repulsions</label><br>
+        <input type="checkbox" id="be" name="be" value="be" checked>
+        <label for="be"> Bonding Energies</label><br>
+        <p>The attractions and repulsions between the charges also contribute to the total Energy.</p>
+      </div>
+    </div>
+    <!-- -->
+    <div id="visualization">
+
+    </div>
+  </div>
+</body>
+
+</html>
